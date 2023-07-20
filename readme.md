@@ -1,3 +1,2 @@
-# Template repository
-
-This is a templte repository for servlet web application in java
+# servlet_template
+This is a simple web app template repository with maven 
