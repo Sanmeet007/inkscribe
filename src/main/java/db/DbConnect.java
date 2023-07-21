@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DbConnect {
     private Connection conn;
@@ -19,6 +20,10 @@ public class DbConnect {
             }
         }
 
+    }
+
+    public void close() throws SQLException {
+        conn.close();
     }
 
     public Connection getConnection() {

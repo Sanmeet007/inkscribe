@@ -7,7 +7,9 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import db.DbConfig;
 import db.DbConnect;
+import models.exceptions.InvalidPassword;
 import models.exceptions.InvalidPropertyUpdate;
 import models.exceptions.UserAlreadyExists;
 import models.exceptions.UserDoesNotExist;
@@ -40,6 +42,20 @@ public class Users {
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
         stmt.setInt(1, uid);
         ResultSet resultSet = stmt.executeQuery();
+        boolean result = false;
+
+        while (resultSet.next()) {
+            result = true;
+            break;
+        }
+        return result;
+    }
+
+    public static boolean userExists(String emailId) throws Exception {
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM `users` WHERE email=?");
+        ps.setString(1, emailId);
+
+        ResultSet resultSet = ps.executeQuery();
         boolean result = false;
 
         while (resultSet.next()) {
@@ -181,4 +197,46 @@ public class Users {
         }
 
     }
+
+    public static User getUserByEmailAndPassword(String emailId, String password) throws Exception {
+        if (userExists(emailId)) {
+
+            password = PasswordHasher.generateHash(DbConfig.getSalt() + password);
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM `users` WHERE email = ?  AND `password` = ?");
+            ps.setString(1, emailId);
+            ps.setString(2, password);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            boolean found = false;
+
+            User user = null;
+
+            while (resultSet.next()) {
+                user = new User(
+                        Integer.parseInt(resultSet.getString("id")),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getDate("dob"),
+                        resultSet.getString("bio"),
+                        resultSet.getString("profile_image"),
+                        resultSet.getTimestamp("created_at"),
+                        resultSet.getTimestamp("updated_at"));
+
+                found = true;
+                break;
+            }
+
+            if (found) {
+                return user;
+            } else {
+                throw new InvalidPassword();
+            }
+        } else {
+            throw new UserNotFound();
+        }
+
+    }
+
 }
