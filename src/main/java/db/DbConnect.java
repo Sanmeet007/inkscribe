@@ -8,15 +8,14 @@ public class DbConnect {
 
     private DbConnect() {
 
-        String connectionString = "jdbc:mysql://" + DbConfig.HOSTNAME + ":" + DbConfig.PORT + "/" + DbConfig.DB;
-
-        try (Connection conn = DriverManager.getConnection(connectionString,
-                DbConfig.USER,
-                DbConfig.PASSWORD)) {
-            System.out.println("connection established");
+        try (Connection conn = DriverManager.getConnection(DbConfig.getConnectionString(), DbConfig.getProperties())) {
 
         } catch (Exception e) {
-
+            if (DbConfig.errorLogging) {
+                e.printStackTrace();
+            } else {
+                System.out.println("Unable to establish connection");
+            }
         }
 
     }
