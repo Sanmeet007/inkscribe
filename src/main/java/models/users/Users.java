@@ -23,7 +23,7 @@ public class Users {
             PreparedStatement ps = conn
                     .prepareStatement("INSERT INTO `users`(name , email , dob , password) VALUES(? , ? , ? , ?)");
 
-            password = PasswordHasher.genrateHash(password);
+            password = PasswordHasher.generateHash(password);
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, dob);

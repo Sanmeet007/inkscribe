@@ -28,6 +28,6 @@ public class User {
     }
 
     public String getHashedPassword() throws Exception {
-        return PasswordHasher.genrateHash(password);
+        return PasswordHasher.generateHash(password);
     }
 }
