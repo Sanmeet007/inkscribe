@@ -7,9 +7,10 @@ public class DbConnect {
     private Connection conn;
 
     private DbConnect() {
-
-        try (Connection conn = DriverManager.getConnection(DbConfig.getConnectionString(), DbConfig.getProperties())) {
-
+        try {
+            Connection conn = DriverManager.getConnection(DbConfig.getConnectionString(),
+                    DbConfig.getProperties());
+            this.conn = conn;
         } catch (Exception e) {
             if (DbConfig.errorLogging) {
                 e.printStackTrace();
