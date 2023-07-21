@@ -1,5 +1,3 @@
-# Servlet_template
+# Java Mini Project
 
-This is a simple web app template repository with maven
-
-TJis
+This is a website
