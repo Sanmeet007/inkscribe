@@ -21,6 +21,13 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
