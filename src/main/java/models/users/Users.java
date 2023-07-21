@@ -12,6 +12,7 @@ import models.exceptions.InvalidPropertyUpdate;
 import models.exceptions.UserAlreadyExists;
 import models.exceptions.UserDoesNotExist;
 import models.exceptions.UserNotFound;
+import utils.PasswordHasher;
 
 public class Users {
 
@@ -22,6 +23,7 @@ public class Users {
             PreparedStatement ps = conn
                     .prepareStatement("INSERT INTO `users`(name , email , dob , password) VALUES(? , ? , ? , ?)");
 
+            password = PasswordHasher.genrateHash(password);
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, dob);
