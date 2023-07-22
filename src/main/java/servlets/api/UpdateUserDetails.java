@@ -81,11 +81,11 @@ public class UpdateUserDetails extends HttpServlet {
                     props.setProperty("profile_image", uploadedFileUrl);
                     Users.updateUserDetails(user.id, props);
                     ResMethods.writeJSONResponse(res, 200,
-                            "{\n  \"error\" : false,\n  \"message\" : \"User details updated successfully\"\n}");
+                            "{\n \"error\" : false,\n \"message\" : \"User details updated successfully\"\n}");
                 } else {
                     Users.updateUserDetails(user.id, props);
                     ResMethods.writeJSONResponse(res, 200,
-                            "{\n  \"error\" : false,\n  \"message\" : \"User details updated successfully\"\n}");
+                            "{\n \"error\" : false,\n \"message\" : \"User details updated successfully\"\n}");
                 }
             } else {
                 throw new UnauthorizedAcess();
@@ -96,7 +96,6 @@ public class UpdateUserDetails extends HttpServlet {
             ResMethods.writeJSONResponse(res, 401,
                     "{\n  \"error\" : true,\n \"message\" : \"Unauthorized Access\"\n}");
         } catch (Exception e) {
-            e.printStackTrace();
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
         return;
