@@ -19,17 +19,20 @@ public class Users {
 
     private static Connection conn = DbConnect.instance.getConnection();
 
-    public static void createUser(String name, String email, String password, String dob) throws Exception {
+    public static User createUser(String name, String email, String password, String dob) throws Exception {
         try {
             PreparedStatement ps = conn
                     .prepareStatement("INSERT INTO `users`(name , email , dob , password) VALUES(? , ? , ? , ?)");
 
-            password = PasswordHasher.generateHash(password);
+            final String hashedPassword = PasswordHasher.generateHash(password);
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, dob);
-            ps.setString(4, password);
+            ps.setString(4, hashedPassword);
             ps.executeUpdate();
+
+            return Users.getUserByEmailAndPassword(email, password);
+
         } catch (SQLIntegrityConstraintViolationException x) {
             throw new UserAlreadyExists();
         } catch (Exception e) {
