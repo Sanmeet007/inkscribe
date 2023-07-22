@@ -2,9 +2,9 @@ package models.users;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class User {
     public int id;
@@ -33,8 +33,33 @@ public class User {
     }
 
     public String toJSON() throws Exception {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = ow.writeValueAsString(this);
+        Map<String, String> obj = new HashMap<>();
+
+        obj.put("email", email);
+        obj.put("name", name);
+
+        obj.put("createdAt", createdAt.toString());
+        obj.put("updatedAt", updatedAt.toString());
+
+        if (dob != null) {
+            obj.put("dob", dob.toString());
+        } else {
+            obj.put("dob", "");
+        }
+
+        if (bio != null) {
+            obj.put("bio", bio);
+        } else {
+            obj.put("dob", "");
+        }
+
+        if (profileImage != null) {
+            obj.put("profileImage", profileImage);
+        } else {
+            obj.put("profileImage", "");
+        }
+
+        final String json = new ObjectMapper().writeValueAsString(obj);
         return json;
     }
 
