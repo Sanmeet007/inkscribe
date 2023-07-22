@@ -35,8 +35,8 @@ public class LoginHandler extends HttpServlet {
                 if (params.email != null && params.password != null) {
                     User user = Users.getUserByEmailAndPassword(params.email, params.password);
                     ResMethods.writeJSONResponse(res, 200,
-                            "{\n  \"error\" : false,\n  \"message\" : \"User  " + user.name
-                                    + "successfully logged in\"\n}");
+                            "{\n  \"error\" : false,\n  \"message\" : \"User " + user.name
+                                    + " successfully logged in\"\n}");
                 } else {
                     throw new EmptyFieldsNotAllowed();
                 }
