@@ -4,18 +4,30 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+
+  <!-- Servlets -->
   <servlet>
     <servlet-name>HomePage</servlet-name>
     <servlet-class>servlets.Home</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginHandler</servlet-name>
+    <servlet-class>servlets.api.LoginHandler</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>PageNotFound</servlet-name>
     <servlet-class>servlets.PageNotFound</servlet-class>
   </servlet>
 
+  <!-- Servlet Mapping -->
   <servlet-mapping>
     <servlet-name>HomePage</servlet-name>
     <url-pattern></url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>LoginHandler</servlet-name>
+    <url-pattern>/api/login</url-pattern>
   </servlet-mapping>
 
 
