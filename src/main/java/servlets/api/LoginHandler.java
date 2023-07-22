@@ -2,6 +2,7 @@ package servlets.api;
 
 import java.io.IOException;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ class LoginRequestParams {
     public String password;
 }
 
+@WebServlet("/api/login")
 public class LoginHandler extends HttpServlet {
 
     @Override
@@ -21,7 +23,11 @@ public class LoginHandler extends HttpServlet {
         System.out.println(req.getRequestURI());
         try {
 
-            LoginRequestParams params = ReqMethods.mapper.readValue(ReqMethods.getBody(req), LoginRequestParams.class);
+            LoginRequestParams params = ReqMethods.mapper.readValue(ReqMethods.getBody(req),
+                    LoginRequestParams.class);
+
+            System.out.println(params.email);
+            System.out.println(params.password);
 
             return;
 

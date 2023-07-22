@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "Uploader", urlPatterns = { "/upload" })
+@WebServlet("/api/upload")
 @MultipartConfig(
         // Params
         fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
