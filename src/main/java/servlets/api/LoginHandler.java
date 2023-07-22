@@ -1,16 +1,21 @@
 package servlets.api;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.exceptions.InvalidEmailId;
+import models.exceptions.InvalidPassword;
 import models.users.User;
 import models.users.Users;
 import servlets.api.exceptions.EmptyFieldsNotAllowed;
+import servlets.api.exceptions.InvalidContentType;
 import utils.ReqMethods;
+import utils.ResMethods;
 
 class LoginRequestParams {
     public String email;
@@ -22,6 +27,7 @@ public class LoginHandler extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
+
         try {
 
             if (req.getContentType().equals("application/json")) {
@@ -36,23 +42,21 @@ public class LoginHandler extends HttpServlet {
                 } else {
                     throw new EmptyFieldsNotAllowed();
                 }
-
-                return;
             } else {
-                res.setStatus(400);
-                return;
+                throw new InvalidContentType();
             }
 
-        } catch (IOException x) {
-            // System.out.println("Invalid params");
-            res.setStatus(400);
-            return;
+        } catch (InvalidPassword x) {
+            ResMethods.writeJSONResponse(res, 400, ResMethods.get400ResJSON("Invalid Credentials"));
+        } catch (InvalidEmailId x) {
+            ResMethods.writeJSONResponse(res, 400, ResMethods.get400ResJSON("Invalid Credentials"));
+        } catch (InvalidContentType x) {
+            ResMethods.writeJSONResponse(res, 400, ResMethods.get400ResJSON("Invalid Request"));
         } catch (Exception e) {
-            res.setStatus(400);
-            e.printStackTrace();
-            return;
+            ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
 
+        return;
     }
 
 }
