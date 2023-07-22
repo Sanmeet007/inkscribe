@@ -1,7 +1,5 @@
 package servlets.api;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import javax.servlet.http.HttpServlet;
@@ -10,13 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import utils.Config;
-import utils.ReqMethods;
 import utils.StreamReader;
 
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import javax.servlet.annotation.*;
