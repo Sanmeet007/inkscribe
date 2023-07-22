@@ -1,8 +1,16 @@
 package servlets.api;
 
+import java.io.File;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import utils.Config;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.servlet.annotation.*;
 
 @WebServlet("/api/upload")
@@ -16,7 +24,19 @@ public class Uploader extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
-        System.out.println("recieved requst");
+        // System.out.println("recieved requst");
+        try {
+            Part filePart = req.getPart("file");
+            String fileName = filePart.getSubmittedFileName();
+            for (Part part : req.getParts()) {
+                part.write(Config.resolvePath(fileName));
+            }
 
+            System.out.println("File uploaded successfully");
+            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
     }
 }
