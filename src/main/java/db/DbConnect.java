@@ -9,6 +9,7 @@ public class DbConnect {
 
     private DbConnect() {
         try {
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             Connection conn = DriverManager.getConnection(DbConfig.getConnectionString(),
                     DbConfig.getProperties());
             this.conn = conn;
