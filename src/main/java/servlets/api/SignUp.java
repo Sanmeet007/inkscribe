@@ -34,10 +34,10 @@ public class SignUp extends HttpServlet {
                         || params.email == null
                         || params.password == null
                         || params.dob == null
-                        || params.name == ""
-                        || params.email == ""
-                        || params.password == ""
-                        || params.dob == "") {
+                        || params.name.equals("")
+                        || params.email.equals("")
+                        || params.password.equals("")
+                        || params.dob.equals("")) {
                     throw new EmptyFieldsNotAllowed();
                 }
 
