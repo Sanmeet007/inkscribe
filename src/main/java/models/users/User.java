@@ -25,9 +25,10 @@ public class User {
         this.updatedAt = updatedAt;
         this.bio = bio;
         this.password = password;
+        System.out.println("Password" + password);
     }
 
     public String getHashedPassword() throws Exception {
-        return PasswordHasher.generateHash(password);
+        return password;
     }
 }
