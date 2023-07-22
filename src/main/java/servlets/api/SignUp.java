@@ -11,6 +11,7 @@ import models.exceptions.UserAlreadyExists;
 import models.users.User;
 import models.users.Users;
 import servlets.api.exceptions.EmptyFieldsNotAllowed;
+import servlets.api.exceptions.InvalidContentType;
 import utils.ReqMethods;
 import utils.ResMethods;
 
@@ -24,30 +25,40 @@ public class SignUp extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
         try {
-            SignUpParams params = ReqMethods.mapper.readValue(ReqMethods.getBody(req), SignUpParams.class);
 
-            if (params.name == null
-                    || params.email == null
-                    || params.password == null
-                    || params.dob == null
-                    || params.name == ""
-                    || params.email == ""
-                    || params.password == ""
-                    || params.dob == "") {
-                throw new EmptyFieldsNotAllowed();
+            if (req.getContentType() == "application/json") {
+
+                SignUpParams params = ReqMethods.mapper.readValue(ReqMethods.getBody(req), SignUpParams.class);
+
+                if (params.name == null
+                        || params.email == null
+                        || params.password == null
+                        || params.dob == null
+                        || params.name == ""
+                        || params.email == ""
+                        || params.password == ""
+                        || params.dob == "") {
+                    throw new EmptyFieldsNotAllowed();
+                }
+
+                User user = Users.createUser(params.name, params.email, params.password, params.dob);
+
+                HttpSession currentSession = req.getSession();
+                currentSession.setAttribute("uid", user.id);
+                ResMethods.writeJSONResponse(res, 200,
+                        "{\n  \"error\" : false,\n  \"message\" : \"Login successfull\",\n  \"user\" : "
+                                + user.toJSON() + " \n}");
+            } else {
+                throw new InvalidContentType();
             }
-
-            User user = Users.createUser(params.name, params.email, params.password, params.dob);
-
-            HttpSession currentSession = req.getSession();
-            currentSession.setAttribute("uid", user.id);
-            ResMethods.writeJSONResponse(res, 200,
-                    "{\n  \"error\" : false,\n  \"message\" : \"Login successfull\",\n  \"user\" : "
-                            + user.toJSON() + " \n}");
 
         } catch (UserAlreadyExists e) {
             ResMethods.writeJSONResponse(res, 400,
                     ResMethods.get400ResJSON("Email already registered"));
+
+        } catch (InvalidContentType e) {
+            ResMethods.writeJSONResponse(res, 400,
+                    ResMethods.get400ResJSON("Invalid request type"));
         } catch (EmptyFieldsNotAllowed e) {
             ResMethods.writeJSONResponse(res, 400,
                     ResMethods.get400ResJSON("Bad request"));
