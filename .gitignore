@@ -1,4 +1,6 @@
+.vscode
 .vscode/*
+target
 target/*
 .env
 Test
