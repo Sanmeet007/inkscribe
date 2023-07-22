@@ -3,8 +3,6 @@ package models.users;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-import utils.PasswordHasher;
-
 public class User {
     public int id;
     public final String name, email, profileImage;
