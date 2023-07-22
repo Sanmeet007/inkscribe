@@ -3,6 +3,9 @@ package models.users;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 public class User {
     public int id;
     public final String name, email, profileImage;
@@ -28,4 +31,11 @@ public class User {
     public String getHashedPassword() throws Exception {
         return password;
     }
+
+    public String toJSON() throws Exception {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(this);
+        return json;
+    }
+
 }
