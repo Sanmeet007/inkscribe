@@ -1,7 +1,11 @@
 package utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import utils.exceptions.AppNameNotDefined;
@@ -33,6 +37,42 @@ public class Config {
 
         Path path = root.resolve("../webapps/" + APP_NAME + "/" + filePath);
         return path.normalize().toString();
+    }
+
+    public static Path getPath(String filePath) throws Exception {
+        Path root = Paths.get(".").normalize().toAbsolutePath();
+
+        if (APP_NAME == null) {
+            throw new AppNameNotDefined();
+        }
+
+        Path path = root.resolve("../webapps/" + APP_NAME + "/" + filePath);
+        return path.normalize();
+    }
+
+    public static Path getUploadPath(String filePath) throws Exception {
+        Path root = Paths.get(".").normalize().toAbsolutePath();
+
+        if (APP_NAME == null) {
+            throw new AppNameNotDefined();
+        }
+
+        File dir = new File(root.resolve("../webapps/" + APP_NAME + "/uploads/").normalize().toString());
+        boolean dirMade = false;
+
+        if (!dir.exists()) {
+            dirMade = dir.mkdir();
+        } else {
+            dirMade = true;
+        }
+
+        if (dirMade) {
+            Path path = root.resolve("../webapps/" + APP_NAME + "/uploads/" + filePath);
+            return path.normalize();
+        } else {
+            throw new IOException("Upload dir cannot be created");
+        }
+
     }
 
 }

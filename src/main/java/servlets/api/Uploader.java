@@ -1,15 +1,23 @@
 package servlets.api;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import utils.Config;
+import utils.ReqMethods;
+import utils.StreamReader;
 
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import javax.servlet.annotation.*;
 
@@ -24,17 +32,27 @@ public class Uploader extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
-        // System.out.println("recieved requst");
         try {
+            Part username = req.getPart("supername");
             Part filePart = req.getPart("file");
-            String fileName = filePart.getSubmittedFileName();
-            for (Part part : req.getParts()) {
-                part.write(Config.resolvePath(fileName));
+
+            InputStream userContent = username.getInputStream();
+            InputStream fileContent = filePart.getInputStream();
+
+            System.out.println(StreamReader.read(userContent));
+
+            if (filePart != null) {
+                Files.write(Config.getUploadPath(filePart.getSubmittedFileName()),
+                        fileContent.readAllBytes(),
+                        StandardOpenOption.CREATE);
             }
 
+            System.out.println("Upload location : " + Config.getUploadPath(filePart.getSubmittedFileName()));
             System.out.println("File uploaded successfully");
             return;
-        } catch (Exception e) {
+        } catch (
+
+        Exception e) {
             e.printStackTrace();
             return;
         }
