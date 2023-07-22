@@ -25,9 +25,9 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+      <version>4.0.0</version>
+      <scope>provided</scope>
     </dependency>
-
 
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -66,7 +66,7 @@
   </dependencies>
 
   <build>
-    <finalName>ROOT</finalName>
+    <finalName>app</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -89,7 +89,7 @@
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.2</version>
           <configuration>
-            <outputDirectory>D:/xammp/tomcat/webapps</outputDirectory>
+            <!-- <outputDirectory>D:/xammp/tomcat/webapps</outputDirectory> -->
             <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
         </plugin>

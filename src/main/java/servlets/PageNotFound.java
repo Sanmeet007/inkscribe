@@ -16,7 +16,7 @@ public class PageNotFound extends HttpServlet {
         response.setContentType("text/html");
         response.setStatus(404);
         PrintWriter out = response.getWriter();
-        out.print("<h1>404 Page not found</h1>");
+        out.print("<h1>404 Page not found really</h1>");
         out.close();
     }
 
