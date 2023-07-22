@@ -1,8 +1,6 @@
 package utils;
 
 import java.io.BufferedReader;
-import java.net.http.HttpRequest;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

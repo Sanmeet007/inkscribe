@@ -1,10 +1,7 @@
 package utils;
 
 import java.io.PrintWriter;
-import java.net.http.HttpResponse;
-
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class ResMethods {
 
