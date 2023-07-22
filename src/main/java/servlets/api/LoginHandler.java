@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.exceptions.InvalidEmailId;
 import models.exceptions.InvalidPassword;
@@ -34,6 +35,11 @@ public class LoginHandler extends HttpServlet {
 
                 if (params.email != null && params.password != null) {
                     User user = Users.getUserByEmailAndPassword(params.email, params.password);
+
+                    HttpSession session = req.getSession();
+                    session.setAttribute("uid", user.id);
+                    session.setMaxInactiveInterval(60 * 60); // 1 Hour
+
                     ResMethods.writeJSONResponse(res, 200,
                             "{\n  \"error\" : false,\n  \"message\" : \"Login successfull\",\n  \"user\" : "
                                     + user.toJSON() + " \n}");
