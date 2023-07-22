@@ -73,4 +73,8 @@ public class Config {
 
     }
 
+    public static String getUploadFileUrl(String fileName) {
+        return "http://localhost:8080/app/uploads/" + fileName;
+    }
+
 }
