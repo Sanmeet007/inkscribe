@@ -7,7 +7,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import db.DbConfig;
 import db.DbConnect;
 import models.exceptions.InvalidPassword;
 import models.exceptions.InvalidPropertyUpdate;
