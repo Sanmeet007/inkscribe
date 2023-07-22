@@ -25,8 +25,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>3.0.1</version>
-      <scope>provided</scope>
+      <version>4.0.1</version>
     </dependency>
 
 
@@ -50,8 +49,8 @@
       <version>3.0.0</version>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
       <version>8.0.33</version>
     </dependency>
 
@@ -91,6 +90,7 @@
           <version>3.2.2</version>
           <configuration>
             <outputDirectory>D:/xammp/tomcat/webapps</outputDirectory>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
         </plugin>
         <plugin>
