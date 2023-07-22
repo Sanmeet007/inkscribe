@@ -227,7 +227,7 @@ public class Users {
 
         if (found) {
 
-            String inputPassword = PasswordHasher.generateHash(DbConfig.getSalt() + password);
+            String inputPassword = PasswordHasher.generateHash(password);
             if (user.getHashedPassword().equals(inputPassword)) {
 
                 return user;
