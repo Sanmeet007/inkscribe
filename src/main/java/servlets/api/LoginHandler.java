@@ -36,7 +36,7 @@ public class LoginHandler extends HttpServlet {
                     User user = Users.getUserByEmailAndPassword(params.email, params.password);
                     ResMethods.writeJSONResponse(res, 200,
                             "{\n  \"error\" : false,\n  \"message\" : \"Login successfull\",\n  \"user\" : "
-                                    + user.toJSON() + " }\n}");
+                                    + user.toJSON() + " \n}");
                 } else {
                     throw new EmptyFieldsNotAllowed();
                 }
