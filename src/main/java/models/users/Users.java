@@ -12,7 +12,7 @@ import db.DbConnect;
 import models.exceptions.InvalidPassword;
 import models.exceptions.InvalidPropertyUpdate;
 import models.exceptions.UserAlreadyExists;
-import models.exceptions.UserDoesNotExist;
+import models.exceptions.InvalidEmailId;
 import models.exceptions.UserNotFound;
 import utils.PasswordHasher;
 
@@ -134,7 +134,7 @@ public class Users {
 
             return stmt.executeUpdate();
         } else {
-            throw new UserDoesNotExist();
+            throw new InvalidEmailId();
         }
     }
 
@@ -199,42 +199,44 @@ public class Users {
     }
 
     public static User getUserByEmailAndPassword(String emailId, String password) throws Exception {
-        if (userExists(emailId)) {
 
-            password = PasswordHasher.generateHash(DbConfig.getSalt() + password);
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM `users` WHERE email = ?  AND `password` = ?");
-            ps.setString(1, emailId);
-            ps.setString(2, password);
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM `users` WHERE email = ? ");
+        ps.setString(1, emailId);
 
-            ResultSet resultSet = ps.executeQuery();
+        ResultSet resultSet = ps.executeQuery();
 
-            boolean found = false;
+        boolean found = false;
 
-            User user = null;
+        User user = null;
 
-            while (resultSet.next()) {
-                user = new User(
-                        Integer.parseInt(resultSet.getString("id")),
-                        resultSet.getString("name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("password"),
-                        resultSet.getDate("dob"),
-                        resultSet.getString("bio"),
-                        resultSet.getString("profile_image"),
-                        resultSet.getTimestamp("created_at"),
-                        resultSet.getTimestamp("updated_at"));
+        while (resultSet.next()) {
+            user = new User(
+                    Integer.parseInt(resultSet.getString("id")),
+                    resultSet.getString("name"),
+                    resultSet.getString("email"),
+                    resultSet.getString("password"),
+                    resultSet.getDate("dob"),
+                    resultSet.getString("bio"),
+                    resultSet.getString("profile_image"),
+                    resultSet.getTimestamp("created_at"),
+                    resultSet.getTimestamp("updated_at"));
 
-                found = true;
-                break;
-            }
+            found = true;
+            break;
+        }
 
-            if (found) {
+        if (found) {
+
+            String inputPassword = PasswordHasher.generateHash(DbConfig.getSalt() + password);
+            if (user.getHashedPassword().equals(inputPassword)) {
+
                 return user;
             } else {
                 throw new InvalidPassword();
+
             }
         } else {
-            throw new UserNotFound();
+            throw new InvalidEmailId();
         }
 
     }
