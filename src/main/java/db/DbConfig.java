@@ -6,10 +6,10 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class DbConfig {
     public static boolean errorLogging = false;
-    private final static String USER, PASSWORD, HOSTNAME, PORT, DB, SALT_STRING;
+    private final static String USER, PASSWORD, HOSTNAME, PORT, DB_NAME, SALT_STRING;
 
     static public String getConnectionString() {
-        return "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DB;
+        return "jdbc:mysql://" + HOSTNAME + ":" + PORT + "/" + DB_NAME + "?useSSL=false&allowPublicKeyRetrieval=true";
     }
 
     public static Properties getProperties() {
@@ -27,9 +27,9 @@ public class DbConfig {
     static {
         Dotenv.configure();
         Dotenv envVariables = Dotenv.load();
-        USER = envVariables.get("USER");
-        PASSWORD = envVariables.get("PASSWORD");
-        DB = envVariables.get("DB");
+        USER = envVariables.get("DB_USER");
+        PASSWORD = envVariables.get("DB_PASSWORD");
+        DB_NAME = envVariables.get("DB_NAME");
         HOSTNAME = envVariables.get("DB_HOST");
         PORT = envVariables.get("DB_PORT");
         SALT_STRING = envVariables.get("SECURITY_STRING");

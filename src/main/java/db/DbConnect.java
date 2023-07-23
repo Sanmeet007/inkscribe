@@ -17,6 +17,7 @@ public class DbConnect {
             if (DbConfig.errorLogging) {
                 e.printStackTrace();
             } else {
+                e.printStackTrace();
                 System.out.println("Unable to establish connection");
             }
         }
