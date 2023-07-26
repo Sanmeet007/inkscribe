@@ -1,1 +1,1 @@
-console.log("Welcome to Java Servlets")
+console.log("Hello world")
