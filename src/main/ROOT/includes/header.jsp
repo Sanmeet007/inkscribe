@@ -25,8 +25,8 @@
             <a href="/our-story"> Our Story </a>
           </li>
 
-          <li class="<%= currentPage.equals("write") ? "active" : "" %>">
-            <a href="/write"> Write </a>
+          <li class="<%= currentPage.equals("search") ? "active" : "" %>">
+            <a href="/search.jsp"> Search </a>
           </li>
         </ul>
         <div class="nav-extras">
@@ -123,5 +123,5 @@
     });
     </script>
   <% }else{ %>
-    <div style="height:73px"></div>
+    <div style="height:70px"></div>
   <% } %>
