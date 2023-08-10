@@ -24,7 +24,7 @@
     </div>
 
     <div class="menu">
-      <a href="/dashboard" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
+      <a href="/dashboard/index.jsp" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
         <span class="material-symbols-outlined"> dashboard </span>
         <span> Dashboard </span>
       </a>

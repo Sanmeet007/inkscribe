@@ -11,7 +11,7 @@
     <div class="dashboard-container">
       <div class="dashboard-content">
         <jsp:include page="../includes/dash-nav.jsp" >
-          <jsp:param name="page" value="myarticles" />
+          <jsp:param name="page" value="articles" />
         </jsp:include>
         <div class="main">
           <h1 class="mb-1">My Articles</h1>
@@ -39,7 +39,7 @@
                   Lorem ipsum dolor sit amet consectetur
                 </div>
                 <div class="flex  small-gap">
-                  <a  href="/edit-article.jsp" class="btn icon-btn small">
+                  <a  href="/dashboard/edit-article.jsp" class="btn icon-btn small">
                     <span class="material-symbols-outlined">
                       edit
                       </span>
