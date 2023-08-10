@@ -1040,11 +1040,6 @@ footer {
   transition: visibility 200ms ease-in-out, opacity 200ms ease-in-out;
 }
 
-.comments-sidebar.open,
-.comments-sidebar.open .comment-sidebar-backdrop {
-  opacity: 1;
-  visibility: visible;
-}
 .comment-block {
   background-color: var(--accent-bg);
   width: 100%;
@@ -1052,4 +1047,44 @@ footer {
   height: 100vh;
   position: absolute;
   right: 0;
+  padding: 1rem;
+  visibility: hidden;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateX(100%);
+  transform-origin: right;
+  transition: transform 200ms ease-in-out, visibility 200ms ease-in-out,
+    opacity 200ms ease-in-out;
+}
+
+.comments-sidebar.open .comment-block {
+  transform: translateX(0%);
+}
+
+.comments-sidebar.open .comment-block,
+.comments-sidebar.open,
+.comments-sidebar.open .comment-sidebar-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+.comment-block h3 {
+  font-weight: normal;
+}
+.flex-no-center {
+  align-items: normal;
+}
+.shadow-block p {
+  background-color: rgba(0, 255, 255, 0.292);
+  padding: 0.5rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+.small-text {
+  color: silver;
+  font-size: 0.8rem;
+}
+.mt-small {
+  margin-top: 0.3rem;
 }

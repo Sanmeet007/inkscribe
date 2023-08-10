@@ -1,3 +1,5 @@
+<%@page import="utils.*" %>
+
 <% 
   String currentPage = request.getParameter("page");
 %>
@@ -28,6 +30,16 @@
           </li>
         </ul>
         <div class="nav-extras">
+
+          <% if (Auth.isLoggedIn(request)) { %>
+                  
+          <a href="/dashboard/index.jsp"
+          class="btn pill-shape min-size secondary">
+            Dashboard
+          </a>
+
+          <%} else {%>
+            
           <button
             class="btn pill-shape min-size secondary"
             data-trigger="sign-in-modal"
@@ -40,6 +52,7 @@
           >
             Sign up
           </button>
+         <% } %>
         </div>
       </div>
     </nav>
