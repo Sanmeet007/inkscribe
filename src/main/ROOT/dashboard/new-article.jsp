@@ -2,21 +2,29 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <jsp:include page="/_partials/head.jsp">
-    <jsp:param name="title" value="Edit Article" />
+  <jsp:include page="../includes/head.jsp">
+    <jsp:param name="title" value="New Aricle" />
   </jsp:include>
   <body>
     <!-- Main -->
 
     <div class="dashboard-container">
       <div class="dashboard-content">
-        
-        <jsp:include page="/_partials/dash-nav.jsp" >
-          <jsp:param name="page" value="edit-article" />
+        <jsp:include page="../includes/dash-nav.jsp" >
+          <jsp:param name="page" value="new-article" />
         </jsp:include>
-        
-        <div class="main">
-          <h1 class="mb-1">Edit Article</h1>
+        <div data-route="/dashboard" hidden class="main">
+          <h1>Dashboard</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum unde
+            accusantium aspernatur, dolorem velit atque corporis magni pariatur
+            rerum id maiores. Repellat impedit et cum ad quam, voluptate
+            sapiente neque!
+          </p>
+        </div>
+
+        <div data-route="/new-article" class="main">
+          <h1 class="mb-1">New Article</h1>
           <p>This is my new article page</p>
           <form action="#" class="flex gap flex-column mt-1">
             <div class="form-element fullwidth">
@@ -26,19 +34,19 @@
               </select>
             </div>
             <div class="form-element fullwidth">
-                <label for="article_slug"
-                  >Slug <span class="red">*</span></label
-                >
-                <fieldset>
-                  <legend>Slug*</legend>
-                  <input
-                    type="text"
-                    id="article_slug"
-                    name="slug"
-                    placeholder="my-cool-article"
-                  />
-                </fieldset>
-              </div>
+              <label for="article_slug"
+                >Slug <span class="red">*</span></label
+              >
+              <fieldset>
+                <legend>Slug*</legend>
+                <input
+                  type="text"
+                  id="article_slug"
+                  name="slug"
+                  placeholder="my-cool-article"
+                />
+              </fieldset>
+            </div>
             <div class="form-element fullwidth">
               <label for="article_title"
                 >Title <span class="red">*</span></label
@@ -92,10 +100,11 @@
       </div>
     </div>
 
+   
     <!-- Modals -->
-    <jsp:include page="/_partials/modals.jsp" />
+    <jsp:include page="../includes/modals.jsp" />
     <!-- Snackbars -->
-    <jsp:include page="/_partials/snackbars.jsp" />
+    <jsp:include page="../includes/snackbars.jsp" />
  
 
     <script src="/js/script.js"></script>

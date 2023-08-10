@@ -24,15 +24,15 @@
     </div>
 
     <div class="menu">
-      <a href="/dashboard.jsp" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
+      <a href="/dashboard" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
         <span class="material-symbols-outlined"> dashboard </span>
         <span> Dashboard </span>
       </a>
-      <a href="/myarticles.jsp" class="menu-item <%= currentPage.equals("myarticles") ? "active" : "" %>">
+      <a href="/dashboard/articles.jsp" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
         <span class="material-symbols-outlined"> news </span>
         <span> My Articles </span>
       </a>
-      <a href="/new-article.jsp" class="menu-item <%= currentPage.equals("new-article")  ? "active" : ""%>">
+      <a href="/dashboard/new-article.jsp" class="menu-item <%= currentPage.equals("new-article")  ? "active" : ""%>">
         <span class="material-symbols-outlined"> add_circle </span>
         <span>New Aritcle</span>
       </a>

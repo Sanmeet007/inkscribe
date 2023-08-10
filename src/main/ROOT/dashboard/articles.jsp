@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <jsp:include page="/_partials/head.jsp">
+  <jsp:include page="../includes/head.jsp">
     <jsp:param name="title" value="My Articles" />
   </jsp:include>
   <body>
@@ -10,7 +10,7 @@
 
     <div class="dashboard-container">
       <div class="dashboard-content">
-        <jsp:include page="/_partials/dash-nav.jsp" >
+        <jsp:include page="../includes/dash-nav.jsp" >
           <jsp:param name="page" value="myarticles" />
         </jsp:include>
         <div class="main">
@@ -102,9 +102,9 @@
     </div>
 
     <!-- Modals -->
-    <jsp:include page="/_partials/modals.jsp" />
+    <jsp:include page="../includes/modals.jsp" />
     <!-- Snackbars -->
-    <jsp:include page="/_partials/snackbars.jsp" />
+    <jsp:include page="../includes/snackbars.jsp" />
 
     <script src="/js/script.js"></script>
   </body>
