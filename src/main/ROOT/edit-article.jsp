@@ -33,6 +33,7 @@
             </div>
             <div class="action">
               <button
+                data-trigger="edit-user-details"
                 class="btn outlined pill-shape tightly-packed no-text-transform secondary"
               >
                 <span> Edit </span>
@@ -79,6 +80,20 @@
                 <option value="Programming">Programming</option>
               </select>
             </div>
+            <div class="form-element fullwidth">
+                <label for="article_slug"
+                  >Slug <span class="red">*</span></label
+                >
+                <fieldset>
+                  <legend>Slug*</legend>
+                  <input
+                    type="text"
+                    id="article_slug"
+                    name="slug"
+                    placeholder="my-cool-article"
+                  />
+                </fieldset>
+              </div>
             <div class="form-element fullwidth">
               <label for="article_title"
                 >Title <span class="red">*</span></label
@@ -133,7 +148,7 @@
     </div>
 
     <!-- Modals -->
-    <div class="modal" id="test-modal">
+    <div class="modal" id="edit-user-details">
       <div class="modal-backdrop"></div>
       <div class="modal-content">
         <h1>This is modal heading</h1>

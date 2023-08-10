@@ -34,6 +34,7 @@
             </div>
             <div class="action">
               <button
+                data-trigger="edit-user-details"
                 class="btn outlined pill-shape tightly-packed no-text-transform secondary"
               >
                 <span> Edit </span>
@@ -149,7 +150,7 @@
     </div>
 
     <!-- Modals -->
-    <div class="modal" id="test-modal">
+    <div class="modal" id="edit-user-details">
       <div class="modal-backdrop"></div>
       <div class="modal-content">
         <h1>This is modal heading</h1>
