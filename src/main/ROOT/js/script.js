@@ -1,20 +1,37 @@
-const mobNavTrigger = document.querySelector("#nav-trigger");
-const mobNav = document.querySelector("#mobile-nav");
-const mobNavBackdrop = mobNav.querySelector(".backdrop");
-const modals = document.querySelectorAll(".modal");
-const modalOpenerButton = document.querySelector("#modal-opener");
+const header = document?.querySelector("header");
+const mobNavTrigger = document?.querySelector("#nav-trigger");
+const mobNav = document?.querySelector("#mobile-nav");
+const mobNavBackdrop = mobNav?.querySelector(".backdrop");
+const modals = document?.querySelectorAll(".modal");
 const successSnackBar = document.querySelector(".snackbar.success");
 const infoSnackBar = document.querySelector(".snackar.info");
 const warningSnackBar = document.querySelector(".snackbar.warning");
 const errorSnackBar = document.querySelector(".snackbar.error");
 const snackBars = document.querySelectorAll(".snackbar");
-
 const formElements = document.querySelectorAll(".form-element");
-formElements.forEach((el) => {
+const modalTriggers = document.querySelectorAll("[data-trigger]");
+
+modalTriggers?.forEach(trigger => {
+    trigger.addEventListener("click", (e) => {
+        const modalId = trigger.getAttribute("data-trigger");
+        const modal = document.querySelector(`#${modalId}`);
+        modal.classList.add("open");
+    });
+});
+
+window.addEventListener("scroll", e => {
+    if (window.scrollY > 100) {
+        header.classList.add("scrolled");
+    } else {
+        header.classList.remove("scrolled");
+    }
+});
+
+formElements?.forEach((el) => {
     const field = el.querySelector("input") || el.querySelector("textarea");
 
     if (field != null) {
-        if (field.value != "" || field.value != null) {
+        if (field.value != "" && field.value != null) {
             el.classList.add("focused");
         }
         field.addEventListener("input", (e) => {
@@ -72,15 +89,12 @@ const showSnackbar = (
     }
 };
 
-modalOpenerButton?.addEventListener("click", (e) => {
-    const modal = document.querySelector("#test-modal");
-    modal.classList.add("open");
-});
 
-mobNavTrigger.addEventListener("click", () => {
+
+mobNavTrigger?.addEventListener("click", () => {
     mobNav.classList.add("open");
 });
-mobNavBackdrop.addEventListener("click", (e) => {
+mobNavBackdrop?.addEventListener("click", (e) => {
     mobNav.classList.remove("open");
 });
 
@@ -106,3 +120,4 @@ window.addEventListener("keydown", (e) => {
         }
     }
 });
+

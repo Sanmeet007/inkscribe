@@ -1,4 +1,4 @@
-# Mini Project
+# InkScribe
 
 This is a mini project .. website
 
