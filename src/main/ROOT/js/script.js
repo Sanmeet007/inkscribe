@@ -19,13 +19,6 @@ modalTriggers?.forEach(trigger => {
     });
 });
 
-window.addEventListener("scroll", e => {
-    if (window.scrollY > 100) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-});
 
 formElements?.forEach((el) => {
     const field = el.querySelector("input") || el.querySelector("textarea");

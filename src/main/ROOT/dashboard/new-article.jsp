@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <jsp:include page="../includes/head.jsp">
+  <jsp:include page="../includes/backend-head.jsp">
     <jsp:param name="title" value="New Aricle" />
   </jsp:include>
   <body>

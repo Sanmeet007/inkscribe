@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <jsp:include page="../includes/head.jsp">
+  <jsp:include page="../includes/backend-head.jsp">
     <jsp:param name="title" value="My Articles" />
   </jsp:include>
   <body>
@@ -19,9 +19,9 @@
           <div class="cards">
             <div class="card">
              
-              <div class="card-heading">
+              <a href="/article.jsp" class="block no-link card-heading">
                 Lorem ipsum dolor sit amet consectetur
-              </div>
+              </a>
               <div class="card-content">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum corrupti voluptatibus veniam deserunt architecto! Repel
               </div>
@@ -35,9 +35,9 @@
             <div class="card">
              
               <div class="card-heading flex gap">
-                <div>
+                <a href="/article.jsp" class="block no-link">
                   Lorem ipsum dolor sit amet consectetur
-                </div>
+                </a>
                 <div class="flex  small-gap">
                   <a  href="/dashboard/edit-article.jsp" class="btn icon-btn small">
                     <span class="material-symbols-outlined">

@@ -1,121 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8"%> 
 
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>InkScribe - Where good ideas find you.</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-  </head>
+  <jsp:include page="./includes/frontend-head.jsp">
+    <jsp:param name="title" value="InkScribe" />
+  </jsp:include>
+  
   <body>
     <!-- Header -->
-    <header>
-      <nav class="nav desktop container">
-        <div class="logo">
-          <a href="/">
-            <img
-              src="/images/logo-dark.png"
-              alt="LOGO"
-              width="125"
-              height="50"
-            />
-          </a>
-        </div>
-        <div class="flex align-center gap">
-          <ul class="nav-links">
-            <li class="active">
-              <a href="/"> Home </a>
-            </li>
-            <li>
-              <a href="/our-story"> Our Story </a>
-            </li>
+   <jsp:include page="./includes/header.jsp">
+    <jsp:param name="page" value="index" />
+   </jsp:include>
 
-            <li>
-              <a href="/write"> Write </a>
-            </li>
-          </ul>
-          <div class="nav-extras">
-            <button
-              class="btn pill-shape min-size secondary"
-              data-trigger="sign-in-modal"
-            >
-              Sign in
-            </button>
-            <button
-              class="btn pill-shape outlined secondary min-size"
-              data-trigger="sign-up-modal"
-            >
-              Sign up
-            </button>
-          </div>
-        </div>
-      </nav>
-      <nav class="nav mobile" id="mobile-nav">
-        <div class="logo">
-          <a href="/">
-            <img
-              src="https://images-platform.99static.com//NRp7o7MhpD-U5tKVb4284Q1Tpvg=/1333x0:2000x667/fit-in/500x500/99designs-contests-attachments/100/100792/attachment_100792419"
-              alt="LOGO"
-              width="38"
-              height="38"
-            />
-            LOGO
-          </a>
-        </div>
-        <div class="btn outlined icon-btn" id="nav-trigger">
-          <span class="material-symbols-outlined"> menu </span>
-        </div>
-        <div class="backdrop"></div>
-        <div class="nav-drawer">
-          <ul class="nav-links">
-            <li class="active">
-              <a href="/">
-                <span class="material-symbols-outlined"> home </span>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/about-us">
-                <span class="material-symbols-outlined"> info </span>
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/services">
-                <span class="material-symbols-outlined"> settings </span>
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="/support">
-                <span class="material-symbols-outlined"> support_agent </span>
-                Support
-              </a>
-            </li>
-          </ul>
-          <div class="spacer"></div>
-          <div class="nav-extras">
-            <button class="pill-shape btn outlined fullwidth" id="sign-up-btn">
-              Sign up
-            </button>
-            <button class="btn pill-shape fullwidth" id="sign-in-btn">
-              Sign in
-            </button>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <div data-route="/">
+    <main>
       <section class="hero-section">
         <div class="container">
           <div class="flex">
@@ -466,113 +363,16 @@
           </div>
         </div>
       </section>
-    </div>
-
+    </main>
+    
     <!-- Footer -->
-    <footer>
-      <div class="container flex gap">
-        <div>
-          <p>&copy; 2023 InkScribe. All rights reserved.</p>
-        </div>
-        <div class="spacer"></div>
-        <div class="links">
-          <a href="#">Privacy Policy</a>
-        </div>
-      </div>
-    </footer>
+    <jsp:include page="./includes/footer.jsp" />
 
     <!-- Modals -->
-    <div class="modal" id="sign-up-modal">
-      <div class="modal-backdrop"></div>
-      <div class="modal-content">
-        <h1>Sign up</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil
-          maiores deleniti labore, beatae dicta praesentium porro est nemo,
-          voluptatem harum amet dolore natus omnis ullam tempora ratione illo
-          perferendis magnam?
-        </p>
-        <button class="btn" onclick="showSnackbar('success' , 'blah blah')">
-          Submit
-        </button>
-      </div>
-    </div>
-    <div class="modal" id="sign-in-modal">
-      <div class="modal-backdrop"></div>
-      <div class="modal-content">
-        <h1>Sign In</h1>
-        <form action="#">
-          <div class="form-element">
-            <label for="email_inp">Email <span class="red">*</span></label>
-            <fieldset>
-              <legend>Email*</legend>
-              <input
-                type="text"
-                id="email_inp"
-                name="email"
-                placeholder="hunter@hunter.com"
-              />
-            </fieldset>
-          </div>
-          <div class="form-element">
-            <label for="password_inp"
-              >Password <span class="red">*</span></label
-            >
-            <fieldset>
-              <legend>Email*</legend>
-              <input
-                type="password"
-                id="password_inp"
-                name="password"
-                placeholder="hunter@hunter.com"
-              />
-            </fieldset>
-          </div>
-
-          <button class="btn" onclick="showSnackbar('success' , 'blah blah')">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-
+    <jsp:include page="./includes/modals.jsp" />
     <!-- Snackbars -->
-    <div class="snackbar warning">
-      <div class="flex">
-        <span class="material-symbols-outlined"> error </span>
-      </div>
-      <div class="snackbar-content"></div>
-      <button class="snackbar-dismiss btn icon-btn">
-        <span class="material-symbols-outlined"> close </span>
-      </button>
-    </div>
-    <div class="snackbar error">
-      <div class="flex">
-        <span class="material-symbols-outlined"> error </span>
-      </div>
-      <div class="snackbar-content"></div>
-      <button class="snackbar-dismiss btn icon-btn">
-        <span class="material-symbols-outlined"> close </span>
-      </button>
-    </div>
-    <div class="snackbar success">
-      <div class="flex">
-        <span class="material-symbols-outlined"> error </span>
-      </div>
-      <div class="snackbar-content"></div>
-      <button class="snackbar-dismiss btn icon-btn">
-        <span class="material-symbols-outlined"> close </span>
-      </button>
-    </div>
-    <div class="snackbar info">
-      <div class="flex">
-        <span class="material-symbols-outlined"> error </span>
-      </div>
-      <div class="snackbar-content"></div>
-      <button class="snackbar-dismiss btn icon-btn">
-        <span class="material-symbols-outlined"> close </span>
-      </button>
-    </div>
+    <jsp:include page="./includes/snackbars.jsp" />
+
 
     <script src="/js/script.js"></script>
   </body>
