@@ -122,8 +122,6 @@
     </div>
   </div>
 
-
-
   <script>
     const signUpForm = document?.querySelector("#sign-up-form");
     const signInForm = document?.querySelector("#sign-in-form");

@@ -39,6 +39,32 @@
     </div>
     <div class="flex-grow"></div>
     <div class="extras">
-      <button class="btn fullwidth outlined">Logout</button>
+      <button class="btn fullwidth outlined" id="logout">Logout</button>
     </div>
   </div>
+
+  <script>
+    const logoutBtn = document?.querySelector("#logout");
+    logoutBtn?.addEventListener("click"  ,async  (e) =>{
+
+      logoutBtn.classList.add("loading")
+      logoutBtn.setAttribute("disabled" , "");
+      try{
+        const response = await fetch("/api/logout");
+        if(response.status === 200){
+          setTimeout(() =>{
+            logoutBtn.classList.remove("loading")
+            logoutBtn.removeAttribute("disabled");
+            showSnackbar("success"  , "Logout successfull");
+            window.location  = "/";
+          } , 500);
+        }else{
+          throw new Error("Something went wrong");
+        }
+      }catch(e) {
+        logoutBtn.classList.remove("loading")
+        logoutBtn.removeAttribute("disabled");
+        showSnackbar("error"  , "Something went wrong");
+      }
+    });
+  </script>
