@@ -1,148 +1,156 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+create database inkscribe;
+use inkscribe;
+create table users (
+	id int primary key auto_increment,
+    name varchar(60) not null,
+    email varchar(100) unique not null , 
+    password varchar(255) not null
+);
 
---
+alter table users auto_increment = 1000;
 
--- Host: localhost    Database: project_tomcat
+select * from users;
 
--- ------------------------------------------------------
+alter table users add column `profile_image` varchar(255) DEFAULT NULL;
+alter table users add column `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+alter table users add column `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+alter table users add column `bio` longtext;
+alter table users add column  `dob` date DEFAULT NULL;
+
+select * from users;
+truncate users;
+
 
--- Server version	8.0.29
+use inkscribe;
+create table test ( 
+	id int primary key auto_increment,
+    name varchar(255),
+    email varchar(255) unique not null 
+);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
+desc test;
 
-;
+insert into test (name , email ) values ( 'hello' , 'world' );
 
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
+select * from test;
 
-;
+drop table test;
 
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
+show tables;
 
-;
 
-/*!50503 SET NAMES utf8 */
+create table if not exists articles( 
+	id int primary key auto_increment,
+    user_id int not null,
+    title varchar(255) not null,
+    slug varchar(255) not null unique,
+    content text,
+    created_at timestamp default current_timestamp,
+    view_count int default 0,
+    constraint fk_uid foreign key(user_id) references users(id) on delete cascade
+);
 
-;
+create table if not exists responses(
+  id int primary key auto_increment,
+  content tinytext ,
+  article_id int not null,
+  user_id int not null, 
+  created_at timestamp default current_timestamp,
+  constraint fk_user_id foreign key (user_id) references users(id) on delete cascade,
+  constraint fk_article_id foreign key (article_id) references articles(id) on delete cascade
+);
 
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */
+create table articles_type( 
+ id int primary key auto_increment, 
+ `type` varchar(20) not null default 'any'
+ );
+ 
 
-;
 
-/*!40103 SET TIME_ZONE='+00:00' */
+alter table articles modify column type int;
+alter table articles add constraint fk_article_type foreign key (`type`) references articles(`id`) on delete cascade;
 
-;
+create table reactions (
+  id int primary key auto_increment,
+  type int(1),
+  article_id int not null,
+  created_at timestamp default current_timestamp,
+  constraint fk_reactions_article_id foreign key (article_id) references articles(id) on delete cascade
+);
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */
+alter table reactions add column user_id int not null;
+alter table reactions add constraint fk_reactions_user_id foreign key (user_id) references users(id) on delete cascade ;
 
-;
 
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */
+desc articles_type; 
+desc articles;
+desc responses;
+desc reactions;
 
-;
 
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */
+select * from users;
+call like_article(1,2);
 
-;
 
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */
+desc articles_type;
+insert into articles_type( type) values
+('Politics'),
+('Writing'),
+('Programming'),
+('Data Science'),
+('Technology'),
+('Machine Learning'),
+('ChatGPT'),
+('GPT-4'),
+('Productivity');
+select * from articles_type;
 
-;
 
---
+desc articles;
 
--- Table structure for table `users`
+# Creating an article
+insert into articles (user_id , title, slug , content, view_count , type) 
+values(
+ 2, 'this is a test article' ,'test-article' , 'hello world !', 1, 1
+);
+select * from articles;
 
---
+call like_article(1 , 2);
+call increment_article_vc(1);
+call update_article_vc(1, 10);
 
-DROP TABLE IF EXISTS `users`;
 
-/*!40101 SET @saved_cs_client     = @@character_set_client */
+delete from reactions where id = 1;
 
-;
+select count(id) from reactions where user_id = 2 and article_id = 1;
 
-/*!50503 SET character_set_client = utf8mb4 */
 
-;
+select * from reactions;
 
-CREATE TABLE
-    `users` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `name` varchar(255) NOT NULL,
-        `email` varchar(255) NOT NULL,
-        `dob` date DEFAULT NULL,
-        `profile_image` varchar(255) DEFAULT NULL,
-        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `password` varchar(255) NOT NULL,
-        `bio` longtext,
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `email` (`email`)
-    ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+desc responses;
 
-/*!40101 SET character_set_client = @saved_cs_client */
+# Like an article
+call like_article(1 , 2);
 
-;
+# Dislike an article
+call dislike_article(1,2);
 
---
+# Creating a comment on an article
+insert into responses(user_id , article_id , content) values(
+	2 , 1 , "Nice article"
+);
 
--- Dumping data for table `users`
+# Get likes count on a specific article
+select count(id) from reactions where article_id = 1 and type = 1;
 
---
+# Get dislikes count on a specific article
+select count(id) from reactions where article_id = 1 and type = 0;
 
-LOCK TABLES `users` WRITE;
+# Get article details for anonymous user
+call get_article_details(1 , null); 
 
-/*!40000 ALTER TABLE `users` DISABLE KEYS */
+# Get article details for loginned user
+call get_article_details(1 , 2); 
 
-;
-
-/*!40000 ALTER TABLE `users` ENABLE KEYS */
-
-;
-
-UNLOCK TABLES;
-
---
-
--- Dumping events for database 'project_tomcat'
-
---
-
---
-
--- Dumping routines for database 'project_tomcat'
-
---
-
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */
-
-;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */
-
-;
-
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */
-
-;
-
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */
-
-;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
-
-;
-
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
-
-;
-
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
-
-;
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
-
-;
-
--- Dump completed on 2023-07-23 23:55:56
+# Get comments on an article
+call get_article_comments(1);

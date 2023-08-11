@@ -24,7 +24,7 @@
           <img src="/images/avatar.svg" alt="Avatar" width="40">
         </div>
         <div>
-          <div class="name">John Doe</div>
+          <a href="/user-details.jsp" class="link">John Doe</a>
           <div class="article-meta">
             <div class="read-time">
               14 min read 
@@ -77,7 +77,7 @@
       <div class="cards mb-2">
         <div class="card">
          
-          <a href="/article.jsp" class="block no-link card-heading">
+          <a href="/article.jsp" class="block link card-heading">
             Lorem ipsum dolor sit amet consectetur
           </a>
           <div class="card-content">
@@ -170,7 +170,7 @@
                 <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" width="30" height="30">
               </div>
               <div class="user-name flex flex-column flex-no-center">
-                <div>John Doe</div>
+                <a href="/user-details.jsp" class="link">John Doe</a>
                 <div class="small-text mt-small">Aug 10,2023</div>
               </div>
             </div>

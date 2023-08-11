@@ -4,6 +4,7 @@
 <% 
   String currentPage = request.getParameter("page");
   User user = Auth.getUser(request);
+  boolean isAdmin = user.email.equals("admin@inkscribe.com");
 %>
 
 <div class="sidebar">
@@ -29,6 +30,28 @@
     </div>
 
     <div class="menu">
+
+
+
+      <% if (isAdmin) { %>
+        
+      <a href="/dashboard/index.jsp" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
+        <span class="material-symbols-outlined"> dashboard </span>
+        <span> Dashboard </span>
+      </a>
+      <a href="/dashboard/articles.jsp" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
+        <span class="material-symbols-outlined"> news </span>
+        <span>Articles </span>
+      </a>
+      <a href="/dashboard/users.jsp" class="menu-item <%= currentPage.equals("users") ? "active" : "" %>">
+        <span class="material-symbols-outlined">
+          group
+          </span>
+        <span>Users </span>
+      </a>
+
+        <% } else { %>
+          
       <a href="/dashboard/index.jsp" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
         <span class="material-symbols-outlined"> dashboard </span>
         <span> Dashboard </span>
@@ -41,6 +64,9 @@
         <span class="material-symbols-outlined"> add_circle </span>
         <span>New Aritcle</span>
       </a>
+
+        <% } %>
+
     </div>
     <div class="flex-grow"></div>
     <div class="extras">

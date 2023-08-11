@@ -18,23 +18,23 @@
     <div class="dashboard-container">
       <div class="dashboard-content">
         <jsp:include page="../includes/dash-nav.jsp" >
-          <jsp:param name="page" value="articles" />
+          <jsp:param name="page" value="users" />
         </jsp:include>
         <div class="main">
           <div class="flex">
             <div>
               <h1>
-                <%= isAdmin ? "Articles" : "My Articles" %>
+                Users
               </h1>
             </div>
               <div class="spacer"></div>
             <div class="form-element mt-1 mb-1">
-              <label for="search_in_articles">Search Articles</label>
+              <label for="search_users">Search User</label>
               <fieldset>
-                <legend>Search Articles</legend>
+                <legend>Search User</legend>
                 <input
                   type="text"
-                  id="search_in_articles"
+                  id="search_users"
                   name="name"
                   placeholder="Serch article"
                 />
@@ -42,50 +42,43 @@
             </div>
           </div>
 
-          <div class="cards">
-      
-            <div class="card">
 
-              <% if(isAdmin)  {%>
+          <div class="cards">
+
+            <div class="card">
               <div class="card-header">
                 <div class="card-user-profile">
                   <div class="user-image">
                     <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" width="30" height="30">
                   </div>
-                  <a href="/user-details.jsp" class="user-name link" style="color: inherit;">John Doe</a>
+                  <div class="user-name flex fullwidth">
+                    <div class="name">John Doe</div>
+                    <div class="spacer"></div>
+                    <div class="btns flex small-gap">
+                      <a href="/user-details.jsp" class="btn icon-btn small" title="view">
+                        <span class="material-symbols-outlined">
+                          visibility
+                          </span>
+                      </a>
+                      <button class="btn icon-btn small" title="delete">
+                        <span class="material-symbols-outlined">
+                          delete
+                          </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <% } %>
-             
-              <div class="card-heading flex gap">
-                <a href="/article.jsp" class="block link">
-                  Lorem ipsum dolor sit amet consectetur
-                </a>
-                <div class="flex  small-gap">
-                  <a  href="/dashboard/edit-article.jsp" class="btn icon-btn small" title="Edit">
-                    <span class="material-symbols-outlined">
-                      edit
-                      </span>
-                  </a>
-                  <a href="/delete-article.jsp" class="btn icon-btn small" title="Delete">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                 </div> 
-              </div>
-              <div class="card-content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum corrupti voluptatibus veniam deserunt architecto! Repel
-              </div>
+              <div class="card-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat, eum?</div>
+
               <div class="card-footer">
-                <div>Aug 15</div>
-                <div>Two</div>
-                <div class="chip">Politics</div>
+                <div>Created on : Aug 10,2023</div>
               </div>
             </div>
-        
+
           </div>
+
         </div>
       </div>
     </div>

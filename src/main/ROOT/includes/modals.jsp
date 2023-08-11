@@ -1,3 +1,4 @@
+<!-- User Details Modal -->
 <div class="modal" id="edit-user-details">
     <div class="modal-backdrop"></div>
     <div class="modal-content">
@@ -14,8 +15,7 @@
     </div>
   </div>
 
-
-   <!-- Modals -->
+   <!-- Auth Modals -->
    <div class="modal" id="sign-up-modal">
     <div class="modal-backdrop"></div>
     <div class="modal-content">
@@ -79,8 +79,6 @@
       </form>
     </div>
   </div>
-
-
 
   <div class="modal" id="sign-in-modal">
     <div class="modal-backdrop"></div>
