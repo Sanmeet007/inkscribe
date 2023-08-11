@@ -155,7 +155,7 @@
   
         if(response.status === 200){
               const user = await response.json();
-              localStorage.setItem("user"  , JSON.stringify(user));
+              localStorage.setItem("user"  , JSON.stringify(user.user));
               
               submitBtn?.classList.remove("loading");
               submitBtn?.removeAttribute("disabled");

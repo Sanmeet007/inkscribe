@@ -61,6 +61,7 @@
             logoutBtn.classList.remove("loading")
             logoutBtn.removeAttribute("disabled");
             showSnackbar("success"  , "Logout successfull");
+            localStorage.removeItem("user");
             window.location  = "/";
           } , 500);
         }else{
