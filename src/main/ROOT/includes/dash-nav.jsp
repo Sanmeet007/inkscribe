@@ -1,4 +1,4 @@
-<%@page import="models.*" %>
+<%@page import="models.users.*" %>
 <%@page import="utils.*" %>
 
 <% 
