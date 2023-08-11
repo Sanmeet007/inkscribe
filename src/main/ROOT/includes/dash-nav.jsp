@@ -1,6 +1,11 @@
+<%@page import="models.*" %>
+<%@page import="utils.*" %>
+
 <% 
   String currentPage = request.getParameter("page");
+  User user = Auth.getUser(request);
 %>
+
 <div class="sidebar">
     <a href="/" class="block logo">
       <img src="/images/logo-dark.png" alt="logo" width="100" />
