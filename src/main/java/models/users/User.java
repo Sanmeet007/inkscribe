@@ -50,7 +50,7 @@ public class User {
         if (bio != null) {
             obj.put("bio", bio);
         } else {
-            obj.put("dob", "");
+            obj.put("bio", "");
         }
 
         if (profileImage != null) {

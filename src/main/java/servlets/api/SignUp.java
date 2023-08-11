@@ -25,8 +25,7 @@ public class SignUp extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
         try {
-
-            if (req.getContentType() == "application/json") {
+            if (req.getContentType().equals("application/json")) {
 
                 SignUpParams params = ReqMethods.mapper.readValue(ReqMethods.getBody(req), SignUpParams.class);
 
