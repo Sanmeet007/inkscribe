@@ -35,7 +35,7 @@
             <div class="card">
              
               <div class="card-heading flex gap">
-                <a href="/article.jsp" class="block no-link">
+                <a href="/article.jsp" class="block link">
                   Lorem ipsum dolor sit amet consectetur
                 </a>
                 <div class="flex  small-gap">

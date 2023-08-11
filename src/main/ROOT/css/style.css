@@ -1157,3 +1157,24 @@ footer {
 .link:hover {
   text-decoration: underline;
 }
+.text-btn:disabled,
+.icon-btn:disabled,
+.btn:disabled {
+  cursor: not-allowed;
+  background-color: #444;
+  color: grey;
+  user-select: none;
+}
+.text-btn:disabled:active,
+.icon-btn:disabled:active,
+.btn:disabled:active {
+  transform: none;
+}
+.btn.loading {
+  display: flex;
+  background-image: url(/images/loader.svg);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
+}
