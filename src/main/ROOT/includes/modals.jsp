@@ -168,6 +168,7 @@
                 </a>`;
               }
               signUpModal?.classList.remove("open");
+              signUpForm?.reset();
           }else{
             const json = await response.json();
             throw new Error(json.message);
@@ -175,7 +176,6 @@
       }catch(e){
           submitBtn?.classList.remove("loading");
           submitBtn?.removeAttribute("disabled");
-          console.log(e);
           showSnackbar("error" , e.message);
       };
   
@@ -219,6 +219,7 @@
                 </a>`;
               }
             signInModal?.classList.remove("open");
+            signInForm?.reset();
         }else{
           const json = await response.json();
           throw new Error(json.message);
@@ -226,7 +227,6 @@
       }catch(e){
           submitBtn?.classList.remove("loading");
           submitBtn?.removeAttribute("disabled");
-          console.log(e);
           showSnackbar("error" , e.message);
       };
   

@@ -16,7 +16,7 @@
         <img src="/images/avatar.svg" alt="Avatar" width="80" />
       </div>
       <div class="user-name">
-        <h3>John Doe</h3>
+        <h3><%= user.name %></h3>
       </div>
       <div class="action">
         <button
