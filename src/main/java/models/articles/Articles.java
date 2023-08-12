@@ -77,4 +77,15 @@ public class Articles {
         }
     }
 
+    public static boolean checkSlug(String slug) throws Exception {
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM articles WHERE slug = ?");
+        ps.setString(1, slug);
+        boolean found = false;
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            found = true;
+            break;
+        }
+        return found;
+    }
 }

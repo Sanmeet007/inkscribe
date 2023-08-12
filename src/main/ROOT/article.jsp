@@ -1,3 +1,7 @@
+<% 
+  System.out.println(request.getAttribute("slug"));
+ %>
+
 <%@ page contentType="text/html; charset=UTF-8"%> 
 <%@page import="utils.*" %>
 
