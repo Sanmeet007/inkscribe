@@ -159,10 +159,8 @@ call get_article_comments(1);
 alter table articles add column featured_image_url varchar(255);
 
 
-select 
-t1.id, t1.user_id, t2.name,  t1.title, t1.slug, t1.content,t3.type, t1.created_at, t1.view_count, t1.featured_image_url
-from articles t1 
-inner join users t2 on t2.id = t1.user_id
-inner join articles_type t3 on t1.type = t3.id;
 
-select * from articles_type;
+
+call get_article_details(1,null);
+
+call get_articles_by_user_id(1);

@@ -35,7 +35,10 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"));
+                    resultSet.getInt("myreaction"),
+                    resultSet.getString("description")
+
+            );
 
             break;
         }
@@ -67,7 +70,10 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"));
+                    resultSet.getInt("myreaction"),
+                    resultSet.getString("description")
+
+            );
 
             break;
         }
@@ -101,7 +107,10 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"));
+                    resultSet.getInt("myreaction"),
+                    resultSet.getString("description")
+
+            );
 
             break;
         }
@@ -134,7 +143,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"));
+                    resultSet.getInt("myreaction"), resultSet.getString("description"));
             break;
         }
         return article;
@@ -165,7 +174,10 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"));
+                    resultSet.getInt("myreaction"),
+                    resultSet.getString("description")
+
+            );
 
             articles.add(article);
 
@@ -198,7 +210,8 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"));
+                    resultSet.getInt("myreaction"),
+                    resultSet.getString("description"));
 
             articles.add(article);
         }
