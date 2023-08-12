@@ -5,10 +5,11 @@ import java.sql.Timestamp;
 public class Article {
 
     public int id, userId, likesCount, dislikesCount, views;
-    public String slug, content, title, userReactionType, userName, type;
+    public String slug, content, title, userReactionType, userName, type, featuredImageUrl;
 
     public Article(
-            int id, int user_id, String name, String title, String slug, String content, Timestamp created_at,
+            int id, int user_id, String name, String title, String slug, String content, String featured_image_url,
+            Timestamp created_at,
             int view_count, String type, int likes, int dislikes, Integer myreaction) {
 
         this.id = id;
@@ -22,11 +23,16 @@ public class Article {
         this.title = title;
         this.slug = slug;
         this.type = type;
+        this.featuredImageUrl = featured_image_url;
 
         if (myreaction != null) {
             this.userReactionType = myreaction.equals(0) ? "liked" : "disliked";
         } else {
             this.userReactionType = null;
         }
+    }
+
+    public String toJSON() {
+        return "JOS";
     }
 }
