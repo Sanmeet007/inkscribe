@@ -161,6 +161,12 @@ alter table articles add column featured_image_url varchar(255);
 
 
 
-call get_article_details(1,null);
+call get_article_details_by_slug("test-article",2);
 
 call get_articles_by_user_id(1);
+
+select  * from articles;
+desc articles;
+
+call get_articles_by_user_id(2);
+select * from articles_type;
