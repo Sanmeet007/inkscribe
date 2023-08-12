@@ -168,5 +168,9 @@ call get_articles_by_user_id(1);
 select  * from articles;
 desc articles;
 
+
+
 call get_articles_by_user_id(2);
 select * from articles_type;
+
+

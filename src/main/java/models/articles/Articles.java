@@ -339,8 +339,14 @@ public class Articles {
         stmt.execute();
     }
 
-    // TODO !
-    // add comment
+    public static void addComment(int articleId, int userId, String content) throws Exception {
+        String query = "insert into responses ( article_id ,user_id ,content) values( ?,?,?)";
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setInt(1, articleId);
+        statement.setInt(2, userId);
+        statement.setString(3, content);
+        statement.executeUpdate();
+    }
 
     public static ArrayList<ArticleResponse> getArticleResponses(String slug) throws Exception {
         ArrayList<ArticleResponse> responses = new ArrayList<ArticleResponse>();
@@ -375,6 +381,9 @@ public class Articles {
         boolean found = false;
 
         while (resultSet.next()) {
+            if (resultSet.getInt("id") == 0) {
+                continue;
+            }
             ArticleResponse response = new ArticleResponse(
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
