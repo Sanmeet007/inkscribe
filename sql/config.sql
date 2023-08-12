@@ -174,3 +174,8 @@ call get_articles_by_user_id(2);
 select * from articles_type;
 
 
+insert into responses (content , article_id,user_id)
+values();
+select * from responses;
+
+select * from articles;
