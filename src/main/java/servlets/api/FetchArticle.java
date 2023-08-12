@@ -1,12 +1,15 @@
 
 package servlets.api;
 
+import java.util.ArrayList;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.articles.Article;
+import models.articles.ArticleResponse;
 import models.articles.Articles;
 import servlets.api.exceptions.InvalidSlug;
 import utils.Auth;
@@ -31,29 +34,36 @@ public class FetchArticle extends HttpServlet {
                     if (article == null) {
                         throw new InvalidSlug();
                     }
+                    int articleId = article.id;
+                    ArrayList<ArticleResponse> commentResponses = Articles.getArticleResponses(articleId);
+
                     String json = article.toJSON();
                     ResMethods.writeJSONResponse(res, 200,
                             "{\n  \"error\" : false,\n  \"article\" : "
-                                    + json + " \n}");
+                                    + json + " ,\n \"responses\" : " + commentResponses.toString() + " \n}");
                 } else {
                     Article article = Articles.getArticleForUser(slug, userId);
                     if (article == null) {
                         throw new InvalidSlug();
                     }
+                    int articleId = article.id;
+                    ArrayList<ArticleResponse> commentResponses = Articles.getArticleResponses(articleId);
                     String json = article.toJSON();
                     ResMethods.writeJSONResponse(res, 200,
                             "{\n  \"error\" : false,\n  \"article\" : "
-                                    + json + " \n}");
+                                    + json + " ,\n \"responses\" : " + commentResponses.toString() + " \n}");
                 }
             } else {
                 Article article = Articles.getArticle(slug);
                 if (article == null) {
                     throw new InvalidSlug();
                 }
+                int articleId = article.id;
+                ArrayList<ArticleResponse> commentResponses = Articles.getArticleResponses(articleId);
                 String json = article.toJSON();
                 ResMethods.writeJSONResponse(res, 200,
                         "{\n  \"error\" : false,\n  \"article\" : "
-                                + json + " \n}");
+                                + json + " ,\n \"responses\" : " + commentResponses.toString() + " \n}");
             }
 
         } catch (InvalidSlug e) {
