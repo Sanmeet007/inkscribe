@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import javax.print.attribute.standard.PresentationDirection;
-
 import db.DbConnect;
 
 public class Articles {
