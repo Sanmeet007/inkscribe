@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.print.attribute.standard.PresentationDirection;
+
 import db.DbConnect;
 
 public class Articles {
@@ -319,10 +321,27 @@ public class Articles {
         stmt.executeUpdate();
     }
 
+    public static void incrementArticleViewCount(int articleId) throws Exception {
+        PreparedStatement stmt = conn.prepareStatement("call increment_article_vc(?)");
+        stmt.setInt(1, articleId);
+        stmt.execute();
+    }
+
+    public static void likeArticle(int articleId, int userId) throws Exception {
+        PreparedStatement stmt = conn.prepareStatement("call like_article(?)");
+        stmt.setInt(1, articleId);
+        stmt.setInt(2, userId);
+        stmt.execute();
+    }
+
+    public static void dislikeArticle(int articleId, int userId) throws Exception {
+        PreparedStatement stmt = conn.prepareStatement("call dislike_article(?)");
+        stmt.setInt(1, articleId);
+        stmt.setInt(2, userId);
+        stmt.execute();
+    }
+
     // TODO !
-    // Increment like and disllike
-    // update article view count
-    // get article types
     // add comment
 
     public static ArrayList<ArticleResponse> getArticleResponses(String slug) throws Exception {
