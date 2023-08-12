@@ -8,13 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import models.articles.Article;
 import models.articles.Articles;
-import servlets.api.exceptions.InvalidContentType;
-import utils.Auth;
-import utils.ReqMethods;
 import utils.ResMethods;
 
 @WebServlet("/api/articles/get-articles")
