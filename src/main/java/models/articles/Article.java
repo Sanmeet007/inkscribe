@@ -33,9 +33,18 @@ public class Article {
         this.description = description;
 
         if (myreaction != null) {
-            this.userReactionType = myreaction.equals(0) ? "liked" : "disliked";
+            this.userReactionType = myreaction.equals(0) ? "disliked" : "liked";
         } else {
             this.userReactionType = null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return this.toJSON();
+        } catch (Exception e) {
+            return "ERROR";
         }
     }
 
