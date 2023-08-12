@@ -43,7 +43,7 @@ public class Article {
         Map<String, Object> obj = new HashMap<>();
 
         obj.put("id", id);
-        obj.put("user_id", authorId);
+        obj.put("author_id", authorId);
         obj.put("likes_count", likesCount);
         obj.put("dislikes_count", dislikesCount);
         obj.put("view_count", views);
