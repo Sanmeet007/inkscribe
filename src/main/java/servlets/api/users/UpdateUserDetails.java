@@ -17,12 +17,13 @@ import javax.servlet.http.Part;
 import models.users.User;
 import models.users.Users;
 import servlets.api.exceptions.UnauthorizedAcess;
+import utils.Auth;
 import utils.Config;
 import utils.ReqMethods;
 import utils.ResMethods;
 import utils.StreamReader;
 
-@WebServlet("/api/update-details")
+@WebServlet("/api/users/update-details")
 @MultipartConfig(
         // Params
         fileSizeThreshold = 1024 * 1, // 1 KB
@@ -34,7 +35,7 @@ public class UpdateUserDetails extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
         try {
-            if (ReqMethods.isLoggedIn(req)) {
+            if (Auth.isLoggedIn(req)) {
                 Properties props = new Properties();
 
                 Part name = req.getPart("name");
