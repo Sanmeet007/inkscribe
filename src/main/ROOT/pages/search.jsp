@@ -134,7 +134,7 @@
             <div class="card">
                 <div class="card-sides">
                   <div class="card-side">
-                    <a href="/article.jsp" class="card-header link">
+                    <a href="/article" class="card-header link">
                       <div class="card-heading">Card Heading</div>
                     </a>
                     <div class="card-content">

@@ -52,23 +52,23 @@
                   <div class="user-image">
                     <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" width="30" height="30">
                   </div>
-                  <a href="/user-details.jsp" class="user-name link" style="color: inherit;">John Doe</a>
+                  <a href="/user-details" class="user-name link" style="color: inherit;">John Doe</a>
                 </div>
               </div>
 
               <% } %>
              
               <div class="card-heading flex gap">
-                <a href="/article.jsp" class="block link">
+                <a href="/article" class="block link">
                   Lorem ipsum dolor sit amet consectetur
                 </a>
                 <div class="flex  small-gap">
-                  <a  href="/dashboard/edit-article.jsp" class="btn icon-btn small" title="Edit">
+                  <a  href="/dashboard/edit-article" class="btn icon-btn small" title="Edit">
                     <span class="material-symbols-outlined">
                       edit
                       </span>
                   </a>
-                  <a href="/delete-article.jsp" class="btn icon-btn small" title="Delete">
+                  <a href="/delete-article" class="btn icon-btn small" title="Delete">
                     <span class="material-symbols-outlined">
                       delete
                       </span>

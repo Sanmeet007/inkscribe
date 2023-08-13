@@ -55,7 +55,7 @@
                     <div class="name">John Doe</div>
                     <div class="spacer"></div>
                     <div class="btns flex small-gap">
-                      <a href="/user-details.jsp" class="btn icon-btn small" title="view">
+                      <a href="/user-details" class="btn icon-btn small" title="view">
                         <span class="material-symbols-outlined">
                           visibility
                           </span>
