@@ -41,7 +41,7 @@ public class ArticleDisplayPage extends HttpServlet {
             try {
                 if (Articles.checkSlug(slug)) {
                     request.setAttribute("slug", slug);
-                    request.getRequestDispatcher("/article.jsp").forward(request, response);
+                    request.getRequestDispatcher("/pages/article.jsp").forward(request, response);
                 } else {
                     response.sendError(404);
                     return;
