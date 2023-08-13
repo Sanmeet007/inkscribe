@@ -31,7 +31,7 @@ class EditArticleParams {
     public String description;
 }
 
-@WebServlet("/api/articles/create")
+@WebServlet("/api/articles/update-details")
 public class UpdateArticleDetails extends HttpServlet {
 
     @Override
@@ -56,8 +56,11 @@ public class UpdateArticleDetails extends HttpServlet {
                     int userId = Auth.getUserId(req);
 
                     Article article = Articles.getArticle(params.article_id);
-                    if (article.authorId != userId) {
-                        throw new ForbiddenAccess();
+
+                    if (!Auth.isAdmin(req)) {
+                        if (article.authorId != userId) {
+                            throw new ForbiddenAccess();
+                        }
                     }
 
                     boolean hasProperties = false;
@@ -90,7 +93,7 @@ public class UpdateArticleDetails extends HttpServlet {
                     }
 
                     if (hasProperties) {
-                        Articles.editArticleDetails(userId, props);
+                        Articles.editArticleDetails(article.id, props);
                         ResMethods.writeJSONResponse(res, 200,
                                 ResMethods.get200ResJSON("Article details updated successfully"));
                     } else {
