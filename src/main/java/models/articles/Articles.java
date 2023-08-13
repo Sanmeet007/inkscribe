@@ -401,14 +401,14 @@ public class Articles {
     }
 
     public static void likeArticle(int articleId, int userId) throws Exception {
-        PreparedStatement stmt = conn.prepareStatement("call like_article(?)");
+        PreparedStatement stmt = conn.prepareStatement("call like_article(? , ?)");
         stmt.setInt(1, articleId);
         stmt.setInt(2, userId);
         stmt.execute();
     }
 
     public static void dislikeArticle(int articleId, int userId) throws Exception {
-        PreparedStatement stmt = conn.prepareStatement("call dislike_article(?)");
+        PreparedStatement stmt = conn.prepareStatement("call dislike_article(? , ?)");
         stmt.setInt(1, articleId);
         stmt.setInt(2, userId);
         stmt.execute();
