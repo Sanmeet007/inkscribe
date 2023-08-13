@@ -3,13 +3,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <jsp:include page="./includes/frontend-head.jsp">
+  <jsp:include page="../includes/frontend-head.jsp">
     <jsp:param name="title" value="Search" />
     <jsp:param name="desc" value="InkScribe is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic." />
   </jsp:include>
   <body>
     <!-- Header -->
-   <jsp:include page="./includes/header.jsp">
+   <jsp:include page="../includes/header.jsp">
     <jsp:param name="page" value="search" />
    </jsp:include>
    
@@ -185,9 +185,9 @@
   <!-- Footer -->
 
     <!-- Modals -->
-   <jsp:include page="./includes/modals.jsp" />
+   <jsp:include page="../includes/modals.jsp" />
    <!-- Snackbars -->
-   <jsp:include page="./includes/snackbars.jsp" />
+   <jsp:include page="../includes/snackbars.jsp" />
 
 
     <script src="/js/script.js"></script>
