@@ -59,7 +59,7 @@
               <% } %>
              
               <div class="card-heading flex gap">
-                <a href="/article" class="block link">
+                <a href="/article/test-article" class="block link">
                   Lorem ipsum dolor sit amet consectetur
                 </a>
                 <div class="flex  small-gap">
