@@ -19,6 +19,12 @@ public class Users {
 
     private static Connection conn = DbConnect.instance.getConnection();
 
+    public static void deleteUser(int userId) throws Exception {
+        PreparedStatement ps = conn.prepareStatement("DELETE FROM users WHERE id= ?");
+        ps.setInt(1, userId);
+        ps.execute();
+    }
+
     public static User createUser(String name, String email, String password, String dob) throws Exception {
         try {
             PreparedStatement ps = conn
