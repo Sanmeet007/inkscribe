@@ -24,10 +24,17 @@ public class SearchArticles extends HttpServlet {
                 ResMethods.writeJSONResponse(res, 200, "{\n  \"error\" : false,\n  \"articles\" : [] \n}");
             } else {
                 if (type != null) {
-                    Integer _type = Integer.parseInt(type);
-                    ArrayList<Article> articles = Articles.find(query, _type);
-                    ResMethods.writeJSONResponse(res, 200,
-                            "{\n  \"error\" : false,\n  \"articles\" : " + articles.toString() + " \n}");
+                    try {
+                        Integer _type = Integer.parseInt(type);
+                        ArrayList<Article> articles = Articles.find(query, _type);
+                        ResMethods.writeJSONResponse(res, 200,
+                                "{\n  \"error\" : false,\n  \"articles\" : " + articles.toString() + " \n}");
+
+                    } catch (NumberFormatException e) {
+                        ArrayList<Article> articles = Articles.find(query);
+                        ResMethods.writeJSONResponse(res, 200,
+                                "{\n  \"error\" : false,\n  \"articles\" : " + articles.toString() + " \n}");
+                    }
                 } else {
                     ArrayList<Article> articles = Articles.find(query);
                     ResMethods.writeJSONResponse(res, 200,
@@ -35,6 +42,7 @@ public class SearchArticles extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
 
