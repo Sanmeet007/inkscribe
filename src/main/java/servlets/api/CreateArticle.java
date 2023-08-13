@@ -66,7 +66,6 @@ public class CreateArticle extends HttpServlet {
         } catch (UnauthorizedAcess e) {
             ResMethods.writeJSONResponse(res, 401, ResMethods.get400ResJSON("Unauthorized access"));
         } catch (Exception e) {
-            e.printStackTrace();
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
 
