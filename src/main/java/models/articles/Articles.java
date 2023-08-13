@@ -414,4 +414,16 @@ public class Articles {
         }
         return found;
     }
+
+    public static boolean checkId(int articleId) throws Exception {
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM articles WHERE id = ?");
+        ps.setInt(1, articleId);
+        boolean found = false;
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            found = true;
+            break;
+        }
+        return found;
+    }
 }
