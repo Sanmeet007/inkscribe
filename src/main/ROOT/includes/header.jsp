@@ -26,14 +26,14 @@
           </li>
 
           <li class="<%= currentPage.equals("search") ? "active" : "" %>">
-            <a href="/search.jsp"> Search </a>
+            <a href="/search"> Search </a>
           </li>
         </ul>
         <div class="nav-extras">
 
           <% if (Auth.isLoggedIn(request)) { %>
                   
-          <a href="/dashboard/index.jsp"
+          <a href="/dashboard"
           class="btn pill-shape min-size secondary">
             Dashboard
           </a>

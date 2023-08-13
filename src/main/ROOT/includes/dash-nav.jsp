@@ -35,15 +35,15 @@
 
       <% if (isAdmin) { %>
         
-      <a href="/dashboard/index.jsp" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
+      <a href="/dashboard" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
         <span class="material-symbols-outlined"> dashboard </span>
         <span> Dashboard </span>
       </a>
-      <a href="/dashboard/articles.jsp" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
+      <a href="/dashboard/articles" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
         <span class="material-symbols-outlined"> news </span>
         <span>Articles </span>
       </a>
-      <a href="/dashboard/users.jsp" class="menu-item <%= currentPage.equals("users") ? "active" : "" %>">
+      <a href="/dashboard/users" class="menu-item <%= currentPage.equals("users") ? "active" : "" %>">
         <span class="material-symbols-outlined">
           group
           </span>
@@ -52,15 +52,15 @@
 
         <% } else { %>
           
-      <a href="/dashboard/index.jsp" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
+      <a href="/dashboard" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
         <span class="material-symbols-outlined"> dashboard </span>
         <span> Dashboard </span>
       </a>
-      <a href="/dashboard/articles.jsp" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
+      <a href="/dashboard/articles" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
         <span class="material-symbols-outlined"> news </span>
         <span> My Articles </span>
       </a>
-      <a href="/dashboard/new-article.jsp" class="menu-item <%= currentPage.equals("new-article")  ? "active" : ""%>">
+      <a href="/dashboard/new-article" class="menu-item <%= currentPage.equals("new-article")  ? "active" : ""%>">
         <span class="material-symbols-outlined"> add_circle </span>
         <span>New Aritcle</span>
       </a>

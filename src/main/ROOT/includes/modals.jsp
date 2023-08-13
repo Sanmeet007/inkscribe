@@ -160,7 +160,7 @@
               showSnackbar("success" , "Sign up successfull");
               if(navExtraDiv) {
                 navExtraDiv.innerHTML = `
-                <a href="/dashboard/index.jsp"
+                <a href="/dashboard"
                 class="btn pill-shape min-size secondary">
                 Dashboard
                 </a>`;
@@ -211,7 +211,7 @@
             showSnackbar("success" , "Login successfull");
             if(navExtraDiv) {
                 navExtraDiv.innerHTML = `
-                <a href="/dashboard/index.jsp"
+                <a href="/dashboard"
                 class="btn pill-shape min-size secondary">
                 Dashboard
                 </a>`;
