@@ -1,11 +1,10 @@
-package servlets.api;
+package servlets.api.articles;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.articles.Article;
 import models.articles.Articles;
 import servlets.api.exceptions.InvalidContentType;
 import servlets.api.exceptions.UnauthorizedAcess;
@@ -13,12 +12,13 @@ import utils.Auth;
 import utils.ReqMethods;
 import utils.ResMethods;
 
-class LikeArticleParameters {
+class CommentParameters {
     public String slug;
+    public String content;
 }
 
-@WebServlet("/api/articles/like-article")
-public class LikeArticle extends HttpServlet {
+@WebServlet("/api/articles/add-response")
+public class AddResponse extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
@@ -27,12 +27,11 @@ public class LikeArticle extends HttpServlet {
             if (req.getContentType().equals("application/json")) {
                 if (Auth.isLoggedIn(req)) {
                     int userId = Auth.getUserId(req);
-                    LikeArticleParameters params = ReqMethods.mapper.readValue(ReqMethods.getBody(req),
-                            LikeArticleParameters.class);
-                    Article article = Articles.getArticle(params.slug);
-                    Articles.likeArticle(article.id, userId);
+                    CommentParameters params = ReqMethods.mapper.readValue(ReqMethods.getBody(req),
+                            CommentParameters.class);
+                    Articles.addComment(params.slug, userId, params.content);
                     ResMethods.writeJSONResponse(res, 200,
-                            ResMethods.get200ResJSON("Article liked successfully"));
+                            ResMethods.get200ResJSON("Response added to article successfully"));
                 } else {
                     throw new UnauthorizedAcess();
                 }

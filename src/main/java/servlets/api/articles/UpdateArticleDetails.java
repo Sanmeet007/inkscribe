@@ -1,5 +1,5 @@
 
-package servlets.api;
+package servlets.api.articles;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Properties;

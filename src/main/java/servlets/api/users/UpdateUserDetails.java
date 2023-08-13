@@ -1,4 +1,4 @@
-package servlets.api;
+package servlets.api.users;
 
 import java.io.IOException;
 import java.io.InputStream;
