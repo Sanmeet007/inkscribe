@@ -19,7 +19,6 @@ import models.users.Users;
 import servlets.api.exceptions.UnauthorizedAcess;
 import utils.Auth;
 import utils.Config;
-import utils.ReqMethods;
 import utils.ResMethods;
 import utils.StreamReader;
 
@@ -36,6 +35,7 @@ public class UpdateUserDetails extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
         try {
             if (Auth.isLoggedIn(req)) {
+
                 Properties props = new Properties();
 
                 Part name = req.getPart("name");
@@ -65,7 +65,7 @@ public class UpdateUserDetails extends HttpServlet {
                     props.setProperty("bio", StreamReader.read(content));
                 }
 
-                Integer uid = (int) req.getSession().getAttribute("uid");
+                int uid = Auth.getUserId(req);
                 User user = Users.getUserById(uid);
 
                 Part filePart = req.getPart("profile_image");
