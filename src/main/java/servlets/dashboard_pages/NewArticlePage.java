@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/dashboard/edit-article")
+@WebServlet("/dashboard/new-article")
 public class NewArticlePage extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
