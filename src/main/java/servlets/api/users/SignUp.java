@@ -1,4 +1,4 @@
-package servlets.api.articles;
+package servlets.api.users;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
