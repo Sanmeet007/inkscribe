@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import models.exceptions.UserNotFound;
 import models.users.Users;
 import servlets.api.exceptions.ForbiddenAccess;
-import servlets.api.exceptions.InvalidContentType;
 import servlets.api.exceptions.UnauthorizedAcess;
 import utils.Auth;
 import utils.ResMethods;
