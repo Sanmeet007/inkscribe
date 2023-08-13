@@ -20,29 +20,23 @@ public class DeleteUser extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
         try {
-            if (req.getContentType().equals("application/json")) {
-                if (Auth.isLoggedIn(req)) {
-                    if (Auth.isAdmin(req)) {
-                        int userId = Integer.parseInt(req.getParameter("user_id"));
-                        if (Users.userExists(userId)) {
-                            Users.deleteUser(userId);
-                            ResMethods.writeJSONResponse(res, 200,
-                                    ResMethods.get200ResJSON("User deleted successfully"));
-                        } else {
-                            throw new UserNotFound();
-                        }
-
+            if (Auth.isLoggedIn(req)) {
+                if (Auth.isAdmin(req)) {
+                    int userId = Integer.parseInt(req.getParameter("user_id"));
+                    if (Users.userExists(userId)) {
+                        Users.deleteUser(userId);
+                        ResMethods.writeJSONResponse(res, 200,
+                                ResMethods.get200ResJSON("User deleted successfully"));
                     } else {
-                        throw new ForbiddenAccess();
+                        throw new UserNotFound();
                     }
+
                 } else {
-                    throw new UnauthorizedAcess();
+                    throw new ForbiddenAccess();
                 }
             } else {
-                throw new InvalidContentType();
+                throw new UnauthorizedAcess();
             }
-        } catch (InvalidContentType e) {
-            ResMethods.writeJSONResponse(res, 400, ResMethods.get400ResJSON("Invalid content type"));
         } catch (UserNotFound e) {
             ResMethods.writeJSONResponse(res, 400, ResMethods.get400ResJSON("Invalid user id"));
         } catch (ForbiddenAccess e) {
