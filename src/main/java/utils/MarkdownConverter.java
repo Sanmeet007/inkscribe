@@ -2,7 +2,7 @@ package utils;
 
 import org.pegdown.PegDownProcessor;
 
-public class MarkDownRenderer {
+public class MarkdownConverter {
     private static PegDownProcessor processor = new PegDownProcessor();
 
     public static String toHtml(String markdownText) {
