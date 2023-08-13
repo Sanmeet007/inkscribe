@@ -348,6 +348,15 @@ public class Articles {
         statement.executeUpdate();
     }
 
+    public static void addComment(String slug, int userId, String content) throws Exception {
+        String query = "insert into responses ( `article_id` ,user_id ,content) values( (select `id` from articles where `slug` = ?),?,?)";
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setString(1, slug);
+        statement.setInt(2, userId);
+        statement.setString(3, content);
+        statement.execute();
+    }
+
     public static ArrayList<ArticleResponse> getArticleResponses(String slug) throws Exception {
         ArrayList<ArticleResponse> responses = new ArrayList<ArticleResponse>();
         PreparedStatement statement = conn.prepareStatement("call get_article_comments_by_slug(?)");

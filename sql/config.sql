@@ -179,3 +179,9 @@ values();
 select * from responses;
 
 select * from articles;
+call get_article_details(1 , null);
+select * from responses;
+
+insert into responses ( `article_id` ,user_id ,content) values( (select article_id from articles where `slug` = ''),1,?);
+
+select id from articles where `slug` = 'article-slug';
