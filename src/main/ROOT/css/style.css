@@ -1215,3 +1215,12 @@ footer {
 .actionbar .action .text-btn:disabled {
   background-color: transparent;
 }
+.text-btn:not([data-selected]) .material-icons {
+  display: none;
+}
+.text-btn[data-selected] .material-icons-outlined {
+  display: none;
+}
+.text-btn[data-selected] .material-icons {
+  display: block;
+}

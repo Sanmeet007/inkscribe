@@ -165,7 +165,7 @@
                 class="btn pill-shape min-size secondary">
                 Dashboard
                 </a>`;
-                window.dispatchEvent(loginEvent);
+                document.dispatchEvent(loginEvent);
               }
               signUpModal?.classList.remove("open");
               signUpForm?.reset();
@@ -217,7 +217,7 @@
                 class="btn pill-shape min-size secondary">
                 Dashboard
                 </a>`;
-                window.dispatchEvent(loginEvent);
+                document.dispatchEvent(loginEvent);
               }
             signInModal?.classList.remove("open");
             signInForm?.reset();
@@ -232,5 +232,5 @@
       };
   
     });
-  
+
   </script>

@@ -37,7 +37,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -74,7 +74,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -112,7 +112,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -151,7 +151,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image"));
 
@@ -187,7 +187,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -224,7 +224,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -260,7 +260,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -298,7 +298,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -335,7 +335,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"), resultSet.getString("description"),
+                    resultSet.getObject("myreaction"), resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
             );
@@ -369,7 +369,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -406,7 +406,7 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"),
+                    resultSet.getObject("myreaction"),
                     resultSet.getString("description"),
                     resultSet.getString("profile_image")
 
@@ -534,6 +534,13 @@ public class Articles {
         PreparedStatement stmt = conn.prepareStatement("call dislike_article(? , ?)");
         stmt.setInt(1, articleId);
         stmt.setInt(2, userId);
+        stmt.execute();
+    }
+
+    public static void removeReaction(int articleId, int userId) throws Exception {
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM reactions WHERE user_id = ? AND article_id = ?");
+        stmt.setInt(1, userId);
+        stmt.setInt(2, articleId);
         stmt.execute();
     }
 

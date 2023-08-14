@@ -12,12 +12,13 @@ public class Article {
     final public int id, authorId, likesCount, dislikesCount, views;
     final public String slug, content, title, userReactionType, authorName, type, featuredImageUrl, description,
             authorProfileImage;
+
     final public Timestamp createdAt;
 
     public Article(
             int id, int user_id, String name, String title, String slug, String content, String featured_image_url,
             Timestamp created_at,
-            int view_count, String type, int likes, int dislikes, Integer myreaction, String description,
+            int view_count, String type, int likes, int dislikes, Object myreaction, String description,
             String profile_image) {
 
         this.id = id;
@@ -37,7 +38,8 @@ public class Article {
         this.authorProfileImage = profile_image;
 
         if (myreaction != null) {
-            this.userReactionType = myreaction.equals(0) ? "disliked" : "liked";
+            Integer m = (int) myreaction;
+            this.userReactionType = m == 0 ? "disliked" : "liked";
         } else {
             this.userReactionType = null;
         }

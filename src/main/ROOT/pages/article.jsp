@@ -6,10 +6,23 @@
 <%@page import="java.util.ArrayList" %>
 
 <%  
+  boolean isLoggedIn = Auth.isLoggedIn(request);
   String articleSlug = (String) request.getAttribute("slug");
-  Article article = Articles.getArticle(articleSlug);
+  Article article;
+  if(isLoggedIn){
+   article =  Articles.getArticleForUser(articleSlug , Auth.getUserId(request));
+  }else{
+    article =  Articles.getArticle(articleSlug);
+  }
+  
   ArrayList<ArticleResponse> articleResponses = Articles.getArticleResponses(article.id);
   Articles.incrementArticleViewCount(article.id);
+  boolean myReaction = false;
+  boolean likedByMe = false;
+  if(article.userReactionType != null){
+    likedByMe = article.userReactionType.equals("liked");
+    myReaction = true;
+  }
 %>
 
 <!DOCTYPE html>
@@ -46,24 +59,9 @@
           </div>
         </div>
      </div>
-
-
-
-     <style>
-      
-      .text-btn:not([data-selected]) .material-icons{
-        display: none;
-      }
-      .text-btn[data-selected] .material-icons-outlined{
-        display: none;
-      }
-      .text-btn[data-selected] .material-icons{
-        display: block;
-      }
-     </style>
      <div class="actionbar">
        <div class="action">
-        <button class="text-btn icon-btn"  id="article_thumb_up" >
+        <button class="text-btn icon-btn"  id="article_thumb_up" <%= isLoggedIn ? "":"disabled"%><%= isLoggedIn ? myReaction ? likedByMe ? "data-selected" :"" : "" :""%>>
         <span class="material-icons-outlined">
           thumb_up
           </span>
@@ -76,7 +74,7 @@
           </div>
         </div>
         <div class="action">
-          <button class="text-btn icon-btn"  id="article_thumb_down">
+          <button class="text-btn icon-btn"  id="article_thumb_down" <%= isLoggedIn ? "":"disabled"%> <%= isLoggedIn ? myReaction ? likedByMe ? "" : "data-selected" : "" :""%>>
             <span class="material-icons-outlined">
               thumb_down
             </span>
@@ -139,7 +137,7 @@
      <div class="comment-sidebar-backdrop"></div>
      <div class="comment-block">
       <h3 class="mb-1">Responses (<%= articleResponses.size() %>)</h3>
-        <% if (Auth.isLoggedIn(request)) { %>
+        <% if (isLoggedIn) { %>
           <form action="#" class="mb-1">
             <div class="form-element fullwidth rows-2 mb-1">
               <label for="response"
@@ -223,6 +221,13 @@
       const sidePanel = document?.querySelector("#side-panel");
       const sidePanelBackdrop = document?.querySelector("#side-panel > .comment-sidebar-backdrop");
 
+      const slug = "<%= article.slug %>";
+      let likeCount = parseInt("<%= article.likesCount %>");
+      let dislikeCount = parseInt("<%= article.dislikesCount %>");
+  
+      const likeCountDiv = document.querySelector("#like-count");
+      const dislikeCountDiv = document.querySelector("#dislike-count");
+
       commentsOpenerBtn?.addEventListener("click" , (e) =>{
         sidePanel?.classList.add("open");
       });
@@ -235,51 +240,126 @@
         }
       });
       
-      const slug = "<%= article.slug %>";
-      const likeCount = parseInt("<%= article.likesCount %>");
-      const dislikeCount = parseInt("<%= article.dislikesCount %>");
-  
-      const likeCountDiv = document.querySelector("#like-count");
-      const dislikeCountDiv = document.querySelector("#dislike-count");
-
-      articleThumbDownBtn.addEventListener("click"  , (e) =>{
-        articleThumbUpBtn.setAttribute("disabled" ,"");
-        articleThumbDownBtn.setAttribute("disabled" ,"");
-
-        setTimeout(() =>{
-          if(!articleThumbDownBtn.hasAttribute("data-selected")){
-            articleThumbDownBtn.setAttribute("data-selected" , "");
-            articleThumbUpBtn.removeAttribute("data-selected");
-            dislikeCountDiv.textContent = dislikeCount + 1;
-            
-          }else{
-            articleThumbDownBtn.removeAttribute("data-selected");
-            articleThumbUpBtn.removeAttribute("data-selected");
-            dislikeCountDiv.textContent = dislikeCount;
-          }
-          articleThumbUpBtn.removeAttribute("disabled");
-          articleThumbDownBtn.removeAttribute("disabled");
-        } , 100);
+      document.addEventListener("login" , e=>{
+        window.location.reload();
       });
 
-
-      articleThumbUpBtn.addEventListener("click"  , (e) =>{
+      articleThumbUpBtn.addEventListener("click"  , async (e) =>{
         articleThumbUpBtn.setAttribute("disabled" ,"");
         articleThumbDownBtn.setAttribute("disabled" ,"");
 
-        setTimeout(() =>{
           if(!articleThumbUpBtn.hasAttribute("data-selected")){
-            articleThumbUpBtn.setAttribute("data-selected" , "");
-            articleThumbDownBtn.removeAttribute("data-selected");
-            likeCountDiv.textContent = likeCount + 1;
+           
+            try{
+              const res = await fetch("/api/articles/like-article" , {
+                method : "POST" , 
+                headers :{
+                  "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({ 
+                    slug
+                })
+              });
+              if(res.status === 200){
+                likeCount += 1;
+                if(articleThumbDownBtn.hasAttribute("data-selected")){
+                  dislikeCount -= 1;
+                }
+                likeCountDiv.textContent = likeCount;
+                dislikeCountDiv.textContent = dislikeCount;
+                articleThumbUpBtn.setAttribute("data-selected" , "");
+                articleThumbDownBtn.removeAttribute("data-selected");
+              }else{
+                throw new Error();
+              }
+            }catch(e){
+              showSnackbar("error" , "Something went wrong");
+            }
           }else{
-            articleThumbUpBtn.removeAttribute("data-selected");
-            articleThumbDownBtn.removeAttribute("data-selected");
-            likeCountDiv.textContent = likeCount;
+            try{
+              const res = await fetch("/api/articles/remove-article-reaction" , {
+                method : "POST" , 
+                headers :{
+                  "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({ 
+                    slug
+                })
+              });
+              if(res.status === 200){
+                console.log(likeCount);
+                likeCount -= 1;
+                likeCountDiv.textContent = likeCount;
+                dislikeCountDiv.textContent = dislikeCount;
+                articleThumbUpBtn.removeAttribute("data-selected");
+                articleThumbDownBtn.removeAttribute("data-selected");
+              }else{
+                throw new Error();
+              }
+            }catch(e){
+              showSnackbar("error" , "Something went wrong");
+            }
           }
           articleThumbUpBtn.removeAttribute("disabled");
           articleThumbDownBtn.removeAttribute("disabled");
-        } , 100);
+      });
+      
+      articleThumbDownBtn.addEventListener("click"  , async (e) =>{
+        articleThumbUpBtn.setAttribute("disabled" ,"");
+        articleThumbDownBtn.setAttribute("disabled" ,"");
+
+          if(!articleThumbDownBtn.hasAttribute("data-selected")){
+            try{
+              const res = await fetch("/api/articles/dislike-article" , {
+                method : "POST" , 
+                headers :{
+                  "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({ 
+                    slug
+                })
+              });
+              if(res.status === 200){
+                dislikeCount += 1;
+                if(articleThumbUpBtn.hasAttribute("data-selected")){
+                  likeCount -= 1;
+                }
+                likeCountDiv.textContent = likeCount;
+                dislikeCountDiv.textContent = dislikeCount;
+                articleThumbUpBtn.removeAttribute("data-selected");
+                articleThumbDownBtn.setAttribute("data-selected" , "");
+              }else{
+                throw new Error();
+              }
+            }catch(e){
+              showSnackbar("error" , "Something went wrong");
+            }
+          }else{
+            try{
+              const res = await fetch("/api/articles/remove-article-reaction" , {
+                method : "POST" , 
+                headers :{
+                  "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({ 
+                    slug
+                })
+              });
+              if(res.status === 200){
+                dislikeCount -= 1;
+                likeCountDiv.textContent = likeCount;
+                dislikeCountDiv.textContent = dislikeCount;
+                articleThumbUpBtn.removeAttribute("data-selected");
+                articleThumbDownBtn.removeAttribute("data-selected");
+              }else{
+                throw new Error();
+              }
+            }catch(e){
+              showSnackbar("error" , "Something went wrong");
+            }
+          }
+          articleThumbUpBtn.removeAttribute("disabled");
+          articleThumbDownBtn.removeAttribute("disabled");
       });
       
     </script>
