@@ -9,13 +9,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Article {
 
     final public int id, authorId, likesCount, dislikesCount, views;
-    final public String slug, content, title, userReactionType, authorName, type, featuredImageUrl, description;
+    final public String slug, content, title, userReactionType, authorName, type, featuredImageUrl, description,
+            authorProfileImage;
     final Timestamp createdAt;
 
     public Article(
             int id, int user_id, String name, String title, String slug, String content, String featured_image_url,
             Timestamp created_at,
-            int view_count, String type, int likes, int dislikes, Integer myreaction, String description) {
+            int view_count, String type, int likes, int dislikes, Integer myreaction, String description,
+            String profile_image) {
 
         this.id = id;
         this.authorId = user_id;
@@ -31,6 +33,7 @@ public class Article {
         this.type = type;
         this.featuredImageUrl = featured_image_url;
         this.description = description;
+        this.authorProfileImage = profile_image;
 
         if (myreaction != null) {
             this.userReactionType = myreaction.equals(0) ? "disliked" : "liked";
@@ -60,7 +63,8 @@ public class Article {
         obj.put("content", content);
         obj.put("title", title);
         obj.put("user_reaction_type", userReactionType);
-        obj.put("authorName", authorName);
+        obj.put("author_name", authorName);
+        obj.put("author_image", authorProfileImage);
         obj.put("article_type", type);
         obj.put("featured_image_url", featuredImageUrl);
         obj.put("description", description);

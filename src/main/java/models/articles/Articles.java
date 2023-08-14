@@ -37,7 +37,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
 
             );
 
@@ -75,9 +76,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
-
-            );
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image"));
 
             articles.add(article);
 
@@ -112,7 +112,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
 
             );
 
@@ -148,7 +149,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
 
             );
 
@@ -183,7 +185,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
 
             );
 
@@ -220,7 +223,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
 
             );
 
@@ -255,7 +259,10 @@ public class Articles {
                     resultSet.getString("type"),
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
-                    resultSet.getInt("myreaction"), resultSet.getString("description"));
+                    resultSet.getInt("myreaction"), resultSet.getString("description"),
+                    resultSet.getString("profile_image")
+
+            );
             break;
         }
         return article;
@@ -287,7 +294,8 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description")
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
 
             );
 
@@ -323,7 +331,10 @@ public class Articles {
                     resultSet.getInt("likes"),
                     resultSet.getInt("dislikes"),
                     resultSet.getInt("myreaction"),
-                    resultSet.getString("description"));
+                    resultSet.getString("description"),
+                    resultSet.getString("profile_image")
+
+            );
 
             articles.add(article);
         }
@@ -485,6 +496,7 @@ public class Articles {
                     resultSet.getString("content"),
                     resultSet.getInt("article_id"),
                     resultSet.getInt("user_id"),
+                    resultSet.getString("profile_image"),
                     resultSet.getTimestamp("created_at"));
 
             responses.add(response);
@@ -510,6 +522,7 @@ public class Articles {
                     resultSet.getString("content"),
                     resultSet.getInt("article_id"),
                     resultSet.getInt("user_id"),
+                    resultSet.getString("profile_image"),
                     resultSet.getTimestamp("created_at"));
 
             responses.add(response);

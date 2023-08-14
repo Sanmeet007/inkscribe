@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ArticleResponse {
 
     public int id, articleId, userId;
-    public String userName, content;
+    public String userName, content, userProfileImage;
     public Timestamp createdAt;
 
     public ArticleResponse(
@@ -18,6 +18,7 @@ public class ArticleResponse {
             String content,
             int article_id,
             int user_id,
+            String profile_image,
             Timestamp created_at) {
         this.id = id;
         this.articleId = article_id;
@@ -25,7 +26,7 @@ public class ArticleResponse {
         this.createdAt = created_at;
         this.userId = user_id;
         this.userName = name;
-
+        this.userProfileImage = profile_image;
     }
 
     @Override
@@ -45,6 +46,7 @@ public class ArticleResponse {
         obj.put("user_id", userId);
         obj.put("content", content);
         obj.put("article_id", articleId);
+        obj.put("user_profile_image", userProfileImage);
         obj.put("created_at", createdAt.toString());
 
         final String json = new ObjectMapper().writeValueAsString(obj);
