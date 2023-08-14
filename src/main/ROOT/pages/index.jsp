@@ -61,7 +61,7 @@
                                 <div class="user-name"><%= article.authorName %></div>
                             </div>
                             </div>
-                            <a href="/articles/<%= article.slug %>" class="block card-heading link">
+                            <a href="/article/<%= article.slug %>" class="block card-heading link">
                               <%= article.title %>
                             </a>
                             <div class="card-footer">
