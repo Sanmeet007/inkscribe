@@ -1,6 +1,7 @@
 package models.articles;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,4 +75,16 @@ public class Article {
         return json;
     }
 
+    public String getCleanDate() {
+        String dateString = new SimpleDateFormat("MMM,d yyyy").format(this.createdAt);
+        return dateString;
+    }
+
+    public String getProfileImage() {
+        if (authorProfileImage != null) {
+            return authorProfileImage;
+        } else {
+            return "/images/avatar.svg";
+        }
+    }
 }

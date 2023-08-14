@@ -1,4 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8"%> 
+<%@page contentType="text/html; charset=UTF-8"%> 
+<%@page  import="java.util.ArrayList" %>
+<%@page import="models.articles.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,126 +41,39 @@
 
               Trending on InkScribe
             </h2>
-            <% 
-                Articles.getTopFiveArticles();
-            %>
-            <div class="cards">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-user-profile">
-                    <div class="user-image">
-                      <img
-                        src="https://innostudio.de/fileuploader/images/default-avatar.png"
-                        alt=""
-                        width="30"
-                        height="30"
-                      />
-                    </div>
-                    <div class="user-name">John Doe</div>
+
+            <% ArrayList<Article> articles = Articles.getTopFiveArticles(); %>
+               <% if(articles.size() > 0){ %>
+                  <div class="cards">
+                   <% for (Article article : articles) {   %>
+                            <div class="card">
+                            <div class="card-header">
+                            <div class="card-user-profile">
+                                <div class="user-image">
+                                <img
+                                    src="<%= article.getProfileImage() %>"
+                                    alt="Avatar"
+                                    width="30"
+                                    height="30"
+                                />
+                                </div>
+                                <div class="user-name"><%= article.authorName %></div>
+                            </div>
+                            </div>
+                            <div class="card-heading">
+                            <%= article.title %>
+                            </div>
+                            <div class="card-footer">
+                            <div><%= article.getCleanDate() %></div>
+                            <div><%= article.type %></div>
+                            </div>
+                        </div>
+                   <% } %>
                   </div>
-                </div>
-                <div class="card-heading">
-                  Lorem ipsum dolor sit amet consectetur
-                </div>
-                <div class="card-footer">
-                  <div>Aug 15</div>
-                  <div>Two</div>
-                  <div>Three</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-user-profile">
-                    <div class="user-image">
-                      <img
-                        src="https://innostudio.de/fileuploader/images/default-avatar.png"
-                        alt=""
-                        width="30"
-                        height="30"
-                      />
-                    </div>
-                    <div class="user-name">John Doe</div>
-                  </div>
-                </div>
-                <div class="card-heading">
-                  Lorem ipsum dolor sit amet consectetur
-                </div>
-                <div class="card-footer">
-                  <div>Aug 15</div>
-                  <div>Two</div>
-                  <div>Three</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-user-profile">
-                    <div class="user-image">
-                      <img
-                        src="https://innostudio.de/fileuploader/images/default-avatar.png"
-                        alt=""
-                        width="30"
-                        height="30"
-                      />
-                    </div>
-                    <div class="user-name">John Doe</div>
-                  </div>
-                </div>
-                <div class="card-heading">
-                  Lorem ipsum dolor sit amet consectetur
-                </div>
-                <div class="card-footer">
-                  <div>Aug 15</div>
-                  <div>Two</div>
-                  <div>Three</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-user-profile">
-                    <div class="user-image">
-                      <img
-                        src="https://innostudio.de/fileuploader/images/default-avatar.png"
-                        alt=""
-                        width="30"
-                        height="30"
-                      />
-                    </div>
-                    <div class="user-name">John Doe</div>
-                  </div>
-                </div>
-                <div class="card-heading">
-                  Lorem ipsum dolor sit amet consectetur
-                </div>
-                <div class="card-footer">
-                  <div>Aug 15</div>
-                  <div>Two</div>
-                  <div>Three</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-user-profile">
-                    <div class="user-image">
-                      <img
-                        src="https://innostudio.de/fileuploader/images/default-avatar.png"
-                        alt=""
-                        width="30"
-                        height="30"
-                      />
-                    </div>
-                    <div class="user-name">John Doe</div>
-                  </div>
-                </div>
-                <div class="card-heading">
-                  Lorem ipsum dolor sit amet consectetur
-                </div>
-                <div class="card-footer">
-                  <div>Aug 15</div>
-                  <div>Two</div>
-                  <div>Three</div>
-                </div>
-              </div>
-            </div>
+               <% }else{ %>
+                    <div class="empty">No articles to dislay</div>
+               <% } %>
+            
           </div>
         </div>
       </section>
