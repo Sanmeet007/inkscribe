@@ -98,165 +98,42 @@
             </div>
           </div>
 
-          <div class="cards">
-            <div class="card">
-              <div class="card-sides">
-                <div class="card-side">
-                  <div class="card-header">
-                    <div class="card-heading">Card Heading</div>
-                  </div>
-                  <div class="card-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    expedita
-                  </div>
-                  <div class="card-footer">
-                    <div>Aug 15</div>
-                    <div>Two</div>
-                    <div>Three</div>
-                    <div class="chip">Programming</div>
-                  </div>
-                </div>
-                <div class="card-side">
-                  <img
-                    src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                    alt=""
-                    width="150"
-                    height="100"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-sides">
-                <div class="card-side">
-                  <div class="card-header">
-                    <div class="card-heading">Card Heading</div>
-                  </div>
-                  <div class="card-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    expedita
-                  </div>
-                  <div class="card-footer">
-                    <div>Aug 15</div>
-                    <div>Two</div>
-                    <div>Three</div>
-                  </div>
-                </div>
-                <div class="card-side">
-                  <img
-                    src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                    alt=""
-                    width="150"
-                    height="100"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-sides">
-                <div class="card-side">
-                  <div class="card-header">
-                    <div class="card-heading">Card Heading</div>
-                  </div>
-                  <div class="card-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    expedita
-                  </div>
-                  <div class="card-footer">
-                    <div>Aug 15</div>
-                    <div>Two</div>
-                    <div>Three</div>
-                  </div>
-                </div>
-                <div class="card-side">
-                  <img
-                    src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                    alt=""
-                    width="150"
-                    height="100"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-sides">
-                <div class="card-side">
-                  <div class="card-header">
-                    <div class="card-heading">Card Heading</div>
-                  </div>
-                  <div class="card-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    expedita
-                  </div>
-                  <div class="card-footer">
-                    <div>Aug 15</div>
-                    <div>Two</div>
-                    <div>Three</div>
-                  </div>
-                </div>
-                <div class="card-side">
-                  <img
-                    src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                    alt=""
-                    width="150"
-                    height="100"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-sides">
-                <div class="card-side">
-                  <div class="card-header">
-                    <div class="card-heading">Card Heading</div>
-                  </div>
-                  <div class="card-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    expedita
-                  </div>
-                  <div class="card-footer">
-                    <div>Aug 15</div>
-                    <div>Two</div>
-                    <div>Three</div>
-                  </div>
-                </div>
-                <div class="card-side">
-                  <img
-                    src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                    alt=""
-                    width="150"
-                    height="100"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-sides">
-                <div class="card-side">
-                  <div class="card-header">
-                    <div class="card-heading">Card Heading</div>
-                  </div>
-                  <div class="card-content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    expedita
-                  </div>
-                  <div class="card-footer">
-                    <div>Aug 15</div>
-                    <div>Two</div>
-                    <div>Three</div>
-                  </div>
-                </div>
-                <div class="card-side">
-                  <img
-                    src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                    alt=""
-                    width="150"
-                    height="100"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <% ArrayList<Article> nArticles = Articles.getNArticles(10); %>
+            <% if(articles.size() > 0){ %>
+               <div class="cards">
+                <% for (Article article : nArticles) {   %>
+
+                 <div class="card">
+                     <div class="card-sides">
+                       <div class="card-side">
+                         <div class="card-header">
+                             <a href="/article/<%= article.slug %>" class="block card-heading link">
+                                 <%= article.title %>
+                               </a>
+                         </div>
+                         <div class="card-content">
+                           <%= article.description %>
+                         </div>
+                         <div class="card-footer">
+                           <div><%= article.getCleanDate() %></div>
+                           <div class="chip"><%= article.type %></div>
+                         </div>
+                       </div>
+                       <div class="card-side">
+                         <img
+                           src="<%= article.featuredImageUrl %>"
+                           alt=""
+                           width="150"
+                           height="100"
+                         />
+                       </div>
+                     </div>
+                   </div>
+                <% } %>
+               </div>
+            <% }else{ %>
+                 <div class="empty">No articles to dislay</div>
+            <% } %>
         </div>
       </section>
 
