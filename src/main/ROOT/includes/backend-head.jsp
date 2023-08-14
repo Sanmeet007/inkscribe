@@ -6,8 +6,5 @@
     <meta name="color-scheme" content="dark" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   </head>
