@@ -11,11 +11,11 @@ import db.DbConnect;
 public class Articles {
     private static Connection conn = DbConnect.instance.getConnection();
 
-    public static ArrayList<Article> getRecommendationsForType(int type) throws Exception {
+    public static ArrayList<Article> getRecommendationsForType(String type) throws Exception {
         ArrayList<Article> articles = new ArrayList<Article>();
         PreparedStatement statement;
         statement = conn.prepareStatement("call fetch_recommendations(?)");
-        statement.setInt(1, type);
+        statement.setString(1, type);
 
         ResultSet resultSet = statement.executeQuery();
 

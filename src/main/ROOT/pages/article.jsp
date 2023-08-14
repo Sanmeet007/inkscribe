@@ -73,62 +73,39 @@
         38
        </div>
      </div>
-
-  
      <div class="featured-image">
       <img src="<%= article.featuredImageUrl %>" alt="featured-image" width="900">
      </div>
 
-     <article class="mb-2 mt-2">
-      <%= MarkdownConverter.toHtml(article.content) %>
+     <article class="mb-2 mt-2" id="article-content">
+      <%= MarkdownConverter.markdownToHtml(article.content) %>
      </article>
-     <div class="related-articles">
-      <h3 class="mb-2">Recommended from InkScribe</h3>
-      <div class="cards mb-2">
-        <div class="card">
-         
-          <a href="/article" class="block link card-heading">
-            Lorem ipsum dolor sit amet consectetur
-          </a>
-          <div class="card-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum corrupti voluptatibus veniam deserunt architecto! Repel
+   
+      <% ArrayList<Article> articles = Articles.getRecommendationsForType(article.type); %>
+        <% if(articles.size() > 1){ %>
+          <div class="related-articles">
+            <h3 class="mb-2">Recommended from InkScribe</h3>
+           <div class="cards mb-2">
+            <% for (Article currentArticle : articles) {   %>
+             <% if (currentArticle.id == article.id ) continue ; %>
+             <div class="card">
+  
+                 <a href="/article/<%= currentArticle.slug %>" class="block card-heading link">
+                     <%= currentArticle.title %>
+                   </a>
+                 <div class="card-content">
+                   <%= currentArticle.description %>
+                 </div>
+                 <div class="card-footer">
+                     <div><%= currentArticle.getCleanDate() %></div>
+                 </div>
+               </div>
+               
+            <% } %>
+           </div>
           </div>
-          <div class="card-footer">
-            <div>Aug 15</div>
-            <div>Two</div>
-            <div class="chip">Politics</div>
-          </div>
-        </div>
-        <div class="card">
-         
-          <a href="/article" class="block no-link card-heading">
-            Lorem ipsum dolor sit amet consectetur
-          </a>
-          <div class="card-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum corrupti voluptatibus veniam deserunt architecto! Repel
-          </div>
-          <div class="card-footer">
-            <div>Aug 15</div>
-            <div>Two</div>
-            <div class="chip">Politics</div>
-          </div>
-        </div>
-        <div class="card">
-         
-          <a href="/article" class="block no-link card-heading">
-            Lorem ipsum dolor sit amet consectetur
-          </a>
-          <div class="card-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum corrupti voluptatibus veniam deserunt architecto! Repel
-          </div>
-          <div class="card-footer">
-            <div>Aug 15</div>
-            <div>Two</div>
-            <div class="chip">Politics</div>
-          </div>
-        </div>
-      </div>
-     </div>
+        <% } %>
+
     </main>
 
     <div class="comments-sidebar" id="side-panel">
