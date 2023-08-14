@@ -24,7 +24,7 @@
                     </select>
                 </div>
                 <button class="btn secondary">
-                    <span class="material-symbols-outlined">
+                    <span class="material-icons-outlined">
                         search
                         </span>
                 </button>

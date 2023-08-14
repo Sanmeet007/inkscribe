@@ -64,12 +64,12 @@
                 </a>
                 <div class="flex  small-gap">
                   <a  href="/dashboard/edit-article" class="btn icon-btn small" title="Edit">
-                    <span class="material-symbols-outlined">
+                    <span class="material-icons-outlined">
                       edit
                       </span>
                   </a>
                   <a href="/delete-article" class="btn icon-btn small" title="Delete">
-                    <span class="material-symbols-outlined">
+                    <span class="material-icons-outlined">
                       delete
                       </span>
                   </a>

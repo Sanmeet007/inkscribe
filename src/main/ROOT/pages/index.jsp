@@ -38,7 +38,7 @@
         <div class="container">
           <div class="trending">
             <h2 class="flex gap">
-              <span class="material-symbols-outlined"> trending_up </span>
+              <span class="material-icons-outlined"> trending_up </span>
 
               Trending on InkScribe
             </h2>

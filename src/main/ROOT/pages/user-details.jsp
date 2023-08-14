@@ -29,7 +29,7 @@
                 </div>
                 <div class="spacer"></div>
                 <a href="mailto:example@example.com" class="btn outlined secondary tightly-packed">
-                    <span class="material-symbols-outlined">
+                    <span class="material-icons-outlined">
                         mail
                     </span>
                     <span>

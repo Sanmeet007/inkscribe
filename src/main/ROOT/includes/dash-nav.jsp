@@ -36,15 +36,15 @@
       <% if (isAdmin) { %>
         
       <a href="/dashboard" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
-        <span class="material-symbols-outlined"> dashboard </span>
+        <span class="material-icons-outlined"> dashboard </span>
         <span> Dashboard </span>
       </a>
       <a href="/dashboard/articles" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
-        <span class="material-symbols-outlined"> news </span>
+        <span class="material-icons-outlined"> news </span>
         <span>Articles </span>
       </a>
       <a href="/dashboard/users" class="menu-item <%= currentPage.equals("users") ? "active" : "" %>">
-        <span class="material-symbols-outlined">
+        <span class="material-icons-outlined">
           group
           </span>
         <span>Users </span>
@@ -53,15 +53,15 @@
         <% } else { %>
           
       <a href="/dashboard" class="menu-item <%= currentPage.equals("dashboard") ? "active" : "" %>">
-        <span class="material-symbols-outlined"> dashboard </span>
+        <span class="material-icons-outlined"> dashboard </span>
         <span> Dashboard </span>
       </a>
       <a href="/dashboard/articles" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
-        <span class="material-symbols-outlined"> news </span>
+        <span class="material-icons-outlined"> news </span>
         <span> My Articles </span>
       </a>
       <a href="/dashboard/new-article" class="menu-item <%= currentPage.equals("new-article")  ? "active" : ""%>">
-        <span class="material-symbols-outlined"> add_circle </span>
+        <span class="material-icons-outlined"> add_circle </span>
         <span>New Aritcle</span>
       </a>
 

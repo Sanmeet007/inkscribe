@@ -50,7 +50,7 @@
      <div class="actionbar">
        <div class="action">
         <button class="text-btn icon-btn"  id="article_thumb_up">
-        <span class="material-symbols-outlined">
+        <span class="material-icons-outlined">
           thumb_up
           </span>
           </button>
@@ -58,7 +58,7 @@
         </div>
         <div class="action">
           <button class="text-btn icon-btn"  id="article_thumb_down">
-            <span class="material-symbols-outlined">
+            <span class="material-icons-outlined">
               thumb_down
             </span>
           </button>
@@ -67,7 +67,7 @@
        <div class="spacer"></div>
        <div class="action">
         <button class="text-btn icon-btn" id="comment-opener">
-          <span class="material-symbols-outlined">
+          <span class="material-icons-outlined">
             chat
             </span>
         </button>
@@ -190,7 +190,6 @@
    <jsp:include page="../includes/snackbars.jsp" />
 
 
-
     <script>
       const commentsOpenerBtn = document?.querySelector("#comment-opener");
       const articleThumbDownBtn = document?.querySelector("#article_thumb_down");
@@ -208,9 +207,23 @@
         if(e.key === "Escape"){
           sidePanel?.classList.remove("open");
         }
-      })
+      });
+      
+      const slug = "<%= article.slug %>";
+  
+      articleThumbDownBtn.addEventListener("click"  , (e) =>{
+        articleThumbUpBtn.setAttribute("disabled" ,"");
+        articleThumbDownBtn.setAttribute("disabled" ,"");
+        setTimeout(() =>{
+          articleThumbUpBtn.setAttribute("disabled" ,"");
+          articleThumbDownBtn.setAttribute("disabled" ,"");
+        } , 1000);
+      });
 
-
+      articleThumbUpBtn.addEventListener("click"  , (e) =>{
+        
+      });
+      
     </script>
     <script src="/js/script.js"></script>
   </body>

@@ -69,32 +69,32 @@
         </a>
       </div>
       <div class="btn outlined icon-btn" id="nav-trigger">
-        <span class="material-symbols-outlined"> menu </span>
+        <span class="material-icons-outlined"> menu </span>
       </div>
       <div class="backdrop"></div>
       <div class="nav-drawer">
         <ul class="nav-links">
           <li class="active">
             <a href="/">
-              <span class="material-symbols-outlined"> home </span>
+              <span class="material-icons-outlined"> home </span>
               Home
             </a>
           </li>
           <li>
             <a href="/about-us">
-              <span class="material-symbols-outlined"> info </span>
+              <span class="material-icons-outlined"> info </span>
               About
             </a>
           </li>
           <li>
             <a href="/services">
-              <span class="material-symbols-outlined"> settings </span>
+              <span class="material-icons-outlined"> settings </span>
               Services
             </a>
           </li>
           <li>
             <a href="/support">
-              <span class="material-symbols-outlined"> support_agent </span>
+              <span class="material-icons-outlined"> support_agent </span>
               Support
             </a>
           </li>

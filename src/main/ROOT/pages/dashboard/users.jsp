@@ -56,12 +56,12 @@
                     <div class="spacer"></div>
                     <div class="btns flex small-gap">
                       <a href="/user-details" class="btn icon-btn small" title="view">
-                        <span class="material-symbols-outlined">
+                        <span class="material-icons-outlined">
                           visibility
                           </span>
                       </a>
                       <button class="btn icon-btn small" title="delete">
-                        <span class="material-symbols-outlined">
+                        <span class="material-icons-outlined">
                           delete
                           </span>
                       </button>
