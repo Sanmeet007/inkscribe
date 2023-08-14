@@ -47,6 +47,7 @@ public class ArticleDisplayPage extends HttpServlet {
                     return;
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 response.sendError(500, "Something went wrong");
                 return;
             }

@@ -1,14 +1,20 @@
-<% 
-  System.out.println(request.getAttribute("slug"));
- %>
-
 <%@ page contentType="text/html; charset=UTF-8"%> 
 <%@page import="utils.*" %>
+<%@page import="models.articles.Article" %>
+<%@page import="models.articles.Articles" %>
+<%@page import="models.articles.ArticleResponse" %>
+<%@page import="java.util.ArrayList" %>
+
+<%  
+  String articleSlug = (String) request.getAttribute("slug");
+  Article article = Articles.getArticle(articleSlug);
+  ArrayList<ArticleResponse> articleResponses = Articles.getArticleResponses(article.id);
+%>
 
 <!DOCTYPE html>
 <html lang="en">
   <jsp:include page="../includes/frontend-head.jsp">
-    <jsp:param name="title" value="Article" />
+    <jsp:param name="title" value="<%= article.title %>" />
     <jsp:param name="desc" value="InkScribe is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic." />
   </jsp:include>
   <body>
@@ -19,22 +25,22 @@
    
    <!-- Main -->
    <main class="container extra-tight">
-     <h1 class="mt-2">Plan Your Medium Day Lineup</h1>
-     <h2 class="sub-heading">Announcing the schedule of 200+ sessions for our community-led conference on August 12</h2>
+     <h1 class="mt-2"><%= article.title %></h1>
+     <h2 class="sub-heading"><%= article.description %></h2>
 
 
      <div class="publisher-profile">
         <div>
-          <img src="/images/avatar.svg" alt="Avatar" width="40">
+          <img src="<%= article.getProfileImage() %>" alt="Avatar" width="40">
         </div>
         <div>
-          <a href="/user-details" class="link">John Doe</a>
+          <a href="/user-details?id=<%= article.authorId %>" class="link">John Doe</a>
           <div class="article-meta">
             <div class="read-time">
-              14 min read 
+              <%= article.type %>
             </div>
             <div class="date-published">
-              Aug 3
+              <%= article.getCleanDate() %>
             </div>
           </div>
         </div>
@@ -47,15 +53,15 @@
           thumb_up
           </span>
           </button>
-          1
-       </div>
-       <div class="action">
-        <button class="text-btn icon-btn"  id="article_thumb_down">
-        <span class="material-symbols-outlined">
-          thumb_down
-          </span>
+          <%=article.likesCount %>
+        </div>
+        <div class="action">
+          <button class="text-btn icon-btn"  id="article_thumb_down">
+            <span class="material-symbols-outlined">
+              thumb_down
+            </span>
           </button>
-          1
+          <%=article.dislikesCount %>
        </div>
        <div class="spacer"></div>
        <div class="action">
@@ -70,11 +76,11 @@
 
   
      <div class="featured-image">
-      <img src="https://miro.medium.com/v2/resize:fit:1100/0*0Ideh5f5QQUsfohN" alt="featured-image" width="900">
+      <img src="<%= article.featuredImageUrl %>" alt="featured-image" width="900">
      </div>
 
      <article class="mb-2 mt-2">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus laudantium sit iste iure quia sed velit repellat nesciunt, totam eius. Ut amet omnis earum obcaecati veniam, possimus voluptatem porro eligendi?
+      <%= MarkdownConverter.toHtml(article.content) %>
      </article>
      <div class="related-articles">
       <h3 class="mb-2">Recommended from InkScribe</h3>
