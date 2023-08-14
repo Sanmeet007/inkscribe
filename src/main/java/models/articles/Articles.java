@@ -586,7 +586,6 @@ public class Articles {
         statement.setInt(1, articlId);
 
         ResultSet resultSet = statement.executeQuery();
-        boolean found = false;
 
         while (resultSet.next()) {
             if (resultSet.getInt("id") == 0) {
@@ -602,14 +601,8 @@ public class Articles {
                     resultSet.getTimestamp("created_at"));
 
             responses.add(response);
-            found = true;
         }
-        if (found) {
-            return responses;
-        } else {
-            return null;
-        }
-
+        return responses;
     }
 
     public static boolean checkSlug(String slug) throws Exception {

@@ -9,6 +9,7 @@
   String articleSlug = (String) request.getAttribute("slug");
   Article article = Articles.getArticle(articleSlug);
   ArrayList<ArticleResponse> articleResponses = Articles.getArticleResponses(article.id);
+  Articles.incrementArticleViewCount(article.id);
 %>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
           <img src="<%= article.getProfileImage() %>" alt="Avatar" width="40">
         </div>
         <div>
-          <a href="/user-details?id=<%= article.authorId %>" class="link">John Doe</a>
+          <a href="/user-details?id=<%= article.authorId %>" class="link"><%= article.authorName %></a>
           <div class="article-meta">
             <div class="read-time">
               <%= article.type %>
@@ -70,7 +71,7 @@
             chat
             </span>
         </button>
-        38
+        <%= articleResponses.size() %>
        </div>
      </div>
      <div class="featured-image">
@@ -111,7 +112,7 @@
     <div class="comments-sidebar" id="side-panel">
      <div class="comment-sidebar-backdrop"></div>
      <div class="comment-block">
-      <h3 class="mb-1">Responses (1)</h3>
+      <h3 class="mb-1">Responses (<%= articleResponses.size() %>)</h3>
         <% if (Auth.isLoggedIn(request)) { %>
           <form action="#" class="mb-1">
             <div class="form-element fullwidth rows-2 mb-1">
@@ -149,40 +150,33 @@
              }
           </script>
         <% } %>
-      <div class="cards">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-user-profile">
-              <div class="user-image">
-                <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" width="30" height="30">
-              </div>
-              <div class="user-name flex flex-column flex-no-center">
-                <a href="/user-details" class="link">John Doe</a>
-                <div class="small-text mt-small">Aug 10,2023</div>
-              </div>
-            </div>
+        
+        <% if(articleResponses.size() > 0){ %>
+          <div class="cards">
+           <% for (ArticleResponse articleResponse: articleResponses ) {   %>
+
+             <div class="card">
+               <div class="card-header">
+                 <div class="card-user-profile">
+                   <div class="user-image">
+                     <img src="<%= articleResponse.getProfileImage() %>" alt="" width="30" height="30">
+                   </div>
+                   <div class="user-name flex flex-column flex-no-center">
+                     <a href="/user-details?id=<%= articleResponse.userId %>" class="link"><%= articleResponse.userName %></a>
+                     <div class="small-text mt-small"><%= articleResponse.getCleanDate() %></div>
+                   </div>
+                 </div>
+               </div>
+               <div class="card-content">
+                <%= articleResponse.content %>
+               </div>
+             </div>
+
+           <% } %>
           </div>
-          <div class="card-content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing .
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header">
-            <div class="card-user-profile">
-              <div class="user-image">
-                <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" width="30" height="30">
-              </div>
-              <div class="user-name flex flex-column flex-no-center">
-                <div>John Doe</div>
-                <div class="small-text mt-small">Aug 10,2023</div>
-              </div>
-            </div>
-          </div>
-          <div class="card-content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing .
-          </div>
-        </div>
-      </div>
+       <% }else{ %>
+            <div class="empty">No responses be the first one to comment</div>
+       <% } %>
      </div>
     </div>
   
