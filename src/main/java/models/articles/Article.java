@@ -11,7 +11,7 @@ public class Article {
     final public int id, authorId, likesCount, dislikesCount, views;
     final public String slug, content, title, userReactionType, authorName, type, featuredImageUrl, description,
             authorProfileImage;
-    final Timestamp createdAt;
+    final public Timestamp createdAt;
 
     public Article(
             int id, int user_id, String name, String title, String slug, String content, String featured_image_url,
