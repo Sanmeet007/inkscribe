@@ -95,7 +95,9 @@
             chat
             </span>
         </button>
-        <%= articleResponses.size() %>
+        <span id="responses-count-1">
+          <%= articleResponses.size() %>
+        </span>
        </div>
      </div>
      <div class="featured-image">
@@ -136,9 +138,9 @@
     <div class="comments-sidebar" id="side-panel">
      <div class="comment-sidebar-backdrop"></div>
      <div class="comment-block">
-      <h3 class="mb-1">Responses (<%= articleResponses.size() %>)</h3>
+      <h3 class="mb-1">Responses <span id="responses-count">(<%= articleResponses.size() %>)</span></h3>
         <% if (isLoggedIn) { %>
-          <form action="#" class="mb-1">
+          <form action="#" class="mb-1" id="response-form">
             <div class="form-element fullwidth rows-2 mb-1">
               <label for="response"
                 >Response <span class="red">*</span></label
@@ -153,8 +155,95 @@
                 ></textarea>
               </fieldset>
             </div>
-            <button type="reset" class="btn">Post</button>
+            <button class="btn" type="submit">Post</button>
           </form>
+          <script>
+            const responseForm = document.querySelector("#response-form");
+            responseForm.addEventListener("submit" , async(e) =>{
+              e.preventDefault();
+              const reponsesDiv = document.querySelector("#response_cards");
+              const submitBtn = responseForm.querySelector("[type='submit']");
+              const responseCountDiv = document.querySelector("#responses-count");
+              const responseCountDiv1 = document.querySelector("#responses-count-1");
+              submitBtn.classList.add("loading");
+              submitBtn.setAttribute("disabled" , "");
+              const content = responseForm.response.value.trim();
+              try{
+                const res = await fetch("/api/articles/add-response" , {
+                  method : "POST", 
+                  headers : {
+                    "Content-Type" : "application/json"
+                  },
+                  body : JSON.stringify({
+                    slug,
+                    content : content
+                  })
+                });
+                if(res.status === 200){
+                  const json = await res.json();
+                  const data = json.response;
+                  responseCountDiv.textContent = parseInt(responseCountDiv1.textContent) + 1;
+                  responseCountDiv1.textContent = parseInt(responseCountDiv1.textContent) + 1;
+
+                  if(reponsesDiv?.querySelector(".empty") != null){
+
+                  reponsesDiv.innerHTML = `
+                      <div class="card">
+                          <div class="card-header">
+                            <div class="card-user-profile">
+                              <div class="user-image">
+                                <img src="\${data.user_profile_image}" alt="" width="30" height="30">
+                              </div>
+                              <div class="user-name flex flex-column flex-no-center">
+                                <a href="/user-details?id=\${data.user_id}" class="link">\${data.user_name}</a>
+                                <div class="small-text mt-small">\${data.created_at}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-content">
+                            \${data.content.trim()}
+                          </div>
+                        </div>
+                  `;
+                }else{
+                  
+                                    reponsesDiv.innerHTML = `
+                                        <div class="card">
+                                            <div class="card-header">
+                                              <div class="card-user-profile">
+                                                <div class="user-image">
+                                                  <img src="\${data.user_profile_image}" alt="" width="30" height="30">
+                                                </div>
+                                                <div class="user-name flex flex-column flex-no-center">
+                                                  <a href="/user-details?id=\${data.user_id}" class="link">\${data.user_name}</a>
+                                                  <div class="small-text mt-small">\${data.created_at}</div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="card-content">
+                                              \${data.content.trim()}
+                                            </div>
+                                          </div>
+                                    ` + reponsesDiv.innerHTML;
+
+                }
+
+                  showSnackbar("success" , "Response added to article");
+                  submitBtn.classList.remove("loading");
+                  submitBtn.removeAttribute("disabled");
+                  responseForm.reset();
+                }else{
+                  throw new Error();
+                }
+              }catch(e){
+                console.log(e)
+                submitBtn.classList.remove("loading");
+                submitBtn.removeAttribute("disabled");
+                showSnackbar("error" , "Something went wrong !");
+              }
+            })
+          </script>
+          
         <% }else { %>
           <div class="shadow-block" id="bummer">
             <p>What are your thoughts ?</p>
@@ -175,8 +264,8 @@
           </script>
         <% } %>
         
+        <div class="cards"  id="response_cards">
         <% if(articleResponses.size() > 0){ %>
-          <div class="cards">
            <% for (ArticleResponse articleResponse: articleResponses ) {   %>
 
              <div class="card">
@@ -197,10 +286,10 @@
              </div>
 
            <% } %>
-          </div>
-       <% }else{ %>
+           <% }else{ %>
             <div class="empty">No responses be the first one to comment</div>
-       <% } %>
+            <% } %>
+        </div>
      </div>
     </div>
   

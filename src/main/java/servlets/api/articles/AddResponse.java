@@ -1,11 +1,14 @@
 package servlets.api.articles;
 
+import java.util.Date;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.articles.Articles;
+import models.users.User;
 import servlets.api.exceptions.InvalidContentType;
 import servlets.api.exceptions.UnauthorizedAcess;
 import utils.Auth;
@@ -26,12 +29,17 @@ public class AddResponse extends HttpServlet {
         try {
             if (req.getContentType().equals("application/json")) {
                 if (Auth.isLoggedIn(req)) {
-                    int userId = Auth.getUserId(req);
+                    User user = Auth.getUser(req);
                     CommentParameters params = ReqMethods.mapper.readValue(ReqMethods.getBody(req),
                             CommentParameters.class);
-                    Articles.addComment(params.slug, userId, params.content);
+                    Articles.addComment(params.slug, user.id, params.content);
+                    String date = ResMethods.getCleanDate(new Date());
                     ResMethods.writeJSONResponse(res, 200,
-                            ResMethods.get200ResJSON("Response added to article successfully"));
+                            "{\n  \"error\" : false, \n  \"message\" : \"Reponse added successfully\",\n  \"response\" : {\n    \"content\" : \""
+                                    + params.content + "\",\n    \"user_name\" : \"" + user.name
+                                    + "\",\n    \"user_profile_image\" : \"" + user.getProfileImage()
+                                    + "\" ,\n    \"user_id\" : " + user.id + ",\n    \"created_at\" : \"" + date
+                                    + "\"\n  }\n}");
                 } else {
                     throw new UnauthorizedAcess();
                 }

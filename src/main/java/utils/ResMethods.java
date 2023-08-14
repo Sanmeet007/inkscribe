@@ -1,9 +1,18 @@
 package utils;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 
 public class ResMethods {
+
+    public static String getCleanDate(Date date) {
+        String dateString = new SimpleDateFormat("MMM,d yyyy").format(date);
+        return dateString;
+    }
 
     public static void writeResponse(HttpServletResponse res, int status, String content, String contentType) {
         try {

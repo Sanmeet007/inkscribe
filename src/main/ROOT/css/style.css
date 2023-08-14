@@ -333,7 +333,7 @@ header {
 .snackbar {
   min-width: 150px;
   position: fixed;
-  z-index: 11000;
+  z-index: 11000000;
   right: 0;
   bottom: 0;
   margin: 15px;

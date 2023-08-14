@@ -63,4 +63,12 @@ public class User {
         return json;
     }
 
+    public String getProfileImage() {
+        if (profileImage != null) {
+            return profileImage;
+        } else {
+            return "/images/avatar.svg";
+        }
+    }
+
 }
