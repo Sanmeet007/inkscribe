@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%> 
 <%@page  import="java.util.ArrayList" %>
-<%@page import="models.articles.*" %>
+<%@page import="models.articles.Article" %>
+<%@page import="models.articles.Articles" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,12 +61,12 @@
                                 <div class="user-name"><%= article.authorName %></div>
                             </div>
                             </div>
-                            <div class="card-heading">
-                            <%= article.title %>
-                            </div>
+                            <a href="/articles/<%= article.slug %>" class="block card-heading link">
+                              <%= article.title %>
+                            </a>
                             <div class="card-footer">
                             <div><%= article.getCleanDate() %></div>
-                            <div><%= article.type %></div>
+                            <div class="chip"><%= article.type %></div>
                             </div>
                         </div>
                    <% } %>
