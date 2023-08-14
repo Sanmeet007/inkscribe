@@ -11,6 +11,42 @@ import db.DbConnect;
 public class Articles {
     private static Connection conn = DbConnect.instance.getConnection();
 
+    public static ArrayList<Article> getTopFiveArticles() throws Exception {
+        ArrayList<Article> articles = new ArrayList<Article>();
+        PreparedStatement statement;
+        statement = conn.prepareStatement("call fetch_trending_articles(5)");
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            if (resultSet.getString("id") == null) {
+                return articles;
+            }
+
+            Article article = new Article(
+                    resultSet.getInt("id"),
+                    resultSet.getInt("user_id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("title"),
+                    resultSet.getString("slug"),
+                    resultSet.getString("content"),
+                    resultSet.getString("featured_image_url"),
+                    resultSet.getTimestamp("created_at"),
+                    resultSet.getInt("view_count"),
+                    resultSet.getString("type"),
+                    resultSet.getInt("likes"),
+                    resultSet.getInt("dislikes"),
+                    resultSet.getInt("myreaction"),
+                    resultSet.getString("description")
+
+            );
+
+            articles.add(article);
+
+        }
+        return articles;
+    }
+
     public static ArrayList<Article> find(String articleTitle, int type) throws Exception {
         ArrayList<Article> articles = new ArrayList<Article>();
         PreparedStatement statement;
