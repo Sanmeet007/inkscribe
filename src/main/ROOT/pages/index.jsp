@@ -39,7 +39,9 @@
 
               Trending on InkScribe
             </h2>
-
+            <% 
+                Articles.getTopFiveArticles();
+            %>
             <div class="cards">
               <div class="card">
                 <div class="card-header">
