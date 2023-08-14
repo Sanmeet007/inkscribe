@@ -47,22 +47,48 @@
         </div>
      </div>
 
+
+
+     <style>
+      
+      .text-btn:not([data-selected]) .material-icons{
+        display: none;
+      }
+      .text-btn[data-selected] .material-icons-outlined{
+        display: none;
+      }
+      .text-btn[data-selected] .material-icons{
+        display: block;
+      }
+     </style>
      <div class="actionbar">
        <div class="action">
-        <button class="text-btn icon-btn"  id="article_thumb_up">
+        <button class="text-btn icon-btn"  id="article_thumb_up" >
         <span class="material-icons-outlined">
           thumb_up
           </span>
+        <span class="material-icons">
+          thumb_up
+          </span>
           </button>
-          <%=article.likesCount %>
+          <div id="like-count">
+            <%=article.likesCount %>
+          </div>
         </div>
         <div class="action">
           <button class="text-btn icon-btn"  id="article_thumb_down">
             <span class="material-icons-outlined">
               thumb_down
             </span>
+
+            <span class="material-icons">
+              thumb_down
+              </span>
           </button>
-          <%=article.dislikesCount %>
+
+          <div id="dislike-count">
+            <%=article.dislikesCount %>
+          </div>
        </div>
        <div class="spacer"></div>
        <div class="action">
@@ -210,18 +236,50 @@
       });
       
       const slug = "<%= article.slug %>";
+      const likeCount = parseInt("<%= article.likesCount %>");
+      const dislikeCount = parseInt("<%= article.dislikesCount %>");
   
+      const likeCountDiv = document.querySelector("#like-count");
+      const dislikeCountDiv = document.querySelector("#dislike-count");
+
       articleThumbDownBtn.addEventListener("click"  , (e) =>{
         articleThumbUpBtn.setAttribute("disabled" ,"");
         articleThumbDownBtn.setAttribute("disabled" ,"");
+
         setTimeout(() =>{
-          articleThumbUpBtn.setAttribute("disabled" ,"");
-          articleThumbDownBtn.setAttribute("disabled" ,"");
-        } , 1000);
+          if(!articleThumbDownBtn.hasAttribute("data-selected")){
+            articleThumbDownBtn.setAttribute("data-selected" , "");
+            articleThumbUpBtn.removeAttribute("data-selected");
+            dislikeCountDiv.textContent = dislikeCount + 1;
+            
+          }else{
+            articleThumbDownBtn.removeAttribute("data-selected");
+            articleThumbUpBtn.removeAttribute("data-selected");
+            dislikeCountDiv.textContent = dislikeCount;
+          }
+          articleThumbUpBtn.removeAttribute("disabled");
+          articleThumbDownBtn.removeAttribute("disabled");
+        } , 100);
       });
 
+
       articleThumbUpBtn.addEventListener("click"  , (e) =>{
-        
+        articleThumbUpBtn.setAttribute("disabled" ,"");
+        articleThumbDownBtn.setAttribute("disabled" ,"");
+
+        setTimeout(() =>{
+          if(!articleThumbUpBtn.hasAttribute("data-selected")){
+            articleThumbUpBtn.setAttribute("data-selected" , "");
+            articleThumbDownBtn.removeAttribute("data-selected");
+            likeCountDiv.textContent = likeCount + 1;
+          }else{
+            articleThumbUpBtn.removeAttribute("data-selected");
+            articleThumbDownBtn.removeAttribute("data-selected");
+            likeCountDiv.textContent = likeCount;
+          }
+          articleThumbUpBtn.removeAttribute("disabled");
+          articleThumbDownBtn.removeAttribute("disabled");
+        } , 100);
       });
       
     </script>

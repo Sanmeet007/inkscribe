@@ -121,6 +121,7 @@
   </div>
 
   <script>
+    const loginEvent = new Event("login");
     const signUpForm = document?.querySelector("#sign-up-form");
     const signInForm = document?.querySelector("#sign-in-form");
     signUpForm?.addEventListener("submit" , async e=>{
@@ -164,6 +165,7 @@
                 class="btn pill-shape min-size secondary">
                 Dashboard
                 </a>`;
+                window.dispatchEvent(loginEvent);
               }
               signUpModal?.classList.remove("open");
               signUpForm?.reset();
@@ -215,6 +217,7 @@
                 class="btn pill-shape min-size secondary">
                 Dashboard
                 </a>`;
+                window.dispatchEvent(loginEvent);
               }
             signInModal?.classList.remove("open");
             signInForm?.reset();
