@@ -1173,7 +1173,7 @@ footer {
 .icon-btn:disabled,
 .btn:disabled {
   cursor: not-allowed;
-  background-color: #444;
+  background-color: #444 !important;
   color: grey;
   user-select: none;
 }

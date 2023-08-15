@@ -149,10 +149,10 @@
               </p>
             </div>
             <div>
-              <form action="#" class="special-form">
+              <form action="#" class="special-form" id="special-form">
                 <div class="wrapper">
-                  <input type="text" placeholder="Enter your email" />
-                  <button>Join now</button>
+                  <input type="text" placeholder="Enter your email" name="email"/>
+                  <button class="btn" type="submit">Join now</button>
                 </div>
               </form>
             </div>
@@ -160,7 +160,7 @@
         </div>
       </section>
     </main>
-    
+
     <!-- Footer -->
     <jsp:include page="../includes/footer.jsp" />
 
@@ -169,6 +169,34 @@
     <!-- Snackbars -->
     <jsp:include page="../includes/snackbars.jsp" />
 
+    <script>
+      const subscriptionForm = document.querySelector("#special-form");
+      subscriptionForm.addEventListener("submit" , async e => {
+        e.preventDefault();
+        const email = subscriptionForm.email.value;
+        const submitBtn = subscriptionForm.querySelector("[type='submit']");
+        submitBtn.classList.add("loading");
+        submitBtn.setAttribute("disabled" , "");
+        subscriptionForm.setAttribute("read-only" , "");
+
+        try{
+          const res = await fetch(`/api/subscribers/add?email=\${email}`);
+          if(res.status === 200){
+              subscriptionForm.removeAttribute("read-only");
+              submitBtn.classList.remove("loading");
+              submitBtn.removeAttribute("disabled");
+              showSnackbar("info" , "Subscribed successfully");
+              subscriptionForm.reset();
+          }else{
+            throw new Error();
+          }
+        }catch(e){
+          subscriptionForm.removeAttribute("read-only");
+          submitBtn.removeAttribute("disabled");
+          showSnackbar("error" , "Something went wrong");
+        }
+      });
+    </script>
 
     <script src="/js/script.js"></script>
   </body>

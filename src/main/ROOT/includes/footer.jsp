@@ -6,7 +6,7 @@
           </div>
           <div class="spacer"></div>
           <div class="links">
-            <a href="#">Privacy Policy</a>
+            <a href="#" class="link">Privacy Policy</a>
           </div>
         </div>
       </footer>
