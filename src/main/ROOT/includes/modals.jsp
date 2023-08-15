@@ -1,19 +1,133 @@
-<!-- User Details Modal -->
-<div class="modal" id="edit-user-details">
-    <div class="modal-backdrop"></div>
-    <div class="modal-content">
-      <h1>This is modal </h1>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil
-        maiores deleniti labore, beatae dicta praesentium porro est nemo,
-        voluptatem harum amet dolore natus omnis ullam tempora ratione illo
-        perferendis magnam?
-      </p>
-      <button class="btn" onclick="showSnackbar('success' , 'blah blah')">
-        Submit
-      </button>
-    </div>
-  </div>
+<%@page import="utils.*" %>
+<%@page import="java.text.SimpleDateFormat" %>
+<%@page import="models.users.Users" %>
+<%@page import="models.users.User" %>
+
+  <% if(Auth.isLoggedIn(request)) { %>
+    <% User user = Auth.getUser(request); %>
+    <% 
+            SimpleDateFormat  pattern = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = pattern.format(user.createdAt);
+    %>
+    <!-- User Details Modal -->
+    <div class="modal with-mins open" id="edit-user-details" >
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+          <h1 class="mb-1 mt-1">Edit Details</h1>
+          <form action="#" id="user-update-detials-form">
+            <div class="form-element fullwidth">
+              <label for="article_title"
+                >Name <span class="red">*</span></label
+              >
+              <fieldset>
+                <legend>Name*</legend>
+                <input
+                  required
+                  maxlength="120"
+                  type="text"
+                  id="user_name"
+                  name="name"
+                  placeholder="John Doe"
+                  value="<%= user.name %>"
+                />
+              </fieldset>
+            </div>      
+
+            <div class="fullwidth mb-1 mt-1">
+              <label >Profile image (<small>Optional</small>)
+              </label>
+              <input class="block mt-1" name="profile_image" type="file" accept=".jpg, .jpeg, .png"/>
+            </div> 
+            <div class="form-element focused mb-1">
+              <label for="user_dob">D.O.B <span class="red">*</span></label>
+              <fieldset>
+                <legend>D.O.B*</legend>
+                <input
+                  type="date"
+                  id="user_dob"
+                  name="dob"
+                  placeholder="hunter@hunter.com"
+                  value="<%= formattedDate %>"
+                />
+              </fieldset>
+            </div>
+
+
+            <div class="form-element fullwidth rows-2">
+              <label for="article_desc"
+                >About me <span class="red">*</span>
+              </label>
+              <fieldset>
+                <legend>About me</legend>
+                <textarea
+                required 
+                maxlength="255"
+                  type="text"
+                  id="user_bio"
+                  name="bio"
+                  placeholder="I am feeling lucky"
+                ><%= user.bio == null ? "I am feeling lucky" : user.bio %></textarea>
+              </fieldset>
+            </div>
+
+            <button type="submit" class="btn mt-1">Update</button>
+          </form>
+        </div>
+      </div>
+
+      <script>
+        const editUserForm = document.querySelector("#user-update-detials-form");
+        editUserForm.addEventListener("submit"  ,async e=>{
+          e.preventDefault();
+          const submitBtn = editUserForm.querySelector("[type='submit']")
+          const bio =  editUserForm.bio.value;
+          const name =  editUserForm.name.value;
+          const dob =  editUserForm.dob.value;
+          const files_field =  editUserForm.profile_image;
+
+          const formData = new FormData();
+          const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+          
+          if(files_field.files.length > 0 ){
+            const file = files_field.files[0];
+              const fileSize = file.size;
+              if (fileSize > maxSize) {
+                alert('File size is too large. Please choose an image smaller than 5MB.');
+                return;
+              }else{
+                formData.append("profile_image"  , file);
+              }
+          }
+          formData.append("name" , name.trim());
+          formData.append("bio" , bio.trim());
+          formData.append("dob" , dob);
+
+          submitBtn.classList.add("loading");
+          submitBtn.setAttribute("disabled" , "");
+          editUserForm.setAttribute("read-only"  ,"");
+
+          try{
+            const res = await fetch("/api/users/update-details" , {
+              method :"POST", 
+              body : formData
+            });
+            if(res.status === 200){
+              submitBtn.classList.remove("loading");
+              submitBtn.removeAttribute("disabled");
+              editUserForm.removeAttribute("read-only");
+              showSnackbar("success" , "User details updated successfully");
+            }else{
+              throw new Error();
+            }
+          }catch(e){
+            showSnackbar("error" , "Something went wrong");
+            submitBtn.classList.remove("loading");
+            submitBtn.removeAttribute("disabled");
+            editUserForm.removeAttribute("read-only");
+          }
+        });
+      </script>
+  <% } %>
 
    <!-- Auth Modals -->
    <div class="modal" id="sign-up-modal">

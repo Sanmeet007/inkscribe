@@ -33,4 +33,23 @@ public class ArticleTypes {
             return types;
         }
     }
+
+    public static ArrayList<ArticleType> getTopTypes(int count) {
+        ArrayList<ArticleType> types = new ArrayList<ArticleType>();
+        try {
+            PreparedStatement ps = conn
+                    .prepareStatement("SELECT t2.id , t2.type , sum(view_count)  as view_count FROM articles t1\n" + //
+                            "inner join articles_type t2 on t1.type = t2.id\n" + //
+                            "GROUP BY t1.type order by view_count desc limit ?");
+            ps.setInt(1, count);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                ArticleType type = new ArticleType(resultSet.getInt("id"), resultSet.getString("type"));
+                types.add(type);
+            }
+            return types;
+        } catch (Exception e) {
+            return types;
+        }
+    }
 }

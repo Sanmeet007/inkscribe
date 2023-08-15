@@ -308,6 +308,14 @@ header {
   min-width: 400px;
   min-height: 400px;
 }
+
+.modal .modal-content.minmax {
+  width: 100%;
+  min-width: none;
+  max-width: 500px;
+  min-height: 400px;
+}
+
 .modal .modal-content {
   position: absolute;
   background-color: var(--modal-bg);
