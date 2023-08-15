@@ -4,13 +4,6 @@
 <%@page import="models.users.Users" %>
 <%@page import="models.users.User" %>
 
-<% 
-
-            Dotenv.configure();
-            Dotenv envVariables = Dotenv.load();
-            System.out.println(envVariables.get("APP_NAME"));
-%>
-
   <% if(Auth.isLoggedIn(request)) { %>
     <% User user = Auth.getUser(request); %>
     <% 
@@ -18,7 +11,7 @@
             String formattedDate = pattern.format(user.createdAt);
     %>
     <!-- User Details Modal -->
-    <div class="modal with-mins open" id="edit-user-details" >
+    <div class="modal with-mins" id="edit-user-details" >
         <div class="modal-backdrop"></div>
         <div class="modal-content">
           <h1 class="mb-1 mt-1">Edit Details</h1>
@@ -106,6 +99,7 @@
                 formData.append("profile_image"  , file);
               }
           }
+
           formData.append("name" , name.trim());
           formData.append("bio" , bio.trim());
           formData.append("dob" , dob);
@@ -122,8 +116,10 @@
             if(res.status === 200){
               submitBtn.classList.remove("loading");
               submitBtn.removeAttribute("disabled");
-              editUserForm.removeAttribute("read-only");
               showSnackbar("success" , "User details updated successfully");
+              // setTimeout(() =>{
+              //   window.location.reload();
+              // } , 500);
             }else{
               throw new Error();
             }

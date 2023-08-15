@@ -23,6 +23,7 @@
         <url-pattern>*.ico</url-pattern>
         <url-pattern>*.png</url-pattern>
         <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.jpeg</url-pattern>
         <url-pattern>*.htc</url-pattern>
         <url-pattern>*.gif</url-pattern>
     </servlet-mapping>
