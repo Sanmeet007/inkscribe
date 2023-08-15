@@ -49,7 +49,7 @@
             <% if(articles.size() > 0){ %>
                <div class="cards">
                 <% for (Article article : articles) {   %>
-                     <div class="card">
+                     <div class="card" data-id="<%= article.id %>">
                        <% if(isAdmin)  {%>
                          <div class="card-header">
                              <div class="card-user-profile">
@@ -70,11 +70,11 @@
                                edit
                                </span>
                            </a>
-                           <a href="/delete-article" class="btn icon-btn small" title="Delete">
+                           <button data-delete-btn class="btn icon-btn small" title="Delete">
                              <span class="material-icons-outlined">
                                delete
                                </span>
-                           </a>
+                           </button>
                           </div> 
                        </div>
                        <div class="card-content">
@@ -100,6 +100,41 @@
     <!-- Snackbars -->
     <jsp:include page="../../includes/snackbars.jsp" />
 
+    <script>
+      const articleCardsDiv = document.querySelectorAll("[data-id]");
+
+      articleCardsDiv.forEach(articleDiv =>{
+        const deleteBtn = articleDiv.querySelector("[data-delete-btn]");
+        deleteBtn.addEventListener("click" , async (e) =>{
+          try{
+            deleteBtn.setAttribute("disabled" , "");
+            deleteBtn.classList.add("loading");
+            
+            const articleId = parseInt(articleDiv.getAttribute("data-id"));
+            if(!articleId) throw new Error();
+            
+            const res = await fetch(`/api/articles/delete?id=\${articleId}`);
+            if(res.status === 200){
+              deleteBtn.classList.remove("loading");
+              showSnackbar("success" , "Article deleted successfully");
+
+              setTimeout(()=>{
+                articleDiv.setAttribute("hidden" , "");
+                articleDiv.style.display = "none";
+              } , 200);
+            }else{
+              throw new Error();
+            }
+          }catch(e){
+            console.log(e)
+            deleteBtn.removeAttribute("disabled");
+            deleteBtn.classList.remove("loading");
+            
+            showSnackbar("error" , "Something went wrong");
+          }
+        })
+      });
+    </script>
     <script src="/js/script.js"></script>
   </body>
 </html>
