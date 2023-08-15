@@ -24,6 +24,7 @@ public class Users extends HttpServlet {
                     response.sendError(403);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 response.sendError(500);
             }
         } else {

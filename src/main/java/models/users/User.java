@@ -2,6 +2,7 @@ package models.users;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -71,4 +72,8 @@ public class User {
         }
     }
 
+    public String getCleanDate() {
+        String dateString = new SimpleDateFormat("MMM,d yyyy").format(this.createdAt);
+        return dateString;
+    }
 }
