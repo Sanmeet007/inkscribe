@@ -71,7 +71,6 @@
       <div class="btn outlined icon-btn" id="nav-trigger">
         <span class="material-icons-outlined"> menu </span>
       </div>
-      <div class="backdrop"></div>
       <div class="nav-drawer">
         <ul class="nav-links">
           <li class="active">
@@ -111,6 +110,9 @@
       </div>
     </nav>
   </header>
+
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+  
 
   <% if(currentPage.equals("index")){ %>
     <script>

@@ -1,7 +1,7 @@
 const header = document?.querySelector("header");
 const mobNavTrigger = document?.querySelector("#nav-trigger");
 const mobNav = document?.querySelector("#mobile-nav");
-const mobNavBackdrop = mobNav?.querySelector(".backdrop");
+const mobNavBackdrop = document?.querySelector("#nav-backdrop");
 const modals = document?.querySelectorAll(".modal");
 const successSnackBar = document.querySelector(".snackbar.success");
 const infoSnackBar = document.querySelector(".snackar.info");
@@ -88,9 +88,11 @@ const showSnackbar = (
 
 mobNavTrigger?.addEventListener("click", () => {
     mobNav.classList.add("open");
+    mobNavBackdrop.classList.add("open");
 });
 mobNavBackdrop?.addEventListener("click", (e) => {
     mobNav.classList.remove("open");
+    mobNavBackdrop.classList.remove("open");
 });
 
 modals?.forEach((modal) => {

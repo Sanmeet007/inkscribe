@@ -194,12 +194,12 @@ header {
   gap: 0.8rem;
 }
 
-.nav.mobile .backdrop {
+.nav-backdrop {
   position: fixed;
+  z-index: 1;
   background-color: rgba(2, 23, 23, 0.323);
   inset: 0;
   backdrop-filter: blur(4px);
-  z-index: 100;
   visibility: hidden;
   opacity: 0;
   transition: opacity 100ms ease-in-out, visibility 100ms ease-in-out;
@@ -563,7 +563,7 @@ header {
 .modal.open .modal-backdrop,
 .modal.open .modal-content,
 .nav.mobile.open .nav-drawer,
-.nav.mobile.open .backdrop {
+.nav-backdrop.open {
   visibility: visible;
   opacity: 1;
 }
