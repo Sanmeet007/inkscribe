@@ -68,7 +68,7 @@
                        </div>
                        <% } %>
                        <div class="card-heading flex gap">
-                         <a href="/article/<%= article.slug %>" class="block link">
+                         <a href="/article/<%= article.slug %>" class="block link  line-clamp-2">
                            <%= article.title %>
                          </a>
                          <div class="flex  small-gap">

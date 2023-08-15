@@ -68,7 +68,7 @@
                                 <a href="/user-details?id=<%= article.authorId %>" class="user-name no-link"><%= article.authorName %></a>
                             </div>
                             </div>
-                            <a href="/article/<%= article.slug %>" class="block card-heading link">
+                            <a href="/article/<%= article.slug %>" class="block card-heading link line-clamp-2">
                               <%= article.title %>
                             </a>
                             <div class="card-footer">
@@ -108,7 +108,7 @@
                      <div class="card-sides">
                        <div class="card-side">
                          <div class="card-header">
-                             <a href="/article/<%= article.slug %>" class="block card-heading link">
+                             <a href="/article/<%= article.slug %>" class="block card-heading link line-clamp-2">
                                  <%= article.title %>
                                </a>
                          </div>

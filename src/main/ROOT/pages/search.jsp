@@ -73,16 +73,16 @@
   
 
     <main class="container">
-        <div class="cards mt-4">
+        <div class="cards mt-4 mb-1">
           <% if(articles.size() > 0) { %>    
             <% for(Article article : articles) { %>
               <div class="card">
                   <div class="card-sides">
                     <div class="card-side">
-                      <a href="/article/<%= article.slug %>" class="card-header link">
+                      <a href="/article/<%= article.slug %>" class="card-header link line-clamp-2">
                         <div class="card-heading"><%= article.title %></div>
                       </a>
-                      <div class="card-content">
+                      <div class="card-content line-clamp-3">
                         <%= article.description %>
                       </div>
                       <div class="card-footer">

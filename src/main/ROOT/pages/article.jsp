@@ -117,7 +117,7 @@
              <% if (currentArticle.id == article.id ) continue ; %>
              <div class="card">
   
-                 <a href="/article/<%= currentArticle.slug %>" class="block card-heading link">
+                 <a href="/article/<%= currentArticle.slug %>" class="block card-heading link line-clamp-2">
                      <%= currentArticle.title %>
                    </a>
                  <div class="card-content">
