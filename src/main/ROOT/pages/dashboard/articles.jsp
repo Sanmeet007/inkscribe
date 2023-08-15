@@ -43,9 +43,16 @@
               </fieldset>
             </div>
           </div>
-
+    
           
-          <% ArrayList<Article> articles = Articles.getDisplayArticlesByUserId(user.id); %>
+          <% 
+             ArrayList<Article> articles;
+             if(isAdmin){
+                articles = Articles.getDisplayArticles();
+              }else{
+                articles = Articles.getDisplayArticlesByUserId(user.id);
+             }
+          %>
             <% if(articles.size() > 0){ %>
                <div class="cards">
                 <% for (Article article : articles) {   %>

@@ -40,7 +40,7 @@
         <span> Dashboard </span>
       </a>
       <a href="/dashboard/articles" class="menu-item <%= currentPage.equals("articles") ? "active" : "" %>">
-        <span class="material-icons-outlined"> news </span>
+        <span class="material-icons-outlined"> article </span>
         <span>Articles </span>
       </a>
       <a href="/dashboard/users" class="menu-item <%= currentPage.equals("users") ? "active" : "" %>">
