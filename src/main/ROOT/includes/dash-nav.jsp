@@ -14,7 +14,7 @@
 
     <div class="user-details">
       <div class="user-profile-image">
-        <img src="<%= user.getProfileImage() %>" alt="Avatar" width="80" />
+        <img src="<%= user.getProfileImage() %>" alt="Avatar" width="80" height="80" />
       </div>
       <div class="user-name">
         <h3><%= user.name %></h3>

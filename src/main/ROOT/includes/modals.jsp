@@ -117,9 +117,9 @@
               submitBtn.classList.remove("loading");
               submitBtn.removeAttribute("disabled");
               showSnackbar("success" , "User details updated successfully");
-              // setTimeout(() =>{
-              //   window.location.reload();
-              // } , 500);
+              setTimeout(() =>{
+                window.location.reload();
+              } , 500);
             }else{
               throw new Error();
             }
