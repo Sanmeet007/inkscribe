@@ -12,13 +12,14 @@
   User user = Users.getUserById(id);
   String currentURL =  uri +"/user-details?id="+ user.id;
   ArrayList<Article> articles = Articles.getDisplayArticlesByUserId(id);
+  String x = user.name + " | InkScribe";
 %>
 
 <!DOCTYPE html>
 <html lang="en">
   <jsp:include page="../includes/frontend-head.jsp">
-    <jsp:param name="title" value="Article" />
-    <jsp:param name="desc" value="InkScribe is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic." />
+    <jsp:param name="title" value="<%= x %>" />
+    <jsp:param name="desc" value="<%= user.bio %>" />
   </jsp:include>
   <body>
     <!-- Header -->

@@ -40,8 +40,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <jsp:include page="../includes/frontend-head.jsp">
-    <jsp:param name="title" value="Search" />
-    <jsp:param name="desc" value="InkScribe is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic." />
+    <jsp:param name="title" value="Search | InkScribe" />
+    <jsp:param name="desc" value="Explore articles at inkscribe" />
   </jsp:include>
   <body>
     <!-- Header -->
@@ -58,7 +58,7 @@
                         <option <%= type == null ?"selected" : "" %> default value="Any">Any</option>
 
                         <% for(ArticleType t : articleTypes ){ %>
-                          <option value="<%= t.id %>" <%= t.id == type ? "selected" : "" %>><%= t.type %></option>
+                          <option value="<%= t.id %>" <%= type == null ? "" : t.id == type ? "selected" : "" %>><%= t.type %></option>
                         <% } %>
                     </select>
                 </div>
