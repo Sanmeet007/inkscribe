@@ -35,7 +35,7 @@
               <fieldset>
                 <legend>Search Articles</legend>
                 <input
-                  type="text"
+                  type="search"
                   id="search_in_articles"
                   name="name"
                   placeholder="Serch article"
@@ -102,6 +102,23 @@
 
     <script>
       const articleCardsDiv = document.querySelectorAll("[data-id]");
+      const searchArticleEl = document.querySelector("#search_in_articles");
+
+      searchArticleEl.addEventListener("input" , (e) =>{
+        const value = searchArticleEl.value;
+        articleCardsDiv.forEach(articleDiv =>{
+          const articleTitle = articleDiv.querySelector(".card-heading a").textContent.trim();
+          if(value === "") {
+            articleDiv.removeAttribute("hidden");
+            return;
+          }
+          if(articleTitle.toLowerCase().includes(value.toLowerCase())){
+            articleDiv.removeAttribute("hidden");
+          }else{
+            articleDiv.setAttribute("hidden" , "");
+          }
+        });
+      });
 
       articleCardsDiv.forEach(articleDiv =>{
         const deleteBtn = articleDiv.querySelector("[data-delete-btn]");
@@ -112,7 +129,7 @@
             
             const articleId = parseInt(articleDiv.getAttribute("data-id"));
             if(!articleId) throw new Error();
-            
+
             const res = await fetch(`/api/articles/delete?id=\${articleId}`);
             if(res.status === 200){
               deleteBtn.classList.remove("loading");
