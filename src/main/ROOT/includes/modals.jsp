@@ -1,7 +1,15 @@
 <%@page import="utils.*" %>
+<%@page import="io.github.cdimascio.dotenv.Dotenv" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="models.users.Users" %>
 <%@page import="models.users.User" %>
+
+<% 
+
+            Dotenv.configure();
+            Dotenv envVariables = Dotenv.load();
+            System.out.println(envVariables.get("APP_NAME"));
+%>
 
   <% if(Auth.isLoggedIn(request)) { %>
     <% User user = Auth.getUser(request); %>

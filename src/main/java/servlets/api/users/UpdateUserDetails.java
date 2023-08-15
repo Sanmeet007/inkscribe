@@ -72,7 +72,7 @@ public class UpdateUserDetails extends HttpServlet {
 
                 if (filePart != null) {
                     Path uploadPath = Config.getUploadPath(filePart.getSubmittedFileName());
-                    String uploadedFileUrl = Config.getUploadFileUrl(filePart.getSubmittedFileName());
+                    String uploadedFileUrl = Config.getUploadFileUrlFromRoot(filePart.getSubmittedFileName());
                     InputStream fileContent = filePart.getInputStream();
 
                     Files.write(uploadPath,

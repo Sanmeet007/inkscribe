@@ -19,44 +19,31 @@ public class Config {
 
     public static String getAppRootPath() throws Exception {
         Path root = Paths.get(".").normalize().toAbsolutePath();
-        String appName = APP_NAME;
 
         if (APP_NAME == null) {
             throw new AppNameNotDefined();
         }
-        if (APP_NAME == "ROOT") {
-            appName = "";
-        }
-        Path path = root.resolve("../webapps/" + appName);
+
+        Path path = root.resolve("../webapps/" + APP_NAME);
         return path.normalize().toString();
     }
 
     public static String resolvePath(String filePath) throws Exception {
         Path root = Paths.get(".").normalize().toAbsolutePath();
-        String appName = APP_NAME;
-
         if (APP_NAME == null) {
             throw new AppNameNotDefined();
         }
-        if (APP_NAME == "ROOT") {
-            appName = "";
-        }
 
-        Path path = root.resolve("../webapps/" + appName + "/" + filePath);
+        Path path = root.resolve("../webapps/" + APP_NAME + "/" + filePath);
         return path.normalize().toString();
     }
 
     public static Path getPath(String filePath) throws Exception {
         Path root = Paths.get(".").normalize().toAbsolutePath();
-        String appName = APP_NAME;
         if (APP_NAME == null) {
             throw new AppNameNotDefined();
         }
-        if (APP_NAME == "ROOT") {
-            appName = "";
-        }
-
-        Path path = root.resolve("../webapps/" + appName + "/" + filePath);
+        Path path = root.resolve("../webapps/" + APP_NAME + "/" + filePath);
         return path.normalize();
     }
 
@@ -66,10 +53,6 @@ public class Config {
         if (APP_NAME == null) {
             throw new AppNameNotDefined();
         }
-        if (APP_NAME == "ROOT") {
-            appName = "";
-        }
-
         File dir = new File(root.resolve("../webapps/" + appName + "/uploads/").normalize().toString());
         boolean dirMade = false;
 
@@ -80,7 +63,7 @@ public class Config {
         }
 
         if (dirMade) {
-            Path path = root.resolve("../webapps/" + appName + "/uploads/" + filePath);
+            Path path = root.resolve("../webapps/" + APP_NAME + "/uploads/" + filePath);
             return path.normalize();
         } else {
             throw new IOException("Upload dir cannot be created");
@@ -89,7 +72,14 @@ public class Config {
     }
 
     public static String getUploadFileUrl(String fileName) {
-        return "http://localhost:8080/app/uploads/" + fileName;
+        if (APP_NAME.equals("ROOT")) {
+            return "/" + APP_NAME + "/uploads/" + fileName;
+        } else {
+            return "/uploads/" + fileName;
+        }
     }
 
+    public static String getUploadFileUrlFromRoot(String fileName) {
+        return "/uploads/" + fileName;
+    }
 }
