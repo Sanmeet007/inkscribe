@@ -1,6 +1,38 @@
-<%@page import="utils.*" %>
 <%@ page contentType="text/html; charset=UTF-8"%> 
+<%@page import="utils.*" %>
+<%@page import="models.articles.*" %>
+<%@page import="java.util.ArrayList" %>
+<% 
 
+  ArrayList<Article> articles = new ArrayList<Article>();
+  ArrayList<ArticleType> articleTypes = ArticleTypes.getTypes();
+
+  String query = request.getParameter("q");
+  
+  String _t = request.getParameter("t");
+  Integer type;
+
+  if( _t != null) {
+    try{
+      type = Integer.parseInt(_t);
+    }catch(Exception e){
+      type = null;
+    }
+  }else{
+    type = null;
+  }
+
+  if(query == null) {
+    articles = Articles.getNArticles(10);
+  }else{
+    if(type == null){
+      articles = Articles.find(query);
+    }else{
+      articles = Articles.find(query , type);
+    }
+  }
+
+%>
 <!DOCTYPE html>
 <html lang="en">
   <jsp:include page="../includes/frontend-head.jsp">
@@ -15,12 +47,15 @@
    
    <!-- Main -->
    <div class="featured-bg">
-            <form action="#" class="searchbar">
-                <input type="search" placeholder="Search articles"/>
+            <form class="searchbar" method="get">
+                <input type="search" name="q" placeholder="Search articles"/>
                 <div class="select">
-                    <select name="select">
-                        <option selected default value="Any">Any</option>
-                        <option value="Programming">Programming</option>
+                    <select name="t">
+                        <option <%= type == null ?"selected" : "" %> default value="Any">Any</option>
+
+                        <% for(ArticleType t : articleTypes ){ %>
+                          <option value="<%= t.id %>"><%= t.type %></option>
+                        <% } %>
                     </select>
                 </div>
                 <button class="btn secondary">
@@ -35,150 +70,35 @@
 
     <main class="container">
         <div class="cards mt-4">
-            <div class="card">
-                <div class="card-sides">
-                  <div class="card-side">
-                    <div class="card-header">
-                      <div class="card-heading">Card Heading</div>
+          <% if(articles.size() > 0) { %>    
+            <% for(Article article : articles) { %>
+              <div class="card">
+                  <div class="card-sides gap">
+                    <div class="card-side">
+                      <a href="/article/<%= article.slug %>" class="card-header link">
+                        <div class="card-heading"><%= article.title %></div>
+                      </a>
+                      <div class="card-content">
+                        <%= article.description %>
+                      </div>
+                      <div class="card-footer">
+                        <div class="chip"><%= article.type %></div>
+                      </div>
                     </div>
-                    <div class="card-content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                      expedita
-                    </div>
-                    <div class="card-footer">
-                      <div>Three</div>
+                    <div class="card-side">
+                      <img
+                        src="<%= article.featuredImageUrl %>"
+                        alt=""
+                        width="150"
+                        height="100"
+                      />
                     </div>
                   </div>
-                  <div class="card-side">
-                    <img
-                      src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                      alt=""
-                      width="150"
-                      height="100"
-                    />
-                  </div>
-                </div>
               </div>
-            <div class="card">
-                <div class="card-sides">
-                  <div class="card-side">
-                    <div class="card-header">
-                      <div class="card-heading">Card Heading</div>
-                    </div>
-                    <div class="card-content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                      expedita
-                    </div>
-                    <div class="card-footer">
-                      <div>Three</div>
-                    </div>
-                  </div>
-                  <div class="card-side">
-                    <img
-                      src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                      alt=""
-                      width="150"
-                      height="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card-sides">
-                  <div class="card-side">
-                    <div class="card-header">
-                      <div class="card-heading">Card Heading</div>
-                    </div>
-                    <div class="card-content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                      expedita
-                    </div>
-                    <div class="card-footer">
-                      <div>Three</div>
-                    </div>
-                  </div>
-                  <div class="card-side">
-                    <img
-                      src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                      alt=""
-                      width="150"
-                      height="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card-sides">
-                  <div class="card-side">
-                    <div class="card-header">
-                      <div class="card-heading">Card Heading</div>
-                    </div>
-                    <div class="card-content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                      expedita
-                    </div>
-                    <div class="card-footer">
-                      <div>Three</div>
-                    </div>
-                  </div>
-                  <div class="card-side">
-                    <img
-                      src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                      alt=""
-                      width="150"
-                      height="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card-sides">
-                  <div class="card-side">
-                    <a href="/article" class="card-header link">
-                      <div class="card-heading">Card Heading</div>
-                    </a>
-                    <div class="card-content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                      expedita
-                    </div>
-                    <div class="card-footer">
-                      <div class="chip">Politics</div>
-                    </div>
-                  </div>
-                  <div class="card-side">
-                    <img
-                      src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                      alt=""
-                      width="150"
-                      height="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card-sides">
-                  <div class="card-side">
-                    <div class="card-header">
-                      <div class="card-heading">Card Heading</div>
-                    </div>
-                    <div class="card-content">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                      expedita
-                    </div>
-                    <div class="card-footer">
-                      <div>Three</div>
-                    </div>
-                  </div>
-                  <div class="card-side">
-                    <img
-                      src="https://miro.medium.com/v2/resize:fill:225:150/1*OHk6mYj1wpcSfJT01rOxiQ.png"
-                      alt=""
-                      width="150"
-                      height="100"
-                    />
-                  </div>
-                </div>
-              </div>
+            <% } %>
+          <% } else { %>
+            <div class="empty">No Article found</div>
+          <% } %>
           </div>
 
     </main>
