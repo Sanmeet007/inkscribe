@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%> 
+<%@page  import="java.util.ArrayList" %>
+<%@page import="models.articles.Article" %>
+<%@page import="models.articles.Articles" %>
 <%@page import="models.users.*" %>
 <%@page import="utils.*" %>
 
 <% 
   User user = Auth.getUser(request);
-  boolean isAdmin = user.email.equals("admin@inkscribe.com");
+  boolean isAdmin = Auth.isAdmin(request);
 %>
 
 <!DOCTYPE html>
@@ -14,7 +17,6 @@
   </jsp:include>
   <body>
     <!-- Main -->
-
     <div class="dashboard-container">
       <div class="dashboard-content">
         <jsp:include page="../../includes/dash-nav.jsp" >
@@ -42,50 +44,53 @@
             </div>
           </div>
 
-          <div class="cards">
-      
-            <div class="card">
-
-              <% if(isAdmin)  {%>
-              <div class="card-header">
-                <div class="card-user-profile">
-                  <div class="user-image">
-                    <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" width="30" height="30">
-                  </div>
-                  <a href="/user-details" class="user-name link" style="color: inherit;">John Doe</a>
-                </div>
-              </div>
-
-              <% } %>
-             
-              <div class="card-heading flex gap">
-                <a href="/article/test-article" class="block link">
-                  Lorem ipsum dolor sit amet consectetur
-                </a>
-                <div class="flex  small-gap">
-                  <a  href="/dashboard/edit-article" class="btn icon-btn small" title="Edit">
-                    <span class="material-icons-outlined">
-                      edit
-                      </span>
-                  </a>
-                  <a href="/delete-article" class="btn icon-btn small" title="Delete">
-                    <span class="material-icons-outlined">
-                      delete
-                      </span>
-                  </a>
-                 </div> 
-              </div>
-              <div class="card-content">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum corrupti voluptatibus veniam deserunt architecto! Repel
-              </div>
-              <div class="card-footer">
-                <div>Aug 15</div>
-                <div>Two</div>
-                <div class="chip">Politics</div>
-              </div>
-            </div>
-        
-          </div>
+          
+          <% ArrayList<Article> articles = Articles.getDisplayArticlesByUserId(user.id); %>
+            <% if(articles.size() > 0){ %>
+               <div class="cards">
+                <% for (Article article : articles) {   %>
+                     <div class="card">
+                       <% if(isAdmin)  {%>
+                         <div class="card-header">
+                             <div class="card-user-profile">
+                             <div class="user-image">
+                                 <img src="<%= article.getProfileImage() %>" alt="" width="30" height="30">
+                             </div>
+                             <a href="/user-details?id=<%= article.authorId %>" class="user-name link" style="color: inherit;"><%= article.authorName %></a>
+                             </div>
+                       </div>
+                       <% } %>
+                       <div class="card-heading flex gap">
+                         <a href="/article/<%= article.slug %>" class="block link">
+                           <%= article.title %>
+                         </a>
+                         <div class="flex  small-gap">
+                           <a  href="/dashboard/edit-article?id=<%= article.id %>" class="btn icon-btn small" title="Edit">
+                             <span class="material-icons-outlined">
+                               edit
+                               </span>
+                           </a>
+                           <a href="/delete-article" class="btn icon-btn small" title="Delete">
+                             <span class="material-icons-outlined">
+                               delete
+                               </span>
+                           </a>
+                          </div> 
+                       </div>
+                       <div class="card-content">
+                         <%= article.description %>
+                       </div>
+                       <div class="card-footer">
+                         <div><%= article.getCleanDate() %></div>
+                         <div class="chip"><%= article.type %></div>
+                       </div>
+                     </div>
+                 
+                <% } %>
+               </div>
+            <% }else{ %>
+                 <div class="empty">No articles to dislay</div>
+            <% } %>
         </div>
       </div>
     </div>
