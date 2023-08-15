@@ -81,7 +81,7 @@
                 <legend>Title*</legend>
                 <input
                   required
-                  maxlength="60"
+                  maxlength="120"
                   type="text"
                   id="article_title"
                   name="title"
