@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.articles.Article;
 import models.articles.Articles;
 import servlets.api.exceptions.ArticleNotFound;
 import servlets.api.exceptions.ForbiddenAccess;
@@ -19,16 +20,24 @@ public class DeleteArticle extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         try {
             if (Auth.isLoggedIn(req)) {
+                int articleId = Integer.parseInt(req.getParameter("id"));
+                if (!Articles.checkId(articleId)) {
+                    throw new ArticleNotFound();
+                }
                 if (Auth.isAdmin(req)) {
-                    int articleId = Integer.parseInt(req.getParameter("id"));
-                    if (!Articles.checkId(articleId)) {
-                        throw new ArticleNotFound();
-                    }
                     Articles.deleteArticle(articleId);
                     ResMethods.writeJSONResponse(res, 200, ResMethods.get200ResJSON(
                             "Article with id " + articleId + " was deleted successfully"));
                 } else {
-                    throw new ForbiddenAccess();
+                    int userId = Auth.getUserId(req);
+                    Article article = Articles.getArticle(articleId);
+                    if (article.authorId == userId) {
+                        Articles.deleteArticle(articleId);
+                        ResMethods.writeJSONResponse(res, 200, ResMethods.get200ResJSON(
+                                "Article with id " + articleId + " was deleted successfully"));
+                    } else {
+                        throw new ForbiddenAccess();
+                    }
                 }
             } else {
                 throw new UnauthorizedAcess();
