@@ -23,7 +23,11 @@
   }
 
   if(query == null) {
-    articles = Articles.getNArticles(10);
+    if(type == null){
+      articles = Articles.getNArticles(10);
+    }else{
+      articles = Articles.find("" , type);
+    }
   }else{
     if(type == null){
       articles = Articles.find(query);
@@ -54,7 +58,7 @@
                         <option <%= type == null ?"selected" : "" %> default value="Any">Any</option>
 
                         <% for(ArticleType t : articleTypes ){ %>
-                          <option value="<%= t.id %>"><%= t.type %></option>
+                          <option value="<%= t.id %>" <%= t.id == type ? "selected" : "" %>><%= t.type %></option>
                         <% } %>
                     </select>
                 </div>

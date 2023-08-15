@@ -2,6 +2,13 @@
 <%@page  import="java.util.ArrayList" %>
 <%@page import="models.articles.Article" %>
 <%@page import="models.articles.Articles" %>
+<%@page import="models.articles.ArticleTypes" %>
+<%@page import="models.articles.ArticleType" %>
+<%@page import="java.util.ArrayList" %>
+
+<% 
+  ArrayList<ArticleType> types = ArticleTypes.getTopTypes(7);
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,15 +92,9 @@
             <div class="discover-content">
               <h2>Discover more of what matters to you</h2>
               <div class="chips">
-                <div class="chip">Politics</div>
-                <div class="chip">Writing</div>
-                <div class="chip">Programming</div>
-                <div class="chip">Data Science</div>
-                <div class="chip">Technology</div>
-                <div class="chip">Machine Learning</div>
-                <div class="chip">ChatGPT</div>
-                <div class="chip">GPT-4</div>
-                <div class="chip">Productivity</div>
+                <% for(ArticleType t: types) { %>
+                  <a href="/search?t=<%= t.id %>" class="chip block" style="text-decoration:none;"><%= t.type %></a>
+                <% } %> 
               </div>
             </div>
           </div>
