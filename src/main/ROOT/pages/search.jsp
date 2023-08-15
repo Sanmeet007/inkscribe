@@ -73,7 +73,7 @@
           <% if(articles.size() > 0) { %>    
             <% for(Article article : articles) { %>
               <div class="card">
-                  <div class="card-sides gap">
+                  <div class="card-sides">
                     <div class="card-side">
                       <a href="/article/<%= article.slug %>" class="card-header link">
                         <div class="card-heading"><%= article.title %></div>
