@@ -56,16 +56,15 @@
         </div>
       </div>
     </nav>
-    <nav class="nav mobile" id="mobile-nav">
+    <nav class="nav mobile container" id="mobile-nav">
       <div class="logo">
         <a href="/">
           <img
-            src="https://images-platform.99static.com//NRp7o7MhpD-U5tKVb4284Q1Tpvg=/1333x0:2000x667/fit-in/500x500/99designs-contests-attachments/100/100792/attachment_100792419"
+            src="/images/logo-dark.png"
             alt="LOGO"
-            width="38"
-            height="38"
+            width="100"
+            height="30"
           />
-          LOGO
         </a>
       </div>
       <div class="btn outlined icon-btn" id="nav-trigger">

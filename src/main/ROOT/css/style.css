@@ -807,11 +807,20 @@ header {
   padding-block: 0.7rem;
 }
 
+.posts-layout .discover {
+  min-width: 300px;
+}
 .posts-layout .cards {
   max-width: 800px;
 }
 
 /* media queries */
+
+@media screen and (max-width: 500px) {
+  .newsletter-layout {
+    flex-direction: column;
+  }
+}
 
 @media screen and (max-width: 720px) {
   .nav.desktop {
