@@ -39,6 +39,7 @@ public class EditArticlePage extends HttpServlet {
             } catch (NumberFormatException e) {
                 response.sendError(400);
             } catch (Exception e) {
+                e.printStackTrace();
                 response.sendError(500);
             }
         } else {

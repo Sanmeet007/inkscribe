@@ -113,3 +113,9 @@ window.addEventListener("keydown", (e) => {
         }
     }
 });
+
+
+const toSlug = (el) => {
+    const v = el.value.replaceAll(" ", "-");
+    el.value = v;
+}

@@ -43,7 +43,6 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
   color: var(--accent-clr-heading);
 }
 
@@ -318,6 +317,8 @@ header {
   border-radius: 4px;
   padding: 1rem;
   visibility: hidden;
+  max-height: 500px;
+  overflow-y: auto;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.9);
   transform-origin: top;
@@ -1223,4 +1224,12 @@ footer {
 }
 .text-btn[data-selected] .material-icons {
   display: block;
+}
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  margin: 1rem 0;
 }
