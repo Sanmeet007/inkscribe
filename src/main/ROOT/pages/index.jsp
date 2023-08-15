@@ -58,7 +58,7 @@
                                     height="30"
                                 />
                                 </div>
-                                <div class="user-name"><%= article.authorName %></div>
+                                <a href="/user-details?id=<%= article.authorId %>" class="user-name no-link"><%= article.authorName %></a>
                             </div>
                             </div>
                             <a href="/article/<%= article.slug %>" class="block card-heading link">

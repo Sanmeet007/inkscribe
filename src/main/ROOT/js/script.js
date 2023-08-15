@@ -10,6 +10,8 @@ const errorSnackBar = document.querySelector(".snackbar.error");
 const snackBars = document.querySelectorAll(".snackbar");
 const formElements = document.querySelectorAll(".form-element");
 const modalTriggers = document.querySelectorAll("[data-trigger]");
+const popups = document?.querySelectorAll("popup");
+const popupTriggers = document?.querySelectorAll("[data-popup-trigger]");
 
 modalTriggers?.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
@@ -115,7 +117,33 @@ window.addEventListener("keydown", (e) => {
 });
 
 
+
+popupTriggers?.forEach(/**@type {HTMLButtonElement} */btn => {
+    const s = btn.getAttribute("data-popup-trigger");
+    const popup = document?.querySelector("#" + s);
+    const popupContent = popup.querySelector(".popup-content");
+    const popupBackdrop = popup.querySelector(".popup-backdrop");
+    const rect = btn.getBoundingClientRect();
+    const rect2 = popupContent.getBoundingClientRect();
+    popupContent.style.left = `${rect.left - rect2.width + rect.width}px`;
+    popupContent.style.top = `${rect.top + rect.height}px`;
+
+    btn.addEventListener("click", e => {
+        if (popup) {
+            popup.classList.add("open");
+        }
+    });
+
+    popupBackdrop.addEventListener("click", () => {
+        if (popup) {
+            popup.classList.remove("open");
+        }
+    })
+})
+
+
 const toSlug = (el) => {
     const v = el.value.replaceAll(" ", "-");
     el.value = v;
 }
+

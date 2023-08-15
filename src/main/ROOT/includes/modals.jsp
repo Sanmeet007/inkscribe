@@ -55,7 +55,7 @@
 
 
             <div class="form-element fullwidth rows-2">
-              <label for="article_desc"
+              <label for="user_bio"
                 >About me <span class="red">*</span>
               </label>
               <fieldset>

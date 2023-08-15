@@ -788,6 +788,10 @@ header {
   padding-block: 0.7rem;
 }
 
+.posts-layout .cards {
+  max-width: 800px;
+}
+
 /* media queries */
 
 @media screen and (max-width: 720px) {
@@ -1240,4 +1244,48 @@ footer {
 .article-content h5,
 .article-content h6 {
   margin: 1rem 0;
+}
+
+.popup {
+  position: fixed;
+  z-index: 100000;
+  isolation: isolate;
+  inset: 0;
+  visibility: hidden;
+}
+.popup-backdrop {
+  inset: 0;
+  position: fixed;
+}
+.popup-content {
+  position: fixed;
+  background-color: black;
+  border: 1px solid teal;
+  min-width: 100px;
+  top: 0;
+  left: 0;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transform-origin: top;
+  transform: scale(0.9);
+  transition: transform 200ms ease-in-out, visibility 200ms ease-in-out,
+    opacity 200ms ease-in-out;
+}
+
+.popup.open {
+  visibility: visible;
+}
+.popup.open .popup-content {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+.popup .popup-content .link {
+  display: flex !important;
+  align-items: center;
+  display: block;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
 }

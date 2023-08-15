@@ -13,7 +13,18 @@ public class UserDetails extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/pages/user-details.jsp").forward(request, response);
+        String _uid = request.getParameter("id");
+        try {
+            if (_uid == null) {
+                response.sendRedirect("/");
+            } else {
+                int id = Integer.parseInt(_uid);
+                request.setAttribute("id", id);
+                request.getRequestDispatcher("/pages/user-details.jsp").forward(request, response);
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(400);
+        }
     }
 
 }
