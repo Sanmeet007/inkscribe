@@ -37,6 +37,8 @@
         
     </main>
 
+    <!-- Footer -->
+    <jsp:include page="../includes/footer.jsp" />
     <!-- Modals -->
    <jsp:include page="../includes/modals.jsp" />
    <!-- Snackbars -->

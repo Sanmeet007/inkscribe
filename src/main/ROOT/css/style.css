@@ -1201,32 +1201,6 @@ footer {
   border-bottom-left-radius: 0;
 }
 
-@media screen and (max-width: 600px) {
-  .searchbar {
-    flex-direction: column;
-  }
-  .searchbar {
-    height: auto;
-  }
-  .searchbar input {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.361);
-  }
-  .searchbar .select {
-    flex-grow: 1;
-  }
-  .searchbar select {
-    width: 100%;
-    border-left: none;
-  }
-  .card .card-sides {
-    flex-direction: column-reverse;
-  }
-  .card .card-side img {
-    width: 100%;
-    height: 100%;
-    max-height: 200px;
-  }
-}
 .link {
   text-decoration: none;
   cursor: pointer;
@@ -1357,4 +1331,60 @@ footer {
 }
 .card-sides {
   gap: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .searchbar {
+    flex-direction: column;
+  }
+  .searchbar {
+    height: auto;
+  }
+  .searchbar input {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.361);
+  }
+  .searchbar .select {
+    flex-grow: 1;
+  }
+  .searchbar select {
+    width: 100%;
+    border-left: none;
+  }
+  .card .card-sides {
+    flex-direction: column-reverse;
+  }
+  .card .card-side img {
+    width: 100%;
+    height: 100%;
+    max-height: 200px;
+  }
+  .user-profile {
+    flex-direction: column;
+    align-items: normal;
+  }
+  .user-profile .profile-image {
+    display: flex;
+    justify-content: center;
+  }
+  .user-profile .profile-image img {
+    width: 100px;
+    height: 100px;
+  }
+  .user-profile .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .user-profile .spacer {
+    display: none;
+  }
+  .user-profile .details > *:first-child {
+    text-align: center;
+    grid-column: span 2;
+  }
+  .user-profile .details a {
+    margin-right: auto;
+  }
+  .user-profile .details button {
+    margin-left: auto;
+  }
 }
