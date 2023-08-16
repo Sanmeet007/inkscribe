@@ -1,0 +1,17 @@
+<%
+  String desc = request.getParameter("desc");
+%>
+
+<head>
+    <title><%= request.getParameter("title") %></title>
+    <% if(desc != null) { %>
+      <meta name="description" content="<%= desc %>">
+    <% } %>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  </head>

@@ -2,6 +2,7 @@ package models.users;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,7 +51,7 @@ public class User {
         if (bio != null) {
             obj.put("bio", bio);
         } else {
-            obj.put("dob", "");
+            obj.put("bio", "");
         }
 
         if (profileImage != null) {
@@ -63,4 +64,16 @@ public class User {
         return json;
     }
 
+    public String getProfileImage() {
+        if (profileImage != null) {
+            return profileImage;
+        } else {
+            return "/images/avatar.svg";
+        }
+    }
+
+    public String getCleanDate() {
+        String dateString = new SimpleDateFormat("MMM,d yyyy").format(this.createdAt);
+        return dateString;
+    }
 }

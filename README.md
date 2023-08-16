@@ -1,8 +1,3 @@
-# Mini Project
+# InkScribe
 
-This is a mini project .. website
-
-mvn package -f [path_to_pom.xml]
-docker-compose build
-docker-compose up -d
-docker-compose down
+InkScribe is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic.
