@@ -29,7 +29,7 @@ import utils.StreamReader;
         maxFileSize = 1024 * 1024 * 10, // 10 MB
         maxRequestSize = 1024 * 1024 * 15 // 1 MB
 )
-public class UpdateUserDetails extends HttpServlet {
+public class UpdateUserDetailsApi extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
@@ -93,12 +93,14 @@ public class UpdateUserDetails extends HttpServlet {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON("Unable to upload profile image file"));
         } catch (UnauthorizedAcess e) {
             ResMethods.writeJSONResponse(res, 401,
                     "{\n  \"error\" : true,\n \"message\" : \"Unauthorized Access\"\n}");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
     }
