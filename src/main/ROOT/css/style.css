@@ -1008,6 +1008,53 @@ footer {
   border-radius: 100px;
 }
 
+@media screen and (max-width: 600px) {
+  .dashboard-container .dashboard-content {
+    margin-inline: 0;
+    height: 100vh;
+  }
+  .dashboard-content .user-details {
+    margin-bottom: 2rem;
+  }
+  .dashboard-content .user-profile-image {
+    flex-shrink: 0;
+  }
+  .dashboard-content .user-profile-image img {
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1;
+  }
+  .dashboard-content .user-name {
+    display: none;
+  }
+  .dashboard-content .logo {
+    display: none;
+  }
+  .dashboard-content .sidebar {
+    padding: 0.5rem;
+    width: 60px;
+    min-width: auto;
+  }
+  .dashboard-content .menu-item {
+    padding: 0;
+    padding: 0.3rem 0.5rem !important;
+  }
+  .dashboard-content .menu-item > :last-child {
+    display: none;
+  }
+  .dashboard-content .action button {
+    padding: 0.5rem 0.5rem !important;
+  }
+  .dashboard-content .extras button > *:last-child {
+    display: none;
+  }
+  .with-mins {
+    min-width: auto;
+  }
+  .dashboard-container .dashboard-content .cards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
 .publisher-profile {
   display: flex;
   gap: 1rem;

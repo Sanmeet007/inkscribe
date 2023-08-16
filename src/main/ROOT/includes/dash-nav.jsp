@@ -70,7 +70,9 @@
     </div>
     <div class="flex-grow"></div>
     <div class="extras">
-      <button class="btn fullwidth outlined" id="logout">Logout</button>
+      <button class="btn fullwidth outlined" id="logout">
+        <span class="material-icons">logout</span>
+        <span>Logout</span></button>
     </div>
   </div>
 
