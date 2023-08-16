@@ -53,20 +53,21 @@
    <div class="featured-bg">
             <form class="searchbar" method="get">
                 <input type="search" name="q" placeholder="Search articles"/>
-                <div class="select">
-                    <select name="t">
-                        <option <%= type == null ?"selected" : "" %> default value="Any">Any</option>
-
-                        <% for(ArticleType t : articleTypes ){ %>
-                          <option value="<%= t.id %>" <%= type == null ? "" : t.id == type ? "selected" : "" %>><%= t.type %></option>
-                        <% } %>
-                    </select>
-                </div>
-                <button class="btn secondary">
-                    <span class="material-icons-outlined">
-                        search
-                        </span>
-                </button>
+                <siv class="flex">
+                  <div class="select">
+                      <select name="t">
+                          <option <%= type == null ?"selected" : "" %> default value="Any">Any</option>
+                          <% for(ArticleType t : articleTypes ){ %>
+                            <option value="<%= t.id %>" <%= type == null ? "" : t.id == type ? "selected" : "" %>><%= t.type %></option>
+                          <% } %>
+                      </select>
+                    </div>
+                    <button class="btn secondary" type="submit">
+                        <span class="material-icons-outlined">
+                            search
+                            </span>
+                    </button>
+                </siv>
             </form>
     </div>
 
