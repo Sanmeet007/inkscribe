@@ -14,6 +14,10 @@
         <location>/pages/errors/400.jsp</location>
     </error-page>
     <error-page>
+        <error-code>405</error-code>
+        <location>/pages/errors/405.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>401</error-code>
         <location>/pages/errors/401.jsp</location>
     </error-page>

@@ -97,6 +97,7 @@ public class UpdateUserDetails extends HttpServlet {
             ResMethods.writeJSONResponse(res, 401,
                     "{\n  \"error\" : true,\n \"message\" : \"Unauthorized Access\"\n}");
         } catch (Exception e) {
+            e.printStackTrace();
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
         return;
