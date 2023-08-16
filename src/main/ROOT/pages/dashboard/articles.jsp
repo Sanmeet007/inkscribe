@@ -33,7 +33,7 @@
             <div class="form-element mt-1 mb-1">
               <label for="search_in_articles">Search Articles</label>
               <fieldset>
-                <legend>Search Articles</legend>
+                <legend>SearchArticle</legend>
                 <input
                   type="search"
                   id="search_in_articles"
