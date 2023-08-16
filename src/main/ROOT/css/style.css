@@ -209,6 +209,18 @@ header {
   transform: translateX(0);
 }
 
+.nav.mobile #nav-trigger > *:last-child {
+  display: none;
+}
+.nav.mobile #nav-trigger > *:first-child {
+  display: block;
+}
+.nav.mobile.open #nav-trigger > *:first-child {
+  display: none;
+}
+.nav.mobile.open #nav-trigger > *:last-child {
+  display: block;
+}
 /* Buttons */
 .btn {
   text-decoration: none;

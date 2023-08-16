@@ -69,6 +69,7 @@
       </div>
       <div class="btn outlined icon-btn" id="nav-trigger">
         <span class="material-icons-outlined"> menu </span>
+        <span class="material-icons-outlined"> close </span>
       </div>
       <div class="nav-drawer">
         <ul class="nav-links">

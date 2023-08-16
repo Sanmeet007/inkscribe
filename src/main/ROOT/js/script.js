@@ -87,8 +87,13 @@ const showSnackbar = (
 
 
 mobNavTrigger?.addEventListener("click", () => {
-    mobNav.classList.add("open");
-    mobNavBackdrop.classList.add("open");
+    if (mobNav.classList.contains("open")) {
+        mobNav.classList.remove("open");
+        mobNavBackdrop.classList.remove("open");
+    } else {
+        mobNav.classList.add("open");
+        mobNavBackdrop.classList.add("open");
+    }
 });
 mobNavBackdrop?.addEventListener("click", (e) => {
     mobNav.classList.remove("open");
