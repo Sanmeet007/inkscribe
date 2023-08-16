@@ -2,6 +2,37 @@
 
 InkScribe provides an open platform where readers can explore dynamic thinking, and both experienced experts and undiscovered voices can share their writings on any topic.
 
+## Project Description: InkScribe - Your Creative Platform
+
+**Project Name:** InkScribe
+
+**Project Overview:**
+InkScribe is a dynamic web application that draws inspiration from the popular blogging platform Medium. This innovative platform aims to empower both readers and writers by providing a space where creativity thrives. With user-friendly features and a focus on seamless content sharing, InkScribe offers an experience that fosters engagement, interaction, and the exploration of diverse ideas.
+
+**Key Features:**
+
+- **User Management:** InkScribe boasts a comprehensive user management system that distinguishes between two main roles: administrators and writers. This hierarchical approach ensures a smooth user experience tailored to different needs.
+
+- **Admin and Writer Roles:** Administrators hold the reins, overseeing the platform's operations and content. Writers, on the other hand, enjoy the privilege of creating and publishing their written pieces.
+
+- **User Profiles:** Users have the freedom to create and personalize their profiles. This helps build a sense of community and connection among readers and writers.
+
+- **Engagement Through Comments:** InkScribe's comment system promotes interaction among readers and writers. Users can express their thoughts, share insights, and engage in meaningful discussions on published articles.
+
+- **Article Creation and Publishing:** Writers can unleash their creativity by crafting articles in the markdown format. This format allows for clear and structured content presentation, ensuring a rich reading experience for the audience.
+
+**Technology Stack:**
+InkScribe has been meticulously developed using a range of technologies to ensure optimal performance and user satisfaction. The core technologies used in building the platform include:
+
+- **JSP (JavaServer Pages):** Providing dynamic content rendering and seamless integration with Java backend logic.
+- **HTML and CSS:** Crafting visually appealing and responsive user interfaces that enhance the overall experience.
+- **Vanilla JavaScript:** Enabling interactive features that engage users and enhance usability.
+
+**Why InkScribe?**
+InkScribe stands out as a creative haven where the art of storytelling and idea-sharing flourishes. With a user-centric approach, robust user management, and an intuitive interface, InkScribe promises an environment where readers can immerse themselves in captivating articles, and writers can channel their creativity into expressive content.
+
+Whether you're passionate about reading, writing, or both, InkScribe invites you to explore a world of thoughts, discussions, and narratives that resonate with your interests. Join us on this journey to unleash the power of the written word.
+
 ## How to Get Started
 
 To get started with InkScribe, follow these steps:
