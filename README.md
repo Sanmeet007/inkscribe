@@ -33,7 +33,13 @@ InkScribe stands out as a creative haven where the art of storytelling and idea-
 
 Whether you're passionate about reading, writing, or both, InkScribe invites you to explore a world of thoughts, discussions, and narratives that resonate with your interests. Join us on this journey to unleash the power of the written word.
 
-## How to Get Started ( Without docker)
+## How to Get Started
+
+## Setting up database
+
+From sql folder run the config.sql file to create the database and tables.
+
+### Without docker
 
 To get started with InkScribe, follow these steps:
 
@@ -62,10 +68,11 @@ To get started with InkScribe, follow these steps:
     ```
 
     Replace `<DB_USER>`, `<DB_PASSWORD>`, `<DATABASE_NAME>`, and so on with your actual database credentials and configuration.
+5. **Change webapp folder name**: Since the website is designed to listen request from root path you need to change the webapp folder to `ROOT`.
 
-5. **Start Using InkScribe**: Once you've completed the above steps, your environment will be set up for using InkScribe. You can now start exploring the platform and sharing your writings with the world.
+6. **Start Using InkScribe**: Once you've completed the above steps, your environment will be set up for using InkScribe. You can now start exploring the platform and sharing your writings with the world.
 
-## How to Get Started ( Using docker)
+## Using docker
 
 To get started with InkScribe, follow these steps:
 
