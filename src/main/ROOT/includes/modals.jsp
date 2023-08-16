@@ -245,7 +245,7 @@
     signUpForm?.addEventListener("submit" , async e=>{
       e.preventDefault();
       const submitBtn = signUpForm?.querySelector("[type='submit']");
-      const navExtraDiv = document?.querySelector(".nav-extras");
+      const navExtraDiv = document?.querySelectorAll(".nav-extras");
       const signUpModal = document?.querySelector("#sign-up-modal");
       
       const name = signUpForm.name.value;
@@ -278,11 +278,13 @@
               submitBtn?.removeAttribute("disabled");
               showSnackbar("success" , "Sign up successfull");
               if(navExtraDiv) {
-                navExtraDiv.innerHTML = `
-                <a href="/dashboard"
-                class="btn pill-shape min-size secondary">
-                Dashboard
-                </a>`;
+                navExtraDiv.forEach(d =>{
+                  d.innerHTML = `
+                  <a href="/dashboard"
+                  class="btn pill-shape min-size secondary">
+                  Dashboard
+                  </a>`;
+                })
                 document.dispatchEvent(loginEvent);
               }
               signUpModal?.classList.remove("open");
@@ -301,7 +303,7 @@
     signInForm?.addEventListener("submit" , async e=>{
       e.preventDefault();
       const submitBtn = signInForm?.querySelector("[type='submit']");
-      const navExtraDiv = document?.querySelector(".nav-extras");
+      const navExtraDiv = document?.querySelectorAll(".nav-extras");
       const signInModal = document?.querySelector("#sign-in-modal");
       
       const email = signInForm.email.value;
@@ -330,11 +332,13 @@
             submitBtn?.removeAttribute("disabled");
             showSnackbar("success" , "Login successfull");
             if(navExtraDiv) {
-                navExtraDiv.innerHTML = `
-                <a href="/dashboard"
-                class="btn pill-shape min-size secondary">
-                Dashboard
-                </a>`;
+              navExtraDiv.forEach(d =>{
+                  d.innerHTML = `
+                  <a href="/dashboard"
+                  class="btn pill-shape min-size secondary">
+                  Dashboard
+                  </a>`;
+                })
                 document.dispatchEvent(loginEvent);
               }
             signInModal?.classList.remove("open");

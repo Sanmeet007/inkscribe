@@ -138,7 +138,7 @@
         </div>
       </section>
 
-      <section class="subscribe">
+      <section class="subscribe mt-1">
         <div class="container">
           <div class="newsletter-layout">
             <div>

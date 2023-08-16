@@ -94,12 +94,25 @@
         </ul>
         <div class="spacer"></div>
         <div class="nav-extras">
+
+          <% if (Auth.isLoggedIn(request)) { %>
+                  
+            <a href="/dashboard"
+            class="btn pill-shape min-size secondary">
+              Dashboard
+            </a>
+  
+            <%} else {%>
+            
+              
           <button class="pill-shape btn outlined fullwidth" id="sign-up-btn" data-trigger="sign-up-modal">
             Sign up
           </button>
           <button class="btn pill-shape fullwidth" id="sign-in-btn" data-trigger="sign-in-modal">
             Sign in
           </button>
+
+          <% } %>
         </div>
       </div>
     </nav>
