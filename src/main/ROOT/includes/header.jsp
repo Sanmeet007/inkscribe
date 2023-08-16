@@ -80,30 +80,24 @@
             </a>
           </li>
           <li>
-            <a href="/about-us">
+            <a href="/our-story">
               <span class="material-icons-outlined"> info </span>
-              About
+              Our Story
             </a>
           </li>
           <li>
-            <a href="/services">
-              <span class="material-icons-outlined"> settings </span>
-              Services
-            </a>
-          </li>
-          <li>
-            <a href="/support">
-              <span class="material-icons-outlined"> support_agent </span>
-              Support
+            <a href="/search">
+              <span class="material-icons-outlined"> search </span>
+              Search
             </a>
           </li>
         </ul>
         <div class="spacer"></div>
         <div class="nav-extras">
-          <button class="pill-shape btn outlined fullwidth" id="sign-up-btn">
+          <button class="pill-shape btn outlined fullwidth" id="sign-up-btn" data-trigger="sign-up-modal">
             Sign up
           </button>
-          <button class="btn pill-shape fullwidth" id="sign-in-btn">
+          <button class="btn pill-shape fullwidth" id="sign-in-btn" data-trigger="sign-in-modal">
             Sign in
           </button>
         </div>

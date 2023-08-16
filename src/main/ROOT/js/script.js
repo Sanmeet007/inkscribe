@@ -12,6 +12,17 @@ const formElements = document.querySelectorAll(".form-element");
 const modalTriggers = document.querySelectorAll("[data-trigger]");
 const popups = document?.querySelectorAll("popup");
 const popupTriggers = document?.querySelectorAll("[data-popup-trigger]");
+const mobSignInBtn = document?.querySelector("#sign-in-btn");
+const mobSignUpBtn = document?.querySelector("#sign-up-btn");
+
+mobSignUpBtn?.addEventListener("click", () => {
+    mobNav?.classList.remove("open");
+    mobNavBackdrop?.classList.remove("open");
+});
+mobSignInBtn?.addEventListener("click", () => {
+    mobNav?.classList.remove("open");
+    mobNavBackdrop?.classList.remove("open");
+});
 
 modalTriggers?.forEach(trigger => {
     trigger.addEventListener("click", (e) => {
