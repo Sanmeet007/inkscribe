@@ -34,6 +34,8 @@ services:
       - DB_PORT=3306
       - SECURITY_STRING=89qp134i
       - APP_NAME=app
+      - ADMIN_EMAIL=admin@inkscribe.com
+      - URI=http://localhost
     ports:
       - 80:8080
     expose:
