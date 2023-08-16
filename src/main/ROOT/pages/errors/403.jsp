@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Error | 404</title>
+    <title>Error | 403</title>
     <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
   </head>
   <body>
@@ -60,8 +60,8 @@
       }
     </style>
     <div class="error-page">
-      <h4>404 | ERROR</h4>
-      <p>The page you are looking for doesn't exsits</p>
+      <h4>403 | FORBIDDEN </h4>
+      <p>You're not allowed to view this page</p>
       <a class="btn waves-effect waves-ripple" href="/">Go to Homepage </a>
     </div>
   </body>
