@@ -1,5 +1,12 @@
+<%
+  String desc = request.getParameter("desc");
+%>
+
 <head>
     <title><%= request.getParameter("title") %></title>
+    <% if(desc != null) { %>
+      <meta name="description" content="<%= desc %>">
+    <% } %>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

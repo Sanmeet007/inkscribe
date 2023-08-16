@@ -29,7 +29,7 @@
 <html lang="en">
   <jsp:include page="../includes/frontend-head.jsp">
     <jsp:param name="title" value="<%= article.title %>" />
-    <jsp:param name="desc" value="InkScribe is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic." />
+    <jsp:param name="desc" value="<%= article.description %>" />
   </jsp:include>
   <body>
     <!-- Header -->
