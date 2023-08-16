@@ -33,7 +33,7 @@ InkScribe stands out as a creative haven where the art of storytelling and idea-
 
 Whether you're passionate about reading, writing, or both, InkScribe invites you to explore a world of thoughts, discussions, and narratives that resonate with your interests. Join us on this journey to unleash the power of the written word.
 
-## How to Get Started
+## How to Get Started ( Without docker)
 
 To get started with InkScribe, follow these steps:
 
@@ -64,6 +64,38 @@ To get started with InkScribe, follow these steps:
     Replace `<DB_USER>`, `<DB_PASSWORD>`, `<DATABASE_NAME>`, and so on with your actual database credentials and configuration.
 
 5. **Start Using InkScribe**: Once you've completed the above steps, your environment will be set up for using InkScribe. You can now start exploring the platform and sharing your writings with the world.
+
+## How to Get Started ( Using docker)
+
+To get started with InkScribe, follow these steps:
+
+1. **Download or Clone the Repository**: Begin by downloading or cloning the repository to your local machine.
+
+2. **Build the Project**: Open your terminal and navigate to the project's root directory. Run the following command to build the project using Maven:
+
+    ```bash
+    mvn package
+    ```
+
+3. **Build the docker images**: After packaging using maven run the following docker commands
+
+    ```bash
+    docker-compose build 
+    ```
+
+4. **Start the server**: After builing the image you need to run container.
+
+    ```bash
+    docker-compose up -d 
+    ```
+
+5. **Start Using InkScribe**: Once you've completed the above steps, your environment will be set up for using InkScribe. You can now start exploring the platform and sharing your writings with the world.
+
+6. **Terminate the server**: If you want to quit or terminate the server then run the following command.
+
+    ```bash
+    docker-compose down
+    ```
 
 If you have any questions or need further assistance, don't hesitate to reach out!
 
