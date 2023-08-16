@@ -4,4 +4,5 @@ ADD ./target/app.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080:80
 
+RUN mv ./webapps/app.war ./webapps/ROOT.war
 CMD ["catalina.sh", "run"]

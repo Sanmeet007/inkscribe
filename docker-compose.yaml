@@ -3,7 +3,7 @@ version: "1.0"
 services:
   mysqldb:
     image: mysql:8.0
-    container_name: project_tomcat_mysql
+    container_name: inkscribe_db
     command:
       - --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
@@ -18,10 +18,10 @@ services:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin
       - MYSQL_ROOT_PASSWORD=admin
-      - MYSQL_DATABASE=project_tomcat
+      - MYSQL_DATABASE=inkscribe
 
   app:
-    container_name: project_tomcat
+    container_name: inkscribe_webapp
     depends_on:
       - mysqldb
     build: .
@@ -29,11 +29,11 @@ services:
     environment:
       - DB_USER=admin
       - DB_PASSWORD=admin
-      - DB_NAME=project_tomcat
+      - DB_NAME=inkscribe
       - DB_HOST=mysqldb
       - DB_PORT=3306
       - SECURITY_STRING=89qp134i
-      - APP_NAME=app
+      - APP_NAME=ROOT
       - ADMIN_EMAIL=admin@inkscribe.com
       - URI=http://localhost
     ports:
