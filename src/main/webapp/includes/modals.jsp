@@ -17,13 +17,14 @@
           <h1 class="mb-1 mt-1">Edit Details</h1>
           <form action="#" id="user-update-detials-form">
             <div class="form-element fullwidth">
-              <label for="article_title"
+              <label for="user_name"
                 >Name <span class="red">*</span></label
               >
               <fieldset>
                 <legend>Name*</legend>
                 <input
                   required
+                  autocomplete="on"
                   maxlength="120"
                   type="text"
                   id="user_name"
@@ -35,9 +36,9 @@
             </div>      
 
             <div class="fullwidth mb-1 mt-1">
-              <label >Profile image (<small>Optional</small>)
+              <label for="profile_image">Profile image (<small>Optional</small>)
               </label>
-              <input class="block mt-1" name="profile_image" type="file" accept=".jpg, .jpeg, .png"/>
+              <input class="block mt-1" name="profile_image" type="file" accept=".jpg, .jpeg, .png" id="profile_image"/>
             </div> 
             <div class="form-element focused mb-1">
               <label for="user_dob">D.O.B <span class="red">*</span></label>
@@ -47,6 +48,7 @@
                   type="date"
                   id="user_dob"
                   name="dob"
+                  autocomplete="on"
                   placeholder="hunter@hunter.com"
                   value="<%= formattedDate %>"
                 />
@@ -66,6 +68,7 @@
                   type="text"
                   id="user_bio"
                   name="bio"
+                  autocomplete="on"
                   placeholder="I am feeling lucky"
                 ><%= user.bio == null ? "I am feeling lucky" : user.bio %></textarea>
               </fieldset>
@@ -146,6 +149,7 @@
             <input
               type="text"
               id="name_inp"
+              autocomplete="on"
               name="name"
               placeholder="hunter@hunter.com"
             />
@@ -158,6 +162,7 @@
             <input
               type="email"
               id="s_email_inp"
+              autocomplete="on"
               name="email"
               placeholder="hunter@hunter.com"
             />
@@ -170,6 +175,7 @@
             <input
               type="date"
               id="dob_inp"
+              autocomplete="on"
               name="dob"
               placeholder="hunter@hunter.com"
             />
@@ -183,7 +189,7 @@
             <legend>Password*</legend>
             <input
               type="password"
-              autocomplete
+              autocomplet="on"
               id="s_password_inp"
               name="password"
               placeholder="hunter@hunter.com"
@@ -208,7 +214,8 @@
           <fieldset>
             <legend>Email*</legend>
             <input
-              type="text"
+              type="email"
+              autocomplete="on"
               id="email_inp"
               name="email"
               placeholder="hunter@hunter.com"
@@ -220,10 +227,10 @@
             >Password <span class="red">*</span></label
           >
           <fieldset>
-            <legend>Email*</legend>
+            <legend>Password*</legend>
             <input
               type="password"
-              autocomplete
+              autocomplete="on"
               id="password_inp"
               name="password"
               placeholder="hunter@hunter.com"

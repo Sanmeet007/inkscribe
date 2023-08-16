@@ -36,6 +36,7 @@
                 <legend>SearchArticle</legend>
                 <input
                   type="search"
+                  autocomplete="off"
                   id="search_in_articles"
                   name="name"
                   placeholder="Serch article"

@@ -152,7 +152,7 @@
             <div>
               <form action="#" class="special-form" id="special-form">
                 <div class="wrapper">
-                  <input type="text" placeholder="Enter your email" name="email"/>
+                  <input type="text" autocomplete="on" placeholder="Enter your email" name="email"/>
                   <button class="btn" type="submit">Join now</button>
                 </div>
               </form>
