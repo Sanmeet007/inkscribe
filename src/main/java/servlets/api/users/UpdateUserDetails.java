@@ -92,6 +92,7 @@ public class UpdateUserDetails extends HttpServlet {
                 throw new UnauthorizedAcess();
             }
         } catch (IOException e) {
+            e.printStackTrace();
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON("Unable to upload profile image file"));
         } catch (UnauthorizedAcess e) {
             ResMethods.writeJSONResponse(res, 401,
@@ -100,6 +101,5 @@ public class UpdateUserDetails extends HttpServlet {
             e.printStackTrace();
             ResMethods.writeJSONResponse(res, 500, ResMethods.get500ResJSON());
         }
-        return;
     }
 }
