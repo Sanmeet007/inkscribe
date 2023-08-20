@@ -49,15 +49,15 @@ public class Config {
 
     public static Path getUploadPath(String filePath) throws Exception {
         Path root = Paths.get(".").normalize().toAbsolutePath();
-        String appName = APP_NAME;
         if (APP_NAME == null) {
             throw new AppNameNotDefined();
         }
-        File dir = new File(root.resolve("../webapps/" + appName + "/uploads/").normalize().toString());
+        File dir = new File(root.resolve("../webapps/" + APP_NAME + "/uploads/").normalize().toString());
+
         boolean dirMade = false;
 
         if (!dir.exists()) {
-            dirMade = dir.mkdir();
+            dirMade = dir.mkdirs();
         } else {
             dirMade = true;
         }

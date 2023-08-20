@@ -6,5 +6,5 @@ target/*
 Test
 test*
 .*
-src/main/ROOT/WEB-INF/classes
-src/main/ROOT/WEB-INF/lib
+classes
+lib
