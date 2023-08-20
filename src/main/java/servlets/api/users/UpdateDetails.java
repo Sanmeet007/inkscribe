@@ -29,7 +29,7 @@ import utils.StreamReader;
         maxFileSize = 1024 * 1024 * 10, // 10 MB
         maxRequestSize = 1024 * 1024 * 15 // 1 MB
 )
-public class UpdateUserDetailsApi extends HttpServlet {
+public class UpdateDetails extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
