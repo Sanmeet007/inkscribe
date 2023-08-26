@@ -140,13 +140,15 @@
 
     <div class="modal" id="article_preview">
       <div class="modal-backdrop"></div>
-      <div class="modal-content"></div>
+      <div class="modal-content article-content"></div>
 </div>
  
   <script src="/js/script.js"></script>
   <script src="/js/showdown.min.js"></script>
   <script>
-    const converter = new showdown.Converter();
+    const converter = new showdown.Converter({
+      tables: true
+    });
     const editForm = document.querySelector("#edit_form");
     const buildPreviewBtn = document.querySelector("#build_preview");
     const articleViewBtn = document.querySelector("#article_view");

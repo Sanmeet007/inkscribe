@@ -20,6 +20,11 @@
   --modal-bg-shadow: 0 0 10px 2px rgba(8, 90, 82, 0.517);
 }
 
+::selection {
+  background: #a0dcab;
+  color: #0d100f;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1370,6 +1375,32 @@ footer {
 
 .article-content li {
   color: #dbe9d9;
+}
+
+.article-content table {
+  width: 100%;
+  background-color: #091010;
+  border-collapse: collapse;
+  border-width: 1px;
+  border-color: #7ea8f8;
+  border-style: solid;
+  color: #fff5f5;
+}
+
+.article-content table td,
+.article-content table th {
+  border-width: 1px;
+  text-align: left;
+  border-color: #7ea8f8;
+  border-style: solid;
+  padding: 0.5rem;
+}
+
+.article-content table tr:nth-child(even) {
+  background-color: rgba(242, 242, 242, 0.08);
+}
+.article-content table thead {
+  background-color: #0a99f8;
 }
 
 .popup {
