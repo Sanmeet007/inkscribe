@@ -1342,6 +1342,36 @@ footer {
   margin: 1rem 0;
 }
 
+.article-content pre {
+  background: #c3f3ff;
+  padding: 10px;
+  border-radius: 2px;
+  color: black;
+}
+
+.article-content a {
+  cursor: pointer;
+  color: var(--clr-card-heading);
+}
+
+.article-content a:hover {
+  color: #c5ffd1;
+}
+
+.article-content img {
+  background: #a8a8a8;
+  display: block;
+  margin: 1rem 0;
+}
+
+.article-content li::marker {
+  color: #cfffdd;
+}
+
+.article-content li {
+  color: #dbe9d9;
+}
+
 .popup {
   position: fixed;
   z-index: 100000;
