@@ -104,7 +104,7 @@
       <img src="<%= article.featuredImageUrl %>" alt="featured-image" width="900">
      </div>
 
-     <article class="mb-2 mt-2" id="article-content">
+     <article class="mb-2 mt-2 article-content" id="article-content">
       <%= MarkdownConverter.markdownToHtml(article.content) %>
      </article>
    
